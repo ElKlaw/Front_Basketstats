@@ -1,0 +1,76 @@
+.content{
+	margin-right:3%;
+	margin-left: 3%;
+}
+
+.div_photo_couverture>img{
+    width: 100%;
+    height: auto;
+    padding:0;
+}
+
+.div_infos_club{
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+}
+
+.div_logo_club{
+    margin-left: 3%;
+    width: 10%;
+    -webkit-transform: translateY(-60%);
+    transform: translateY(-60%);
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.logo_club{
+    width: 100%;
+    height: auto;
+}
+
+.Titre_Infos_club{
+    font-weight: 650;
+}
+
+/** NAVBAR ***/
+#nav_site_secondaire{
+	padding-left: 25%;
+	padding-right: 25%;
+    font-weight: 700;
+    color: #66757f;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+}
+
+.nav-item:hover, .nav-item:focus {
+    color: #009999;
+    border-bottom: 3px solid #009999;
+    margin: 0;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: #009999;
+    border-bottom: 3px solid #009999;
+    margin: 0;
+    cursor: default;
+}
+
+.nav-item{
+    margin-bottom: 3px;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}

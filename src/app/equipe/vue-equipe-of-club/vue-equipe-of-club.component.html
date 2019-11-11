@@ -1,0 +1,87 @@
+<div class="div-vue-equipe">
+	<h1>
+		Les équipes du club
+	</h1>
+	<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 col-xs-12">
+        <button mat-raised-button  class="btn btn-success create-equipe full-width" (click)="openCreateEquipeDialog()"> <i class="fa fa-plus-circle"></i> Créer une équipe</button>
+    	<div class="input-group">
+            <mat-form-field appearance="outline">
+                <mat-label>Rechercher une équipe</mat-label>
+                <input matInput [formControl]="nomFilter">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="div-filter">
+        <mat-form-field class="filtre" appearance="outline">
+        	<mat-label>Sexe</mat-label>
+            <mat-select placeholder="Sexe" [formControl]="sexeFilter">
+                <mat-option value="Tous" selected>Tous</mat-option>
+                <mat-option value="Masculin">Masculin</mat-option>
+                <mat-option value="Féminine">Féminine</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="filtre" appearance="outline">
+        	<mat-label>Catégorie</mat-label>
+            <mat-select [formControl]="categorieFilter">
+                <mat-option value="Tous" selected>Tous</mat-option>
+                <mat-option value="Sénior">Sénior</mat-option>
+                <mat-option value="U20">U20</mat-option>
+                <mat-option value="U17">U17</mat-option>
+                <mat-option value="U15">U15</mat-option>
+                <mat-option value="U13">U13</mat-option>
+                <mat-option value="U11">U11</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="filtre" appearance="outline">
+        	<mat-label>Niveau</mat-label>
+            <mat-select [formControl]="niveauFilter">
+                <mat-option value="Tous" selected>Tous</mat-option>
+                <mat-option value="National">National</mat-option>
+                <mat-option value="Régional">Régional</mat-option>
+                <mat-option value="Départemental">Départemental</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="div-tableau">
+    	<div [hidden]="dataTable.filteredData.length>0">
+    		<p>Aucune équipe ne correspond à votre recherche</p>
+    	</div>
+    	<div [hidden]="dataTable.filteredData.length==0">
+	       <table mat-table [dataSource]="dataTable" matSort class="mat-elevation-z8">
+	            <ng-container matColumnDef="nom">
+	                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+	                <td mat-cell *matCellDef="let equipe"> {{equipe.nom}} </td>
+	            </ng-container>
+	            <ng-container matColumnDef="category">
+	                <th mat-header-cell *matHeaderCellDef mat-sort-header> Categorie </th>
+	                <td mat-cell *matCellDef="let equipe"> {{equipe.category}} </td>
+	            </ng-container>
+	            <ng-container matColumnDef="sexe">
+	                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sexe </th>
+	                <td mat-cell *matCellDef="let equipe"> {{equipe.sexe}}</td>
+	            </ng-container>
+	            <ng-container matColumnDef="division">
+	                <th mat-header-cell *matHeaderCellDef> Division </th>
+	                <td mat-cell *matCellDef="let equipe"> {{equipe.niveau}} {{equipe.division}}</td>
+	            </ng-container>
+	            <ng-container matColumnDef="poule">
+	                <th mat-header-cell *matHeaderCellDef> Poule </th>
+	                <td mat-cell *matCellDef="let equipe"> {{equipe.poule}}</td>
+	            </ng-container>
+	            <ng-container matColumnDef="details">
+	                <th mat-header-cell *matHeaderCellDef></th>
+	                <td mat-cell *matCellDef="let equipe">
+	                    <button mat-raised-button  class="btn btn-warning full-width" [routerLink]="['/equipe',equipe.id,'interne']">
+	                        Plus d'informations
+	                    </button>
+	                </td>
+	            </ng-container>
+	            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+	        </table>
+	        <mat-paginator [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
+	   </div>
+    </div>
+</div>
+
+       

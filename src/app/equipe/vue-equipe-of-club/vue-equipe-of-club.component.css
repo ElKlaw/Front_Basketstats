@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-default{
+	background-color: buttonface;
+}
+
+.div-tableau{
+    margin-top: 2%;
+}
+
+.div-filter{
+    text-align: center;
+}
+
+.filtre{
+	display: inline-block;
+	width: 150px;
+	margin-left: 20px;
+	margin-right: 20px;
+}

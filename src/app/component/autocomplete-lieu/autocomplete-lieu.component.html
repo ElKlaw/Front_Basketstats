@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline" class="full-width">
+    <mat-label>Lieu de l'événement</mat-label>
+    <input #lieuInput [formControl]="lieuCtrl" matInput [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" [displayWith]="displayFn">
+        <mat-option *ngIf="isLoadingSalle" class="is-loading">Loading...</mat-option>
+        <ng-container *ngIf="!isLoadingSalle">
+        	<mat-option *ngFor="let salle of filteredSalles" [value]="salle">
+                <span>{{salle.nom | uppercase }} ({{salle.adresse.numRue}} {{salle.adresse.nomRue}} - {{salle.adresse.ville.codePostal}} {{salle.adresse.ville.nom}})</span>
+            </mat-option>
+            <mat-divider></mat-divider>
+            <!-- <mat-option *ngFor="let adresse of filteredAdresses" [value]="adresse">
+                <p>{{adresse.properties.label}}</p>
+            </mat-option> -->
+        </ng-container>
+    </mat-autocomplete>
+</mat-form-field>

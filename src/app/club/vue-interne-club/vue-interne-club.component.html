@@ -1,0 +1,81 @@
+<app-header></app-header>
+<div>
+	<div class="div_photo_couverture">
+        <img src="assets/img/fond.jpg">
+    </div>
+    <div class="div_logo_club">
+        <img class="logo_club" src="assets/img/logo_club.png">
+    </div>
+    <div class="div_navigation_club">
+        <ul id="nav_site_secondaire" class="nav nav-justified">
+        	<li class="nav-item active">
+                <a class="nav-link" (click)="getAffichageAccueil()">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="getAffichageEquipes()">Equipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="getAffichageJoueurs()">Joueurs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="getAffichageMatchs()">Matchs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="getAffichageCalendrier()">Calendrier</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="getAffichageActus()">Actualités</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="getAffichageParametre()">Paramètres</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+	<div class="colonnes-gauche cadre-gris">
+        <div class="div_infos_club">
+	        <h1 class="Infos_club nomClub">{{club.nomcomplet}}</h1>
+	        <p class="Infos_club sport">
+	            <span class="Titre_Infos_club">Sport : </span>{{club.sport}}
+	        </p>
+	        <p class="Infos_club region">
+	            <span class="Titre_Infos_club">Région : </span>{{club.villes[0].region}}
+	        </p>
+	        <p class="Infos_club departement">
+	            <span class="Titre_Infos_club">Département : </span>{{club.villes[0].departement}} ({{club.villes[0].codeDepartement}})
+	        </p>
+	        <p class="Infos_club ville">
+	           <span class="Titre_Infos_club">Ville : </span><span *ngFor="let ville of club.villes ; let isLast=last">{{ville.nom}} ({{ville.codePostal}}) {{isLast ? '' : ', '}}</span>    
+	        </p>
+	    </div>
+	</div>
+	<div class="colonnes-central cadre-gris">
+	    <div class="div_body_club" [ngSwitch]="affichageMenu">
+	    	<div *ngSwitchCase="'Accueil'">
+	            <p>Accueil</p>
+	        </div>
+	        <div *ngSwitchCase="'Equipes'">
+	            <app-vue-equipe-of-club [club]="club"></app-vue-equipe-of-club>
+	        </div>
+	        <div *ngSwitchCase="'Joueurs'">
+	            <app-vue-joueur-of-club [club]="club"></app-vue-joueur-of-club>
+	        </div>
+	        <div *ngSwitchCase="'Calendrier'">
+	            <app-vue-event-of-club [club]="club"></app-vue-event-of-club>
+	        </div>
+	        <div *ngSwitchCase="'Matchs'">
+	            <app-vue-match-of-club [club]="club"></app-vue-match-of-club>
+	        </div>
+	        <div *ngSwitchCase="'Stats'">Stats</div>
+	        <div *ngSwitchCase="'Actus'">Actus</div>
+	        <div *ngSwitchCase="'Parametre'">
+				<app-vue-parametre-club [club]="club" (eventClub)='updateClub($event)'></app-vue-parametre-club>
+			</div>
+	    </div>
+	</div>
+	<div class="colonnes-droite cadre-gris">
+		<app-vue-block-match-of-club [club]="club"></app-vue-block-match-of-club>
+	</div>
+</div>
+<app-footer></app-footer>

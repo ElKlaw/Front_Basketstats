@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import '../node_modules/flatpickr/dist/flatpickr.css';
+.body{
+	background-color: #fafafa;
+}
+
+.full-width {
+  width: 100%;
+}  
+
+.half-width-input-gauche, .half-width-input-droite {
+  width: 45%;
+  display: inline-block;
+}
+
+.half-width-input-gauche{
+  margin-right: 10%;
+}
+
+
+.uppercase{
+	text-transform: uppercase;
+}
+
+.lowercase{
+	text-transform: lowercase;
+}
+
+.titre-center{
+	text-align: center;
+}
+
+.div-form-create{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.cadre-gris{
+	background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.colonnes-gauche{
+	vertical-align:top;
+	display: inline-block;
+	width: 19%;
+}
+
+.colonnes-central{
+	display: inline-block;
+	width: 55%;
+	margin-right: 1%;
+	margin-left: 1%;
+}
+
+.colonnes-droite{
+	vertical-align:top;
+	display: inline-block;
+	width: 24%;
+}

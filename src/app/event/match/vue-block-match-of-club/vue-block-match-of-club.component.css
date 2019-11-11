@@ -1,0 +1,30 @@
+.div-info-horaire{
+	display: inline-block;
+	width: 20%;
+	text-align: center;
+}
+
+.info-equipe-dom, .info-equipe-ext{
+	vertical-align: top;
+	padding-right: 5px;
+	padding-left: 5px;
+	width: 40%;
+	display: inline-block;
+}
+
+.info-date-match, .info-heure-match{
+	margin: 0px;
+}
+
+.info-equipe-dom{
+	text-align: right;
+}
+.info-equipe-ext{
+	text-align: left;
+}
+
+
+.div-body-prochains-matchs, .div-body-derniers-matchs{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
