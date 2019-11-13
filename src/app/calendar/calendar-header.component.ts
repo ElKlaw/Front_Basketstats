@@ -4,40 +4,26 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-calendar-header',
   template: `
     <div class="row text-center">
-      <div class="col-md-4">
-        <div class="btn-group">
-          <div
-            class="btn btn-primary"
-            mwlCalendarPreviousView
-            [view]="view"
-            [(viewDate)]="viewDate"
-            (viewDateChange)="viewDateChange.next(viewDate)"
-          >
-            Précédent
-          </div>
-          <div
-            class="btn btn-outline-secondary"
-            mwlCalendarToday
-            [(viewDate)]="viewDate"
-            (viewDateChange)="viewDateChange.next(viewDate)"
-          >
-            Aujourd'hui
-          </div>
-          <div
-            class="btn btn-primary"
-            mwlCalendarNextView
-            [view]="view"
-            [(viewDate)]="viewDate"
-            (viewDateChange)="viewDateChange.next(viewDate)"
-          >
-            Suivant
-          </div>
+      <div>
+        <div
+          mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="viewDateChange.next(viewDate)"
+        >
+          <<
+        </div>
+        <h3>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h3>
+        <div
+          mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="viewDateChange.next(viewDate)"
+        >
+          >>
         </div>
       </div>
-      <div class="col-md-4">
-        <h3>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h3>
-      </div>
-      <div class="col-md-4">
+      <!--<div>
         <div class="btn-group">
           <div
             class="btn btn-primary"
@@ -61,7 +47,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
             Jour
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
     <br />
   `
