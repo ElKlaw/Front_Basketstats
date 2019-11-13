@@ -22,7 +22,6 @@ import { ModalCreateEventComponent } from 'src/app/modal/modal-create-event/moda
 import { ModalModificationEventComponent } from 'src/app/modal/modal-modification-event/modal-modification-event.component';
 import { ModalEditEventClubComponent } from 'src/app/modal/modal-edit-event-club/modal-edit-event-club.component';
 import { Event } from 'src/app/shared/event';
-import { RRule, RRuleSet, rrulestr } from 'rrule';
 import { Observable, Subject } from 'rxjs';
 import * as moment from 'moment';
 

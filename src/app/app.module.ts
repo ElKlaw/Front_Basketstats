@@ -45,7 +45,6 @@ import { VueEventOfClubComponent } from './event/vue-event-of-club/vue-event-of-
 import { VueEventOfEquipeComponent } from './event/vue-event-of-equipe/vue-event-of-equipe.component';
 
 // Calendar
-import { CalendarHeaderComponent } from './calendar/calendar-header.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { VueCreateEventOfClubComponent } from './event/vue-create-event-of-club/vue-create-event-of-club.component';
@@ -77,6 +76,7 @@ import { ModalInscriptionComponent } from './modal/modal-inscription/modal-inscr
 import { ModalCreateEventComponent } from './modal/modal-create-event/modal-create-event.component';
 import { AutocompleteLieuComponent } from './component/autocomplete-lieu/autocomplete-lieu.component';
 import { VueBlockMatchOfClubComponent } from './event/match/vue-block-match-of-club/vue-block-match-of-club.component';
+import { HeaderCalendarComponent } from './calendar/header-calendar/header-calendar.component';
 
 
 registerLocaleData(localeFr);
@@ -104,7 +104,6 @@ registerLocaleData(localeFr);
     VueMatchOfEquipeComponent,
     VueEventOfClubComponent,
     VueEventOfEquipeComponent,
-    CalendarHeaderComponent,
     VueCreateEventOfClubComponent,
     VueCreateEventOfEquipeComponent,
     AutocompletecityComponent,
@@ -122,7 +121,8 @@ registerLocaleData(localeFr);
     ModalInscriptionComponent,
     ModalCreateEventComponent,
     AutocompleteLieuComponent,
-    VueBlockMatchOfClubComponent
+    VueBlockMatchOfClubComponent,
+    HeaderCalendarComponent
   ],
   imports: [
     NgbModule,

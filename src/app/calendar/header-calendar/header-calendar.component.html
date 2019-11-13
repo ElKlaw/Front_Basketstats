@@ -1,0 +1,21 @@
+<div class="row text-center">
+  <div>
+    <button mat-button
+      mwlCalendarPreviousView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="viewDateChange.next(viewDate)"
+    >
+      <i class="fas fa-angle-double-left"></i>
+    </button>
+    <h3 class="titre-header-calendar">{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h3>
+    <button mat-button
+      mwlCalendarNextView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="viewDateChange.next(viewDate)"
+    >
+    <i class="fas fa-angle-double-right"></i>
+    </button>
+  </div>
+</div>
