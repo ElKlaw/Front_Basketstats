@@ -11,7 +11,7 @@ export class EventJson {
     infosSup: string;
     typeEvent: string;
     equipes: Equipe[];
-    club: Club;
+    clubs: Club[];
     recurent: boolean;
     freq: string;
     bymonth: string;

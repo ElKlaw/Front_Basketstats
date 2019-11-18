@@ -50,11 +50,12 @@ export class ModalCreateEventComponent implements AfterViewInit {
     filteredAutreEquipes: Observable<Equipe[]>;
     @ViewChild('equipeAutreInput') equipeAutreInput: ElementRef<HTMLInputElement>;
     hiddenReccurentAutre: boolean;
+    lieuAutre: Lieu;
     
     //Match
     filteredMatchEquipes: Observable<Equipe[]>;
     @ViewChild('equipeMatchInput') equipeMatchInput: ElementRef<HTMLInputElement>;
-    lieu: Lieu;
+    lieuMatch: Lieu;
     
     //Entrainement
     equipeEntrainementCtrl = new FormControl();
@@ -63,6 +64,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
     hiddenReccurentEntrainement: boolean;
     equipesEntrainementEvent: any = [];
     equipesEntrainementNotEvent: any = [];
+    lieuEntrainement: Lieu;
     
     
     constructor(
@@ -76,7 +78,9 @@ export class ModalCreateEventComponent implements AfterViewInit {
         this.adapter.setLocale('fr');
         this.hiddenReccurentEntrainement = true;
         this.hiddenReccurentAutre = true;
-        this.lieu = new Lieu();
+        this.lieuMatch = new Lieu();
+        this.lieuEntrainement = new Lieu();
+        this.lieuAutre = new Lieu();
     }
     
     
@@ -198,7 +202,6 @@ export class ModalCreateEventComponent implements AfterViewInit {
                 matchs.domicile = this.eventForm.value.match.domicile;
                 matchs.infosSup = this.eventForm.value.infosSup;
                 matchs.equipe = new Equipe(this.eventForm.value.match.equipe.id);
-                console.log(JSON.stringify(matchs));
                 this.eventService.createMatch(matchs).toPromise().then(
                     (data: Match) => {
                         // init Date
@@ -224,7 +227,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
                         jsonEvent.equipes = new Array();
                         jsonEvent.equipes.push(new Equipe(this.eventForm.value.match.equipe.id));
                         jsonEvent.recurent = false;
-                        jsonEvent.lieu = new Lieu(this.lieu.id);
+                        jsonEvent.lieu = new Lieu(this.lieuMatch.id);
                         this.eventService.createEvent(jsonEvent).subscribe(
                             success => this.dialogRef.close(true),
                             error => alert(error)
@@ -268,11 +271,17 @@ export class ModalCreateEventComponent implements AfterViewInit {
                 const dateDebut = new Date(this.eventForm.value.startDate);
                 const heureDebut = this.eventForm.value.startTime.toString();
                 dateDebut.setHours(parseInt(heureDebut.substring(0, 2))-(dateDebut.getTimezoneOffset())/60, heureDebut.substring(3, 5));
-                // init Date fin
-                const dateFin = new Date(this.eventForm.value.endDate);
-                const heureFin = this.eventForm.value.endTime.toString();
-                dateFin.setHours(parseInt(heureFin.substring(0, 2))-(dateFin.getTimezoneOffset())/60, heureFin.substring(3, 5));
-        
+                let dateFin = new Date();
+                if(this.eventForm.value.recurent){
+                    // init Date fin
+                    dateFin = new Date(this.eventForm.value.endDate);
+                    const heureFin = this.eventForm.value.endTime.toString();
+                    dateFin.setHours(parseInt(heureFin.substring(0, 2))-(dateFin.getTimezoneOffset())/60, heureFin.substring(3, 5));
+                } else {
+                    dateFin = new Date(this.eventForm.value.startDate);
+                    const heureFin = this.eventForm.value.endTime.toString();
+                    dateFin.setHours(parseInt(heureFin.substring(0, 2))-(dateFin.getTimezoneOffset())/60, heureFin.substring(3, 5));
+                }
                 // create JSON
                 const jsonEvent = new EventJson();
                 jsonEvent.title = this.eventForm.value.title;
@@ -280,8 +289,10 @@ export class ModalCreateEventComponent implements AfterViewInit {
                 jsonEvent.dateFin = moment(dateFin).toISOString();
                 jsonEvent.infosSup = this.eventForm.value.infosSup;
                 jsonEvent.typeEvent = this.eventForm.value.type;
-                jsonEvent.club = new Club(this.data.club.id);
+                jsonEvent.clubs = new Array();
+                jsonEvent.clubs.push(new Club(this.data.club.id));
                 jsonEvent.recurent = this.eventForm.value.recurent;
+                jsonEvent.lieu = new Lieu(this.lieuAutre.id);
                 if (this.eventForm.value.recurent) {
                     jsonEvent.freq = 'WEEKLY';
                     jsonEvent.byweekday = this.joursSelected.toString();
@@ -296,10 +307,17 @@ export class ModalCreateEventComponent implements AfterViewInit {
     }
     
 
-    getLieu(data){
-        this.lieu.id = data.id;
+    getLieuMatch(data){
+        this.lieuMatch.id = data.id;
     }
 
+    getLieuAutre(data){
+        this.lieuAutre.id = data.id;
+    }
+
+    getLieuEntrainement(data){
+        this.lieuEntrainement.id = data.id;
+    }
     
 
     

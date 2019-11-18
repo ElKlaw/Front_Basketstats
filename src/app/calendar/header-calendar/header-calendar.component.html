@@ -1,5 +1,5 @@
-<div class="row text-center">
-  <div>
+<div  class="div-header-calendrier">
+  <div class="div-titre-calendrier">
     <button mat-button
       mwlCalendarPreviousView
       [view]="view"
@@ -8,7 +8,7 @@
     >
       <i class="fas fa-angle-double-left"></i>
     </button>
-    <h3 class="titre-header-calendar">{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h3>
+    <h3 class="titre-header-calendar">{{ viewDate | calendarDate: (view + 'ViewTitle'):locale:weekStartsOn }}</h3>
     <button mat-button
       mwlCalendarNextView
       [view]="view"
@@ -17,5 +17,18 @@
     >
     <i class="fas fa-angle-double-right"></i>
     </button>
+  </div>
+  <div class="div-select-vue-calendar">
+      <mat-button-toggle-group value="month">
+          <mat-button-toggle (click)="viewChange.emit('month')" value="month">
+            Mois
+          </mat-button-toggle>
+          <mat-button-toggle (click)="viewChange.emit('week')" value="week">
+            Semaine
+          </mat-button-toggle>
+          <mat-button-toggle (click)="viewChange.emit('day')" value="day">
+            Jour
+          </mat-button-toggle>
+      </mat-button-toggle-group>
   </div>
 </div>

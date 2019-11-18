@@ -47,8 +47,6 @@ import { VueEventOfEquipeComponent } from './event/vue-event-of-equipe/vue-event
 // Calendar
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { VueCreateEventOfClubComponent } from './event/vue-create-event-of-club/vue-create-event-of-club.component';
-import { VueCreateEventOfEquipeComponent } from './event/vue-create-event-of-equipe/vue-create-event-of-equipe.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -104,8 +102,6 @@ registerLocaleData(localeFr);
     VueMatchOfEquipeComponent,
     VueEventOfClubComponent,
     VueEventOfEquipeComponent,
-    VueCreateEventOfClubComponent,
-    VueCreateEventOfEquipeComponent,
     AutocompletecityComponent,
     ModalModificationEventComponent,
     ModalEditEventClubComponent,

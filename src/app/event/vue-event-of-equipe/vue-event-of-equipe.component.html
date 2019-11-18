@@ -1,10 +1,10 @@
 <div class="vue-event-of-equipe">
     <div class="div-calendrier">
-        <app-calendar-header
+        <app-header-calendar
             [(view)]="view"
             [(viewDate)]="viewDate"
         >
-        </app-calendar-header>
+        </app-header-calendar>
 
         <div [ngSwitch]="view">
             <mwl-calendar-month-view

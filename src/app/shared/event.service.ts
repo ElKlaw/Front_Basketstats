@@ -84,6 +84,7 @@ export class EventService {
             item.infosSup, item.typeEvent);
             eventDb.clubs= item.clubs;
             eventDb.equipes= item.equipes;
+            eventDb.lieu= item.lieu;
             result.push({
                   start: new Date(item.dateDebut),
                   end: new Date(item.dateFin),
