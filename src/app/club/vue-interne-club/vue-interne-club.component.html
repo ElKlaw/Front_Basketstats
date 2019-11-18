@@ -50,32 +50,27 @@
 	        </p>
 	    </div>
 	</div>
-	<div class="colonnes-central cadre-gris">
-	    <div class="div_body_club" [ngSwitch]="affichageMenu">
-	    	<div *ngSwitchCase="'Accueil'">
-	            <p>Accueil</p>
-	        </div>
-	        <div *ngSwitchCase="'Equipes'">
-	            <app-vue-equipe-of-club [club]="club"></app-vue-equipe-of-club>
-	        </div>
-	        <div *ngSwitchCase="'Joueurs'">
-	            <app-vue-joueur-of-club [club]="club"></app-vue-joueur-of-club>
-	        </div>
-	        <div *ngSwitchCase="'Calendrier'">
-	            <app-vue-event-of-club [club]="club"></app-vue-event-of-club>
-	        </div>
-	        <div *ngSwitchCase="'Matchs'">
-	            <app-vue-match-of-club [club]="club"></app-vue-match-of-club>
-	        </div>
-	        <div *ngSwitchCase="'Stats'">Stats</div>
-	        <div *ngSwitchCase="'Actus'">Actus</div>
-	        <div *ngSwitchCase="'Parametre'">
-				<app-vue-parametre-club [club]="club" (eventClub)='updateClub($event)'></app-vue-parametre-club>
-			</div>
-	    </div>
-	</div>
-	<div class="colonnes-droite cadre-gris">
-		<app-vue-block-match-of-club [club]="club"></app-vue-block-match-of-club>
+	<div class="div_body_club" [ngSwitch]="affichageMenu">
+		<div *ngSwitchCase="'Accueil'">
+			<app-vue-accueil-club [club]="club"></app-vue-accueil-club>
+		</div>
+		<div *ngSwitchCase="'Equipes'">
+			<app-vue-equipe-of-club [club]="club"></app-vue-equipe-of-club>
+		</div>
+		<div *ngSwitchCase="'Joueurs'">
+			<app-vue-joueur-of-club [club]="club"></app-vue-joueur-of-club>
+		</div>
+		<div *ngSwitchCase="'Calendrier'">
+			<app-vue-event-of-club [club]="club"></app-vue-event-of-club>
+		</div>
+		<div *ngSwitchCase="'Matchs'">
+			<app-vue-match-of-club [club]="club"></app-vue-match-of-club>
+		</div>
+		<div *ngSwitchCase="'Stats'">Stats</div>
+		<div *ngSwitchCase="'Actus'">Actus</div>
+		<div *ngSwitchCase="'Parametre'">
+			<app-vue-parametre-club [club]="club" (eventClub)='updateClub($event)'></app-vue-parametre-club>
+		</div>
 	</div>
 </div>
 <app-footer></app-footer>

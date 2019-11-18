@@ -1,0 +1,10 @@
+.colonnes-droite{
+    display: inline-block;
+    width: 30%;
+}
+
+.colonnes-gauche{
+    display: inline-block;
+    margin-right: 1%;
+    width: 69%;
+}
