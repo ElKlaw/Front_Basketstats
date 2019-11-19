@@ -15,17 +15,15 @@
 }
 
 .table-match>thead>tr>th{
-    font-size: .8em;
-    font-weight: 500;
     font-style: normal;
     vertical-align: middle;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 7px;
+    font-weight: 500;
 }
 .table-match>tbody>tr>td{
     padding-left: 10px;
-    font-weight: 500;
     font-style: normal;
 }
 .tr-month{
@@ -34,11 +32,20 @@
 
 .tr-month>td{
     color: #444;
-    font-weight: 900;
-    font-size: .8em;
     padding-left: 10px;
     font-style: normal;
     vertical-align: middle;
     padding-top: 7px;
     padding-bottom: 7px;
+}
+
+.mat-button-toggle-group {
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.div-head-match-of-club{
+    text-align: center;
+    margin-bottom: 10px;
 }
