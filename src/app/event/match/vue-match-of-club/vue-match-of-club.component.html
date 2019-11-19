@@ -7,7 +7,7 @@
 	</div>
 	<div class="div-body-match-of-club">
 		<div id="div-match-a-venir" [hidden]="!toggleMatchAVenir.checked">
-			<div *ngIf="matchsByMonthAVenir.length >0 ; then blocMatchsAVenir else blocAucunMatchAVenir"></div>
+			<div *ngIf="matchsByMonthAVenir ; then blocMatchsAVenir else blocAucunMatchAVenir"></div>
 			<ng-template #blocMatchsAVenir>
 				<table class="table-match">
 					<thead>
@@ -19,8 +19,11 @@
 							<th scope="col">Adversaire</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr  *ngFor="let event of matchsByMonthAVenir">
+					<tbody *ngFor="let mapEvent of matchsByMonthAVenir | keyvalue">
+						<tr class="tr-month">
+							<td colspan="100%">{{mapEvent.key}}</td>
+						</tr>
+						<tr  *ngFor="let event of mapEvent.value;let odd = odd" [ngClass]="odd ? 'odd' : 'even'">
 							<td>{{event.match.dateMatch | date:'dd/MM/yy'}}</td>
 							<td>{{event.match.heureMatch}}</td>
 							<td *ngIf="event.lieu.salle">{{event.lieu.nom}}</td>
@@ -34,7 +37,7 @@
 			<ng-template #blocAucunMatchAVenir>Aucun match à venir</ng-template>
 		</div>
 		<div id="div-match-joue" [hidden]="!toggleMatchJoue.checked"> 
-			<div *ngIf="matchsByMonthJoue.length>0; then blocMatchsJoue else blocAucunMatchJoue"></div>
+			<div *ngIf="matchsByMonthJoue; then blocMatchsJoue else blocAucunMatchJoue"></div>
 			<ng-template #blocMatchsJoue>
 				<table class="table-match">
 					<thead>
@@ -44,25 +47,46 @@
 							<th scope="col">Lieu</th>
 							<th scope="col">Equipe</th>
 							<th scope="col">Adversaire</th>
-							<th scope="col">Résultat</th>
-							<th scope="col">Score</th>
+							<th scope="col" class="text-align-center">Résultat</th>
+							<th scope="col" class="text-align-center">Score</th>
 						</tr>
 					</thead>
-					<tbody>
-						<!-- <tr class="tr-month">
-							<td colspan="100%">{{event.match.dateMatch | date:'MMMM':'':'fr'}}</td>
-						</tr>-->
-						<tr  *ngFor="let event of matchsByMonthJoue">
+					<tbody *ngFor="let mapEvent of matchsByMonthJoue | keyvalue">
+						<tr class="tr-month">
+							<td colspan="100%">{{mapEvent.key}}</td>
+						</tr>
+						<tr  *ngFor="let event of mapEvent.value;let odd = odd" [ngClass]="odd ? 'odd' : 'even'">
 							<td>{{event.match.dateMatch | date:'dd/MM/yy'}}</td>
 							<td>{{event.match.heureMatch}}</td>
 							<td *ngIf="event.lieu.salle">{{event.lieu.nom}}</td>
 							<td *ngIf="!event.lieu.salle">Extérieur</td>
-							<td>{{event.match.equipe.nom}}</td>
-							<td>{{event.match.adversaire}}</td>
-							<td *ngIf="event.match.scoreEquipe==null||event.match.scoreAdversaire==null;"></td>
-							<td *ngIf="event.match.scoreEquipe!=null&&event.match.scoreAdversaire!=null&&event.match.scoreEquipe>event.match.scoreAdversaire;">V</td>
-							<td *ngIf="event.match.scoreEquipe!=null&&event.match.scoreAdversaire!=null&&event.match.scoreEquipe<event.match.scoreAdversaire;">D</td>      
-							<td>{{event.match.scoreEquipe}} - {{event.match.scoreAdversaire}}</td>
+							<div *ngIf="event.match.scoreEquipe==null||event.match.scoreAdversaire==null; then matchSansScore else matchAvecScore"></div>
+							<ng-template #matchSansScore>
+								<td>Ajouter un score</td>
+							</ng-template>
+							<ng-template #matchAvecScore>
+								<div *ngIf="event.match.scoreEquipe>event.match.scoreAdversaire;then MatchGagne else matchPerdu"></div>
+								<ng-template #MatchGagne>
+									<td class="colorGagne">{{event.match.equipe.nom}}</td>
+									<td class="colorPerdu">{{event.match.adversaire}}</td>
+									<td class="text-align-center bold">Victoire</td>
+									<td class="text-align-center">
+										<span class="bold">{{event.match.scoreEquipe}}</span> 
+										<span> - </span>
+										<span>{{event.match.scoreAdversaire}}</span>
+									</td>
+								</ng-template>
+								<ng-template #matchPerdu>
+									<td class="colorPerdu">{{event.match.equipe.nom}}</td>
+									<td class="colorGagne">{{event.match.adversaire}}</td>
+									<td class="text-align-center">Défaite</td>
+									<td class="text-align-center">
+										<span>{{event.match.scoreEquipe}}</span> 
+										<span> - </span>
+										<span class="bold">{{event.match.scoreAdversaire}}</span>
+									</td>
+								</ng-template>
+							</ng-template>
 						</tr>
 					</tbody>
 				</table>

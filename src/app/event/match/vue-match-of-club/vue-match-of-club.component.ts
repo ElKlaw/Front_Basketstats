@@ -1,12 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import {EventService} from 'src/app/shared/event.service';
-import { groupBy, toArray, mergeMap } from 'rxjs/operators';
-import { from } from 'rxjs';
-import { Match } from 'src/app/shared/match';
-import { Event } from 'src/app/shared/event';
 import { Club } from 'src/app/shared/club';
 import * as moment from 'moment';
+import { Match } from 'src/app/shared/match';
+import { Event } from 'src/app/shared/event';
 
 
 @Component({
@@ -15,16 +12,15 @@ import * as moment from 'moment';
   styleUrls: ['./vue-match-of-club.component.css']
 })
 export class VueMatchOfClubComponent implements OnInit {
-    matchsByMonthJoue: any[];
-    matchsByMonthAVenir: any[];
+    matchsByMonthJoue: Map<number,[]>;
+    matchsByMonthAVenir: Map<number,[]>;
     @Input() club: Club;
     
     constructor(
-        private route: ActivatedRoute,
         public eventService: EventService
     ) {
-        this.matchsByMonthJoue = [];
-        this.matchsByMonthAVenir = [];
+        this.matchsByMonthJoue = new Map();
+        this.matchsByMonthAVenir = new Map();
     }
 
     ngOnInit() {
@@ -52,9 +48,27 @@ export class VueMatchOfClubComponent implements OnInit {
                 const dateMatch2 = moment(event2.match.dateMatch + ' '+ event2.match.heureMatch, 'YYYY-MM-DD HH:mm');
                 return  dateMatch1.isAfter(dateMatch2) ? -1 : 1;
             });
-            
-            this.matchsByMonthAVenir = matchsAVenir;
-            this.matchsByMonthJoue = matchsJoue;
+            this.matchsByMonthAVenir = this.groupMatchsByMonth(matchsAVenir);
+            this.matchsByMonthJoue = this.groupMatchsByMonth(matchsJoue);
         });
+    }
+
+    groupMatchsByMonth(listeMatchs){
+        let listEventByMonth = new Map();
+        listeMatchs.map( 
+            (event : Event) =>{
+                const monthEvent = moment(event.match.dateMatch,'YYYY-MM-DD','fr').format('MMMM');
+                if(listEventByMonth.get(monthEvent)){
+                    let eventsOfMonth = listEventByMonth.get(monthEvent);
+                    eventsOfMonth.push(event);
+                    listEventByMonth.set(monthEvent,eventsOfMonth)
+                } else {
+                    let eventsOfMonth = [];
+                    eventsOfMonth.push(event);
+                    listEventByMonth.set(monthEvent,eventsOfMonth);
+                }
+            }
+        )
+        return listEventByMonth;
     }
 }
