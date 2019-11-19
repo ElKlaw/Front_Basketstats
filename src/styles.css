@@ -1,8 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import '../node_modules/flatpickr/dist/flatpickr.css';
+
+*, html{
+	font-family: 'Segoe UI', sans-serif;
+}
+
 .body{
 	background-color: #fafafa;
+}
+
+.bold{
+	font-weight: bold;
 }
 
 .full-width {
@@ -62,4 +71,12 @@
 	vertical-align:top;
 	display: inline-block;
 	width: 24%;
+}
+
+.colorGagne{
+	color: #00bb69;
+}
+
+.colorPerdu{
+	color:#ec5c2a;
 }
