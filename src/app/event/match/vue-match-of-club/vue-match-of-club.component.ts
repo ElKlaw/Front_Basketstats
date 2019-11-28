@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {EventService} from '../../../shared/event.service';
+import {EventService} from 'src/app/shared/event.service';
 import { groupBy, toArray, mergeMap } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { Match } from 'src/app/shared/match';

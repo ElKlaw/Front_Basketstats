@@ -1,0 +1,8 @@
+.div-titre-calendrier, .div-select-vue-calendar{   
+    text-align: center;
+}
+
+.titre-header-calendar{
+    display: inline-block;
+    vertical-align: middle;
+}

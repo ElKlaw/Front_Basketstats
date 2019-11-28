@@ -32,7 +32,7 @@
        				<mat-checkbox formControlName="domicile">Domicile</mat-checkbox>
         		</div>
         		
-        		<app-autocomplete-lieu (eventLieu)="getLieu($event)"></app-autocomplete-lieu>
+        		<app-autocomplete-lieu (eventLieu)="getLieuMatch($event)"></app-autocomplete-lieu>
 	            <mat-form-field class="full-width">
 	                <input matInput formControlName="startDate" [matDatepicker]="dateStart" placeholder="Date du match" >
 	                <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
@@ -81,7 +81,7 @@
 		                <input type="time" formControlName="endTime" matInput placeholder="Heure de fin">
 		            </mat-form-field>
 		        </div>
-		        
+		        <app-autocomplete-lieu (eventLieu)="getLieuEntrainement($event)"></app-autocomplete-lieu>
 		        <mat-form-field class="full-width">
 		            <mat-chip-list #chipList>
 		                <mat-chip
@@ -117,7 +117,8 @@
 		            <input formControlName="title" matInput placeholder="Titre">
 		        </mat-form-field>
         		<mat-checkbox formControlName="recurent" (change)="onChangeRecurrentAutre($event)">Evènement Récurent</mat-checkbox>
-		        <div [hidden]="hiddenReccurentAutre">
+				
+				<div *ngIf="!hiddenReccurentAutre; else noReccurentAutre">
 		            <mat-chip-list #chipListWeek [multiple]="true" [selectable]="true">
 		                <mat-chip value="MO" #chiplundi="matChip" (click)="selectChip(chiplundi)" color="accent" [selectable]="true">Lundi</mat-chip>
 		                <mat-chip value="TU" #chipmardi="matChip" (click)="selectChip(chipmardi)" color="accent" [selectable]="true">Mardi</mat-chip>
@@ -126,31 +127,53 @@
 		                <mat-chip value="FR" #chipvendredi="matChip" (click)="selectChip(chipvendredi)" color="accent" [selectable]="true">Vendredi</mat-chip>
 		                <mat-chip value="SA" #chipsamedi="matChip" (click)="selectChip(chipsamedi)" color="accent" [selectable]="true">Samedi</mat-chip>
 		                <mat-chip value="SU" #chipdimanche="matChip" (click)="selectChip(chipdimanche)" color="accent" [selectable]="true">Dimanche</mat-chip>
-		            </mat-chip-list>
-		        </div>
-		        <div class="full-width">
-		            <mat-form-field>
-		                <input matInput formControlName="startDate" [matDatepicker]="dateStart" placeholder="Date de début" >
-		                <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
-		                <mat-datepicker #dateStart></mat-datepicker>
-		            </mat-form-field>
-		            <mat-form-field class="input-time">
-		                <input type="time" formControlName="startTime" matInput placeholder="Heure de début">
-		            </mat-form-field>
-		        </div>
-		        <div class="full-width">
-		            <mat-form-field>
-		                <input matInput formControlName="endDate" [matDatepicker]="dateEnd" placeholder="Date de Fin">
-		                <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
-		                <mat-datepicker #dateEnd></mat-datepicker>
-		            </mat-form-field>
-		            <mat-form-field class="input-time">
-		                <input type="time" formControlName="endTime" matInput placeholder="Heure de fin">
-		            </mat-form-field>
-		        </div>
-		        <mat-form-field class="full-width">
-		            <textarea matInput formControlName="infosSup" placeholder="Informations supplémentaires"></textarea>
-		        </mat-form-field>
+					</mat-chip-list>
+					<div class="full-width">
+						<mat-form-field>
+							<input matInput formControlName="startDate" [matDatepicker]="dateStart" placeholder="Date de début" >
+							<mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+							<mat-datepicker #dateStart></mat-datepicker>
+						</mat-form-field>
+						<mat-form-field>
+							<input matInput formControlName="endDate" [matDatepicker]="dateEnd" placeholder="Date de Fin">
+							<mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
+							<mat-datepicker #dateEnd></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="full-width">
+						<mat-form-field class="input-time">
+							<input type="time" formControlName="startTime" matInput placeholder="Heure de début">
+						</mat-form-field>
+						<mat-form-field class="input-time">
+							<input type="time" formControlName="endTime" matInput placeholder="Heure de fin">
+						</mat-form-field>
+					</div>
+					<app-autocomplete-lieu (eventLieu)="getLieuAutre($event)"></app-autocomplete-lieu>
+					<mat-form-field class="full-width">
+						<textarea matInput formControlName="infosSup" placeholder="Informations supplémentaires"></textarea>
+					</mat-form-field>
+				</div>
+				<ng-template #noReccurentAutre>
+					<div class="full-width">
+						<mat-form-field>
+							<input matInput formControlName="startDate" [matDatepicker]="dateStart" placeholder="Date de l'événement" >
+							<mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+							<mat-datepicker #dateStart></mat-datepicker>
+						</mat-form-field>
+					</div>
+					<div class="full-width">
+						<mat-form-field class="input-time">
+							<input type="time" formControlName="startTime" matInput placeholder="Heure de début">
+						</mat-form-field>
+						<mat-form-field class="input-time">
+							<input type="time" formControlName="endTime" matInput placeholder="Heure de fin">
+						</mat-form-field>
+					</div>
+					<app-autocomplete-lieu (eventLieu)="getLieuAutre($event)"></app-autocomplete-lieu>
+					<mat-form-field class="full-width">
+						<textarea matInput formControlName="infosSup" placeholder="Informations supplémentaires"></textarea>
+					</mat-form-field>
+				</ng-template>
         	</div>        
         </div>
     </div>

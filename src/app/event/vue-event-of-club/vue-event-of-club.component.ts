@@ -14,7 +14,6 @@ import {
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 import { CustomDateFormatter } from 'src/app/calendar/custom-date-formatter.provider';
-import { ActivatedRoute } from '@angular/router';
 import { EventService } from 'src/app/shared/event.service';
 import { Club } from 'src/app/shared/club';
 import { MatDialog } from '@angular/material';
@@ -22,7 +21,6 @@ import { ModalCreateEventComponent } from 'src/app/modal/modal-create-event/moda
 import { ModalModificationEventComponent } from 'src/app/modal/modal-modification-event/modal-modification-event.component';
 import { ModalEditEventClubComponent } from 'src/app/modal/modal-edit-event-club/modal-edit-event-club.component';
 import { Event } from 'src/app/shared/event';
-import { RRule, RRuleSet, rrulestr } from 'rrule';
 import { Observable, Subject } from 'rxjs';
 import * as moment from 'moment';
 
@@ -40,7 +38,7 @@ import * as moment from 'moment';
 })
 export class VueEventOfClubComponent implements OnInit {
     @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
+    @Input() club: Club;
     view: CalendarView = CalendarView.Month;
 
     CalendarView = CalendarView;
@@ -54,10 +52,8 @@ export class VueEventOfClubComponent implements OnInit {
     dateAffiche: Date = new Date();
     refresh: Subject<any> = new Subject();
     activeDayIsOpen = false;
-    @Input() club: Club;
 
     constructor(
-        private route: ActivatedRoute,
         public eventService: EventService,
         public dialogCreateEvent: MatDialog,
         public dialogConfirmerModifEvent: MatDialog,
@@ -70,7 +66,7 @@ export class VueEventOfClubComponent implements OnInit {
     }
 
     loadEvents() {
-        const id = +this.route.snapshot.paramMap.get('id');
+        const id = this.club.id;
         this.events$ = this.eventService.getAllEventsFromClub(id);
         this.events$.subscribe((data: any) =>{
             const eventsAffiches = [];
@@ -97,6 +93,10 @@ export class VueEventOfClubComponent implements OnInit {
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
         this.dateAffiche = date;
         this.eventsAffiches = events;
+    }
+
+    dayClickedWeek({date}: { date: Date}): void {
+        this.dateAffiche = date;
     }
     
     modificationHoraire({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {

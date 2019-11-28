@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild, TemplateRef, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from 'src/app/shared/event.service';
-import { CalendarDateFormatter, CalendarView, DAYS_OF_WEEK, CalendarEvent, CalendarEventAction } from 'angular-calendar';
+import { CalendarDateFormatter, CalendarView, DAYS_OF_WEEK, CalendarEvent } from 'angular-calendar';
 import { CustomDateFormatter } from 'src/app/calendar/custom-date-formatter.provider';
-import { isSameDay, isSameMonth } from 'date-fns';
 import { Equipe } from 'src/app/shared/equipe';
 import { MatDialog } from '@angular/material';
-import { VueCreateEventOfEquipeComponent } from '../vue-create-event-of-equipe/vue-create-event-of-equipe.component';
 import { Event } from 'src/app/shared/event';
 
 @Component({
@@ -77,13 +75,5 @@ export class VueEventOfEquipeComponent implements OnInit {
     }
 
     openCreateEventEquipe() {
-        const dialogEquipe = this.dialogCreateEventEquipe.open(VueCreateEventOfEquipeComponent, {
-            width: '50%',
-            data: {equipe: this.equipe}
-        });
-
-        dialogEquipe.afterClosed().subscribe(result => {
-            this.loadEvents();
-        });
     }
 }
