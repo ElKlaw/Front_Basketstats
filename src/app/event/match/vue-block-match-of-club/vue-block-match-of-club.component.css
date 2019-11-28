@@ -1,4 +1,4 @@
-.div-info-horaire{
+.div-info-horaire, .div-info-resultat {
 	display: inline-block;
 	width: 20%;
 	text-align: center;
@@ -12,7 +12,7 @@
 	display: inline-block;
 }
 
-.info-date-match, .info-heure-match{
+.info-date-match, .info-heure-match, .info-lieu-match{
 	margin: 0px;
 }
 
@@ -23,8 +23,30 @@
 	text-align: left;
 }
 
+.info-equipe-dom, .info-equipe-ext{
+	font-size: 14px;
+    font-weight: 500;
+}
 
 .div-body-prochains-matchs, .div-body-derniers-matchs{
+	margin:0px;
+}
+
+.info-date-match{
+	font-weight: bold;
+}
+
+.info-heure-match, .info-lieu-match{
+	font-size: 13px;
+    font-weight: 500;
+}
+
+.info-lieu-match{
+	font-size: 10px;
+    font-weight: 500;
+}
+
+.div-info-prochains-match, .div-info-dernier-match{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }

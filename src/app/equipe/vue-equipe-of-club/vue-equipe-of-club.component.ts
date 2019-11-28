@@ -20,7 +20,6 @@ export class VueEquipeOfClubComponent implements AfterViewInit {
     dataTable: MatTableDataSource<Equipe>;
 
     @Input() club: Club;
-
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
 

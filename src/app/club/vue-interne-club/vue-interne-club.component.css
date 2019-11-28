@@ -1,3 +1,9 @@
+.div_body_club{
+    width: 80%;
+    display: inline-block;
+    margin-left: 1%;
+}
+
 .content{
 	margin-right:3%;
 	margin-left: 3%;

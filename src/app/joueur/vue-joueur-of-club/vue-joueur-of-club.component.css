@@ -6,3 +6,24 @@ table {
   font-size: 14px;
   width: 100%;
 }
+
+tr.joueur-detail-row {
+  height: 0;
+}
+
+.joueur-row td {
+  border-bottom-width: 0;
+}
+
+.joueur-detail {
+  overflow: hidden;
+}
+
+.div-detail-equipe{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.div-detail-equipe-infos, .div-detail-equipe-action {
+  display: inline-block;
+}

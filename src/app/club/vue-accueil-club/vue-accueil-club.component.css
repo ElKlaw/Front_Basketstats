@@ -1,0 +1,18 @@
+.colonnes-droite{
+    display: inline-block;
+    width: 30%;
+}
+
+.colonnes-gauche{
+    display: inline-block;
+    margin-right: 1%;
+    width: 69%;
+}
+
+.block-match{
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

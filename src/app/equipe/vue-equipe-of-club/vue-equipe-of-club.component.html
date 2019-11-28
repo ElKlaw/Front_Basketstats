@@ -1,15 +1,14 @@
-<div class="div-vue-equipe">
-	<h1>
-		Les équipes du club
-	</h1>
+<div class="div-vue-equipe cadre-gris">
 	<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 col-xs-12">
-        <button mat-raised-button  class="btn btn-success create-equipe full-width" (click)="openCreateEquipeDialog()"> <i class="fa fa-plus-circle"></i> Créer une équipe</button>
+      <button mat-raised-button  class="btn btn-success create-equipe full-width" (click)="openCreateEquipeDialog()">
+        <i class="fa fa-plus-circle"></i> Créer une équipe
+      </button>
     	<div class="input-group">
-            <mat-form-field appearance="outline">
-                <mat-label>Rechercher une équipe</mat-label>
-                <input matInput [formControl]="nomFilter">
-            </mat-form-field>
-        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Rechercher une équipe</mat-label>
+          <input matInput [formControl]="nomFilter">
+        </mat-form-field>
+      </div>
     </div>
     <div class="div-filter">
         <mat-form-field class="filtre" appearance="outline">
@@ -47,7 +46,7 @@
     		<p>Aucune équipe ne correspond à votre recherche</p>
     	</div>
     	<div [hidden]="dataTable.filteredData.length==0">
-	       <table mat-table [dataSource]="dataTable" matSort class="mat-elevation-z8">
+	       <table mat-table #tableauEquipes [dataSource]="dataTable" matSort class="mat-elevation-z8">
 	            <ng-container matColumnDef="nom">
 	                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
 	                <td mat-cell *matCellDef="let equipe"> {{equipe.nom}} </td>
@@ -84,4 +83,3 @@
     </div>
 </div>
 
-       

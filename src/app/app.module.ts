@@ -75,6 +75,7 @@ import { ModalCreateEventComponent } from './modal/modal-create-event/modal-crea
 import { AutocompleteLieuComponent } from './component/autocomplete-lieu/autocomplete-lieu.component';
 import { VueBlockMatchOfClubComponent } from './event/match/vue-block-match-of-club/vue-block-match-of-club.component';
 import { HeaderCalendarComponent } from './calendar/header-calendar/header-calendar.component';
+import { VueAccueilClubComponent } from './club/vue-accueil-club/vue-accueil-club.component';
 
 
 registerLocaleData(localeFr);
@@ -118,7 +119,8 @@ registerLocaleData(localeFr);
     ModalCreateEventComponent,
     AutocompleteLieuComponent,
     VueBlockMatchOfClubComponent,
-    HeaderCalendarComponent
+    HeaderCalendarComponent,
+    VueAccueilClubComponent
   ],
   imports: [
     NgbModule,
