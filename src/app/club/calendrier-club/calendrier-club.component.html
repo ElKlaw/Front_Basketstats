@@ -1,0 +1,90 @@
+<div class="vue-event-of-club cadre-gris">
+	<div>
+		<button class="btn btn-success full-width" (click)="openCreateEvent()"> <i class="fa fa-plus-circle"></i> Créer un évenement</button>
+	</div>
+    <div class="div-calendrier">
+        <app-header-calendar
+            [(view)]="view"
+            [(viewDate)]="viewDate"
+        >
+		</app-header-calendar>
+		<div class="div-body-calendrier">
+			<div class="div-colonne-gauche-calendrier">
+				<ng-template #loading>
+					<div class="text-center">
+						<i class="fa fa-spin fa-spinner fa-5x"></i>
+						<p>Chargement événements</p>
+					</div>
+				</ng-template>
+				<div *ngIf="events$ | async; else loading; let events">
+					<div [ngSwitch]="view">
+						<mwl-calendar-month-view
+							*ngSwitchCase="'month'"
+							[viewDate]="viewDate"
+							[events]="events"
+							[locale]="locale"
+							[refresh]="refresh"
+							[weekStartsOn]="weekStartsOn"
+							(dayClicked)="dayClicked($event.day)"
+							(eventTimesChanged)="modificationHoraire($event)"
+						>
+						</mwl-calendar-month-view>
+						<mwl-calendar-week-view
+							*ngSwitchCase="'week'"
+							[viewDate]="viewDate"
+							[events]="events"
+							[locale]="locale"
+							[refresh]="refresh"
+							[weekStartsOn]="weekStartsOn"
+							[dayStartHour]="9"
+							(dayHeaderClicked)="dayClickedWeek($event.day)"
+							(eventTimesChanged)="modificationHoraire($event)"
+						>
+						</mwl-calendar-week-view>
+						<mwl-calendar-day-view
+							*ngSwitchCase="'day'"
+							[viewDate]="viewDate"
+							[events]="events"
+							[locale]="locale"
+							[refresh]="refresh"
+							[dayStartHour]="9"
+							(eventTimesChanged)="modificationHoraire($event)"
+						>
+						</mwl-calendar-day-view>
+					</div>
+				</div>
+			</div>
+			<div class="div-colonne-droite-calendrier">
+				<div class="div-infos-calendrier">
+					<div class="div-infos-event">
+						<div *ngIf="events$ | async; else loading;">
+							<div *ngIf="dateAffiche != null">
+								{{ dateAffiche | date:'d MMMM yyyy':'':'fr'}}
+							</div>
+							<div *ngIf="eventsAffiches.length>0 else aucunevent">
+								<div *ngFor="let event of eventsAffiches; let lastItem = last;">
+									<p>{{event.start | date:'HH:mm' }} - {{event.end | date:'HH:mm' }} : {{event.title}}</p>
+									<p *ngIf="event.meta.eventDb.equipes.length>0">Equipes : {{event.meta.eventDb.equipes}}</p>
+									<div *ngIf="event.meta.eventDb.lieu.salle; else divLieuNoSalle">
+										<p>{{event.meta.eventDb.lieu.nom}}</p>
+									</div>
+									<ng-template #divLieuNoSalle>
+										<p>{{event.meta.eventDb.lieu.adresse.numRue}}, {{event.meta.eventDb.lieu.adresse.nomRue}}</p>
+										<p>{{event.meta.eventDb.lieu.adresse.ville.nom}} ({{event.meta.eventDb.lieu.adresse.ville.codePostal}})</p>
+									</ng-template>
+
+									<p>Informations supplémentaires : {{event.meta.eventDb.infosSup}}</p>
+									<button class="btn btn-primary" (click)="openEditEventClub(event)">Modifier</button>
+									<mat-divider *ngIf="!lastItem"></mat-divider>
+								</div>
+							</div>
+							<ng-template #aucunevent>
+								<p>aucun event</p>
+							</ng-template>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>

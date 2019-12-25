@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Club } from '../shared/club';
 import { Page } from '../shared/page';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class ClubService {
 
   // Define API
@@ -42,7 +41,7 @@ export class ClubService {
       retry(1)
     );
   }
-    
+
   // HttpClient API get() method => Fetch club
   getClubByURL(url): Observable<Club> {
     return this.http.get<Club>(this.apiURL + '/club/' + url)

@@ -28,8 +28,8 @@ export class VueJoueurOfClubComponent implements AfterViewInit {
     expandedElement: Joueur | null;
 
     @Input() club: Club;
-    @ViewChild(MatSort) sort: MatSort;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort, {static: false}) sort: MatSort;
+    @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
     nomFilter = new FormControl();
     filteredValues = {

@@ -19,7 +19,7 @@ import { Event } from 'src/app/shared/event';
   ]
 })
 export class VueEventOfEquipeComponent implements OnInit {
-    @ViewChild('modalContent') modalContent: TemplateRef<any>;
+    @ViewChild('modalContent', {static: false}) modalContent: TemplateRef<any>;
     view: CalendarView = CalendarView.Month;
     CalendarView = CalendarView;
     viewDate: Date = new Date();

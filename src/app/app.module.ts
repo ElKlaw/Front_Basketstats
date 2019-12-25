@@ -1,9 +1,54 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {A11yModule} from '@angular/cdk/a11y';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule,
+} from '@angular/material';
+
 // HttpClient module for RESTful API
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,70 +58,20 @@ import { AppRoutingModule } from './app-routing.module';
 // Forms module
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-// Components
-
-// Club
-import { VueInterneClubComponent } from './club/vue-interne-club/vue-interne-club.component';
-import { VueSearchClubComponent } from './club/vue-search-club/vue-search-club.component';
-import { VueExterneClubComponent } from './club/vue-externe-club/vue-externe-club.component';
-import { VueEditClubComponent } from './club/vue-edit-club/vue-edit-club.component';
-import { VueCreateClubComponent } from './club/vue-create-club/vue-create-club.component';
-
-// Equipe
-import { VueCreateEquipeComponent } from './equipe/vue-create-equipe/vue-create-equipe.component';
-import { VueEditEquipeComponent } from './equipe/vue-edit-equipe/vue-edit-equipe.component';
-import { VueExterneEquipeComponent } from './equipe/vue-externe-equipe/vue-externe-equipe.component';
-import { VueInterneEquipeComponent } from './equipe/vue-interne-equipe/vue-interne-equipe.component';
-import { VueEquipeOfClubComponent } from './equipe/vue-equipe-of-club/vue-equipe-of-club.component';
-
-// Joueur
-import { VueJoueurOfClubComponent } from './joueur/vue-joueur-of-club/vue-joueur-of-club.component';
-import { VueCreateJoueurComponent } from './joueur/vue-create-joueur/vue-create-joueur.component';
-import { VueEditJoueurComponent } from './joueur/vue-edit-joueur/vue-edit-joueur.component';
-
-// Autres
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { VueJoueurOfEquipeComponent } from './joueur/vue-joueur-of-equipe/vue-joueur-of-equipe.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { VueMatchOfClubComponent } from './event/match/vue-match-of-club/vue-match-of-club.component';
-import { VueMatchOfEquipeComponent } from './event/match/vue-match-of-equipe/vue-match-of-equipe.component';
-import { VueEventOfClubComponent } from './event/vue-event-of-club/vue-event-of-club.component';
-import { VueEventOfEquipeComponent } from './event/vue-event-of-equipe/vue-event-of-equipe.component';
 
-// Calendar
+
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 import { FlatpickrModule } from 'angularx-flatpickr';
-
-// Algolia
-import { NgAisModule } from 'angular-instantsearch';
-import { AutocompletecityComponent } from './component/autocompletecity/autocompletecity.component';
-import { ModalModificationEventComponent } from './modal/modal-modification-event/modal-modification-event.component';
-import { ModalEditEventClubComponent } from './modal/modal-edit-event-club/modal-edit-event-club.component';
-import { ModalEditEventEquipeComponent } from './modal/modal-edit-event-equipe/modal-edit-event-equipe.component';
-import { VueParametreClubComponent } from './club/vue-parametre-club/vue-parametre-club.component';
-import { VueAjoutSalleClubComponent } from './salle/vue-ajout-salle-club/vue-ajout-salle-club.component';
-import { AutocompleteAdresseComponent } from './component/autocomplete-adresse/autocomplete-adresse.component';
-
-import { VueInscriptionUtilisateurComponent } from './utilisateur/vue-inscription-utilisateur/vue-inscription-utilisateur.component';
-
 import { AuthGuard } from './shared/guard/authguard';
 import { AuthInterceptor } from './shared/authInterceptor';
-import { AuthErrorHandler } from './shared/authErrorHandler';
-import { VueEventOfJoueurComponent } from './event/vue-event-of-joueur/vue-event-of-joueur.component';
-import { VueEquipeOfJoueurComponent } from './equipe/vue-equipe-of-joueur/vue-equipe-of-joueur.component';
-import { VueProfilUtilisateurComponent } from './utilisateur/vue-profil-utilisateur/vue-profil-utilisateur.component';
-import { VueLoginComponent } from './utilisateur/vue-login/vue-login.component';
-import { ModalInscriptionComponent } from './modal/modal-inscription/modal-inscription.component';
-import { ModalCreateEventComponent } from './modal/modal-create-event/modal-create-event.component';
-import { AutocompleteLieuComponent } from './component/autocomplete-lieu/autocomplete-lieu.component';
-import { VueBlockMatchOfClubComponent } from './event/match/vue-block-match-of-club/vue-block-match-of-club.component';
-import { HeaderCalendarComponent } from './calendar/header-calendar/header-calendar.component';
-import { VueAccueilClubComponent } from './club/vue-accueil-club/vue-accueil-club.component';
 
+// CLUBS
+import { SearchClubComponent } from './club/search-club/search-club.component';
 
 registerLocaleData(localeFr);
 
@@ -85,66 +80,69 @@ registerLocaleData(localeFr);
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    VueInterneClubComponent,
-    VueSearchClubComponent,
-    VueExterneClubComponent,
-    VueEditClubComponent,
-    VueCreateClubComponent,
-    VueCreateEquipeComponent,
-    VueEditEquipeComponent,
-    VueExterneEquipeComponent,
-    VueInterneEquipeComponent,
-    VueEquipeOfClubComponent,
-    VueJoueurOfClubComponent,
-    VueCreateJoueurComponent,
-    VueEditJoueurComponent,
-    VueJoueurOfEquipeComponent,
-    VueMatchOfClubComponent,
-    VueMatchOfEquipeComponent,
-    VueEventOfClubComponent,
-    VueEventOfEquipeComponent,
-    AutocompletecityComponent,
-    ModalModificationEventComponent,
-    ModalEditEventClubComponent,
-    ModalEditEventEquipeComponent,
-    VueParametreClubComponent,
-    VueAjoutSalleClubComponent,
-    AutocompleteAdresseComponent,
-    VueInscriptionUtilisateurComponent,
-    VueEventOfJoueurComponent,
-    VueEquipeOfJoueurComponent,
-    VueProfilUtilisateurComponent,
-    VueLoginComponent,
-    ModalInscriptionComponent,
-    ModalCreateEventComponent,
-    AutocompleteLieuComponent,
-    VueBlockMatchOfClubComponent,
-    HeaderCalendarComponent,
-    VueAccueilClubComponent
+    SearchClubComponent
   ],
   imports: [
+    A11yModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    DragDropModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    PortalModule,
+    ScrollingModule,
     NgbModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgAisModule.forRoot(),
     FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    })
+    AppRoutingModule
   ],
   providers: [
-    { provide: MatDialogRef, useValue: {} },
-    { provide: MAT_DIALOG_DATA, useValue: [] },
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    {provide: ErrorHandler, useClass: AuthErrorHandler},
-    AuthGuard
+    //{ provide: MatDialogRef, useValue: {} },
+    //{ provide: MAT_DIALOG_DATA, useValue: [] },
+    //{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    //{provide: ErrorHandler, useClass: AuthErrorHandler},
+    //AuthGuard
   ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule {}
+export class AppModule {
+}

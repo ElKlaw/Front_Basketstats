@@ -20,7 +20,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
   styleUrls: ['./modal-create-event.component.css']
 })
 export class ModalCreateEventComponent implements AfterViewInit {
-    
+
     eventForm = new FormGroup({
         match: new FormGroup({
             equipe: new FormControl(''),
@@ -37,7 +37,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
         type: new FormControl(''),
         recurent: new FormControl('')
     });
-    
+
     separatorKeysCodes: number[] = [ENTER, COMMA];
     typeEvents = enumTypeEvent;
     keysTypeEvent = [];
@@ -45,35 +45,35 @@ export class ModalCreateEventComponent implements AfterViewInit {
     joursSelected = [];
 
     //Autre
-    domicileCtrl = new FormControl(); 
+    domicileCtrl = new FormControl();
     equipeAutreCtrl = new FormControl();
     filteredAutreEquipes: Observable<Equipe[]>;
-    @ViewChild('equipeAutreInput') equipeAutreInput: ElementRef<HTMLInputElement>;
+    @ViewChild('equipeAutreInput', {static: false}) equipeAutreInput: ElementRef<HTMLInputElement>;
     hiddenReccurentAutre: boolean;
     lieuAutre: Lieu;
-    
+
     //Match
     filteredMatchEquipes: Observable<Equipe[]>;
-    @ViewChild('equipeMatchInput') equipeMatchInput: ElementRef<HTMLInputElement>;
+    @ViewChild('equipeMatchInput', {static: false}) equipeMatchInput: ElementRef<HTMLInputElement>;
     lieuMatch: Lieu;
-    
+
     //Entrainement
     equipeEntrainementCtrl = new FormControl();
     filteredEntrainementEquipes: Observable<Equipe[]>;
-    @ViewChild('equipeEntrainementInput') equipeEntrainementInput: ElementRef<HTMLInputElement>;
+    @ViewChild('equipeEntrainementInput', {static: false}) equipeEntrainementInput: ElementRef<HTMLInputElement>;
     hiddenReccurentEntrainement: boolean;
     equipesEntrainementEvent: any = [];
     equipesEntrainementNotEvent: any = [];
     lieuEntrainement: Lieu;
-    
-    
+
+
     constructor(
         public eventService: EventService,
         public equipeService: EquipeService,
         private adapter: DateAdapter<any>,
         public dialogRef: MatDialogRef<ModalCreateEventComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
-    ) { 
+    ) {
         this.keysTypeEvent = Object.keys(this.typeEvents);
         this.adapter.setLocale('fr');
         this.hiddenReccurentEntrainement = true;
@@ -82,14 +82,14 @@ export class ModalCreateEventComponent implements AfterViewInit {
         this.lieuEntrainement = new Lieu();
         this.lieuAutre = new Lieu();
     }
-    
-    
+
+
     /*---------- INITIALISATION --------------*/
     ngAfterViewInit() {
         this.loadEquipes();
         this.initFilteredValue();
     }
-    
+
     loadEquipes() {
         let idClub: number;
         if (this.data.club != null) {
@@ -103,48 +103,48 @@ export class ModalCreateEventComponent implements AfterViewInit {
             this.initFilteredValue();
         });
     }
-    
+
     initFilteredValue() {
         this.filteredMatchEquipes = this.eventForm.get('match').get('equipe').valueChanges
         .pipe(
             startWith(null),
             map((equipe: string | null) => equipe ? this._filterMatchEquipes(equipe) : this.equipes.slice())
         );
-        
+
         this.filteredEntrainementEquipes = this.equipeEntrainementCtrl.valueChanges
         .pipe(
             startWith(null),
             map((equipe: string | null) => equipe ? this._filterEntrainementEquipes(equipe) : this.equipes.slice())
         );
     }
-    
+
     changeType($event){
         this.joursSelected = [];
     }
-    
+
     onNoClick(): void {
         this.dialogRef.close(false);
     }
-    
+
     displayFn(equipe?: Equipe): string | undefined {
         return equipe ? equipe.nom : undefined;
     }
-    
+
     /*---------- AFFICHAGE ------*/
     onChangeRecurrentEntrainement(event) {
         this.hiddenReccurentEntrainement = !event.checked;
     }
-    
+
     onChangeRecurrentAutre(event) {
         this.hiddenReccurentAutre = !event.checked;
     }
-    
-      
+
+
     private _filterMatchEquipes(value: string): Equipe[] {
         const filterValue = value.toLowerCase();
         return this.equipes.filter(equipe => equipe.nom.toLowerCase().includes(filterValue));
     }
-    
+
     private _filterEntrainementEquipes(value: string): Equipe[] {
         const filterValue = value.toLowerCase();
         return this.equipesEntrainementNotEvent.filter(equipe => equipe.nom.toLowerCase().includes(filterValue));
@@ -158,7 +158,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
         }
         this.initFilteredValue();
     }
-    
+
     selectedEquipeEntrainement(event: MatAutocompleteSelectedEvent): void {
         this.equipesEntrainementEvent.push(event.option.value);
         const index = this.equipesEntrainementNotEvent.indexOf(event.option.value);
@@ -168,7 +168,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
         this.equipeEntrainementCtrl.setValue(null);
     }
 
-    
+
 
     selectChip(item: MatChip) {
         item.toggleSelected();
@@ -180,17 +180,17 @@ export class ModalCreateEventComponent implements AfterViewInit {
         }
     }
 
-    
-    
-    
-    
-    
+
+
+
+
+
     /*---------- SUBMIT ---------*/
-    
+
     onSubmit() {
         this.createEvent(this.eventForm.value.type);
     }
-    
+
     createEvent(typeEvent){
         switch(this.eventForm.value.type){
             case 'MATCH' : {
@@ -207,14 +207,14 @@ export class ModalCreateEventComponent implements AfterViewInit {
                         // init Date
                         const dateDebut = new Date(this.eventForm.value.startDate);
                         const dateFin = new Date(this.eventForm.value.startDate);
-                        
+
                         // init heure
                         const heureDebut = this.eventForm.value.startTime.toString();
                         dateDebut.setHours(parseInt(heureDebut.substring(0, 2))-(dateDebut.getTimezoneOffset())/60, heureDebut.substring(3, 5));
                         const heureFin = this.eventForm.value.endTime.toString();
                         dateFin.setHours(parseInt(heureFin.substring(0, 2))-((dateFin.getTimezoneOffset())/60) + 2 , heureFin.substring(3, 5));
-                
-                        
+
+
                         const jsonEvent = new EventJson();
                         jsonEvent.title = this.eventForm.value.title;
                         jsonEvent.dateDebut = moment(dateDebut).toISOString();
@@ -234,7 +234,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
                         );
                     }
                 );
-                break; 
+                break;
             }
             case 'ENTRAINEMENT' : {
                 // init Date debut
@@ -245,7 +245,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
                 const dateFin = new Date(this.eventForm.value.endDate);
                 const heureFin = this.eventForm.value.endTime.toString();
                 dateFin.setHours(parseInt(heureFin.substring(0, 2))-(dateFin.getTimezoneOffset())/60, heureFin.substring(3, 5));
-        
+
                 // create JSON
                 const jsonEvent = new EventJson();
                 jsonEvent.title = this.eventForm.value.title;
@@ -296,7 +296,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
                 if (this.eventForm.value.recurent) {
                     jsonEvent.freq = 'WEEKLY';
                     jsonEvent.byweekday = this.joursSelected.toString();
-                } 
+                }
                 this.eventService.createEvent(jsonEvent).subscribe(
                     success => this.dialogRef.close(true),
                     error => alert(error)
@@ -305,7 +305,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
             }
         }
     }
-    
+
 
     getLieuMatch(data){
         this.lieuMatch.id = data.id;
@@ -318,7 +318,7 @@ export class ModalCreateEventComponent implements AfterViewInit {
     getLieuEntrainement(data){
         this.lieuEntrainement.id = data.id;
     }
-    
 
-    
+
+
 }
