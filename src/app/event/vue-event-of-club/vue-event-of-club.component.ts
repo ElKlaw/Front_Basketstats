@@ -33,11 +33,11 @@ import * as moment from 'moment';
     {
       provide: CalendarDateFormatter,
       useClass: CustomDateFormatter
-    }      
+    }
   ]
 })
 export class VueEventOfClubComponent implements OnInit {
-    @ViewChild('modalContent') modalContent: TemplateRef<any>;
+    @ViewChild('modalContent', {static: false}) modalContent: TemplateRef<any>;
     @Input() club: Club;
     view: CalendarView = CalendarView.Month;
 
@@ -60,7 +60,7 @@ export class VueEventOfClubComponent implements OnInit {
         public dialogEditEventClub: MatDialog
     ) {
     }
-    
+
     ngOnInit() {
         this.loadEvents();
     }
@@ -98,9 +98,9 @@ export class VueEventOfClubComponent implements OnInit {
     dayClickedWeek({date}: { date: Date}): void {
         this.dateAffiche = date;
     }
-    
+
     modificationHoraire({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
-        this.openModifEvent(event, newStart, newEnd);        
+        this.openModifEvent(event, newStart, newEnd);
     }
 
     openCreateEvent() {
@@ -116,7 +116,7 @@ export class VueEventOfClubComponent implements OnInit {
             }
         });
     }
-    
+
     openModifEvent(event, newStart, newEnd) {
         const dialogModifEvent = this.dialogConfirmerModifEvent.open(ModalModificationEventComponent, {
             width: '50%',
@@ -130,7 +130,7 @@ export class VueEventOfClubComponent implements OnInit {
             }
         });
     }
-    
+
     openEditEventClub(event) {
         const dialogEditEventClub = this.dialogEditEventClub.open(ModalEditEventClubComponent, {
             width: '50%',
@@ -144,7 +144,7 @@ export class VueEventOfClubComponent implements OnInit {
             }
         });
     }
-    
+
     refreshView(): void {
         this.refresh.next();
     }

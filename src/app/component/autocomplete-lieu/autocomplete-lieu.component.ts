@@ -15,16 +15,16 @@ export class AutocompleteLieuComponent implements OnInit {
     lieuCtrl = new FormControl();
     filteredAdresses: any;
     filteredSalles: any;
-    
+
     isLoading = false;
     isLoadingSalle = false;
     isLoadingAdresse = false;
     separatorKeysCodes: number[] = [ENTER, COMMA];
-    @ViewChild('auto') matAutocomplete: MatAutocomplete;
-    @ViewChild('lieuInput') lieuInput: ElementRef<HTMLInputElement>;
+    @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+    @ViewChild('lieuInput', {static: false}) lieuInput: ElementRef<HTMLInputElement>;
     @Output() eventLieu = new EventEmitter<any>();
-    
-    
+
+
     constructor(
         public lieuService: LieuService,
         private http: HttpClient
@@ -34,7 +34,7 @@ export class AutocompleteLieuComponent implements OnInit {
         this.loadAdresses();
         this.loadSalles();
     }
-    
+
     loadAdresses() {
         this.lieuCtrl.valueChanges.pipe(
             filter((value: string) => (value ? value.length > 2 : false)),
@@ -59,9 +59,9 @@ export class AutocompleteLieuComponent implements OnInit {
             (data: any) => {
                 this.filteredAdresses = data.features;
             }
-        );   
+        );
     }
-    
+
     loadSalles() {
         this.lieuCtrl.valueChanges.pipe(
             filter((value: string) => (value ? value.length > 2 : false)),
@@ -77,7 +77,7 @@ export class AutocompleteLieuComponent implements OnInit {
                                 .pipe(
                                     finalize(() => {
                                         this.isLoadingSalle = false;
-                                        if(!this.isLoadingAdresse) this.isLoading = false; 
+                                        if(!this.isLoadingAdresse) this.isLoading = false;
                                     })
                                 )
             )
@@ -85,16 +85,16 @@ export class AutocompleteLieuComponent implements OnInit {
             (data: any) => {
                 this.filteredSalles = data;
             }
-        );   
+        );
     }
-    
+
     selected(event: MatAutocompleteSelectedEvent): void {
         this.eventLieu.emit(event.option.value);
     }
-    
+
     displayFn(salle?: any): string | undefined {
         return salle ? salle.nom : undefined;
     }
-    
-    
+
+
 }

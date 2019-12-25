@@ -1,0 +1,27 @@
+.div-calendrier, .div-body-calendrier{
+  width: 100%;
+}
+
+.vue-event-of-club{
+  margin-top:2%;
+  margin-bottom: 2%;
+}
+
+.div-colonne-gauche-calendrier{
+  width: 60%;
+  display: inline-block;
+
+}
+
+.div-colonne-droite-calendrier{
+  width: 40%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.div-infos-calendrier{
+  margin: 5px 0px 5px 5px;
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+}

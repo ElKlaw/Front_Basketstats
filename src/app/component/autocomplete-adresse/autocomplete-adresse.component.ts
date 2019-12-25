@@ -15,11 +15,11 @@ export class AutocompleteAdresseComponent implements OnInit {
     filteredAdresses: any;
     isLoading = false;
     separatorKeysCodes: number[] = [ENTER, COMMA];
-    @ViewChild('auto') matAutocomplete: MatAutocomplete;
-    @ViewChild('adresseInput') villeInput: ElementRef<HTMLInputElement>;
+    @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+    @ViewChild('adresseInput', {static: false}) villeInput: ElementRef<HTMLInputElement>;
     @Output() eventAdresse = new EventEmitter<any>();
-    
-    
+
+
     constructor(
         private http: HttpClient
     ) { }
@@ -27,7 +27,7 @@ export class AutocompleteAdresseComponent implements OnInit {
     ngOnInit() {
       this.loadAdresses();
     }
-    
+
     loadAdresses() {
         this.adresseCtrl.valueChanges.pipe(
             filter((value: string) => (value ? value.length > 2 : false)),
@@ -50,13 +50,13 @@ export class AutocompleteAdresseComponent implements OnInit {
             (data: any) => {
                 this.filteredAdresses = data.features;
             }
-        );   
+        );
     }
-    
+
     selected(event: MatAutocompleteSelectedEvent): void {
         this.eventAdresse.emit(event.option.value);
     }
-    
+
     displayFn(adresse?: any): string | undefined {
         return adresse ? adresse.properties.label : undefined;
     }

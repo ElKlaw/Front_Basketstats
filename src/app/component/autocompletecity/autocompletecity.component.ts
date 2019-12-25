@@ -18,9 +18,9 @@ export class AutocompletecityComponent implements OnInit {
     isLoading = false;
     villesChoisi: any = [];
     separatorKeysCodes: number[] = [ENTER, COMMA];
-    @ViewChild('auto') matAutocomplete: MatAutocomplete;
-    @ViewChild('villeInput') villeInput: ElementRef<HTMLInputElement>;
-    @ViewChild('chipList') chipList;
+    @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+    @ViewChild('villeInput', {static: false}) villeInput: ElementRef<HTMLInputElement>;
+    @ViewChild('chipList', {static: false}) chipList;
     @Output() eventVilles = new EventEmitter<any>();
 
     constructor(
@@ -70,12 +70,12 @@ export class AutocompletecityComponent implements OnInit {
         this.eventVilles.emit(this.villesChoisi);
         this.chipList.errorState = false;
     }
-    
+
     onBlur(){
         if(this.villesChoisi.length <=0){
             this.chipList.errorState = true;
         } else {
             this.chipList.errorState = false;
-        }   
+        }
     }
 }

@@ -25,3 +25,11 @@ table {
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
+.divEquipe{
+  display: inline-block;
+}
+
+.cardEquipe{
+  margin:10px;
+}
