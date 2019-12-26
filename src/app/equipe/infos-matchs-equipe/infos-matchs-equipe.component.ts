@@ -2,18 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import {EventService} from 'src/app/shared/service/event.service';
 
+import { Equipe } from 'src/app/shared/equipe';
 import { Event } from 'src/app/shared/event';
-import { Club } from 'src/app/shared/club';
 
 @Component({
-  selector: 'app-infos-match-club',
-  templateUrl: './infos-match-club.component.html',
-  styleUrls: ['./infos-match-club.component.css']
+  selector: 'app-infos-matchs-equipe',
+  templateUrl: './infos-matchs-equipe.component.html',
+  styleUrls: ['./infos-matchs-equipe.component.css']
 })
-export class InfosMatchClubComponent implements OnInit {
+export class InfosMatchsEquipeComponent implements OnInit {
   eventsProchainsMatchs: Event[];
   eventsDerniersMatchs: Event[];
-  @Input() club: Club;
+  @Input() equipe: Equipe;
+
   constructor(
     public eventService: EventService
   ) {
@@ -26,10 +27,10 @@ export class InfosMatchClubComponent implements OnInit {
   }
 
   loadMatchs() {
-    this.eventService.getProchainsMatchsFromClub(this.club.id, 5).subscribe((data : any)  => {
+    this.eventService.getProchainsMatchsFromEquipe(this.equipe.id, 5).subscribe((data : any)  => {
         this.eventsProchainsMatchs=data.content;
     });
-    this.eventService.getDerniersMatchsFromClub(this.club.id, 5).subscribe((data : any)  => {
+    this.eventService.getDerniersMatchsFromEquipe(this.equipe.id, 5).subscribe((data : any)  => {
         this.eventsDerniersMatchs=data.content;
     });
   }

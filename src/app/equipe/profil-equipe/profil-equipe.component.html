@@ -1,0 +1,26 @@
+<div>
+  <div class="row">
+    <div class="col-4">
+      <img class="img-equipe" src="assets/img/photo_equipe.jpg">
+    </div>
+    <div class="col-8">
+      <h5>{{equipe.nom}}</h5>
+      <p>{{equipe.niveau}} {{equipe.division}} - Poule {{equipe.poule}}</p>
+      <p>Coach : </p>
+      <p>Entraineur : </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-infos-joueurs-equipe [equipe]="equipe" *ngIf="equipe"></app-infos-joueurs-equipe>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+
+    </div>
+    <div class="col-6">
+      <app-infos-matchs-equipe [equipe]="equipe" *ngIf="equipe"></app-infos-matchs-equipe>
+    </div>
+  </div>
+</div>

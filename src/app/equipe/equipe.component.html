@@ -1,0 +1,24 @@
+<div class="cadre-gris">
+  <a [routerLink]="['../../equipes']"><i class="fas fa-chevron-left"></i>Retour aux equipes du club</a>
+  <mat-toolbar>
+    <mat-toolbar-row class="toolbar-equipe">
+      <ul id="nav_site_secondaire" class="nav nav-justified">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['profil']" routerLinkActive="active">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['calendrier']" routerLinkActive="active">Calendrier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['joueurs']" routerLinkActive="active">Joueurs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['matchs']" routerLinkActive="active">Matchs</a>
+        </li>
+      </ul>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="div_body_equipe">
+    <router-outlet></router-outlet>
+	</div>
+</div>

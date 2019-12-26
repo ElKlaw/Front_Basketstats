@@ -1,23 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClubRoutingModule } from './club-routing.module';
+import { EquipeRoutingModule } from './equipe-routing.module';
 
-import { ClubComponent } from './club.component'
-import { AccueilClubComponent } from './accueil-club/accueil-club.component';
-import { ActusClubComponent } from './actus-club/actus-club.component';
-import { CalendrierClubComponent } from './calendrier-club/calendrier-club.component';
-import { EquipesClubComponent } from './equipes-club/equipes-club.component';
-import { JoueurClubComponent } from './joueur-club/joueur-club.component';
-import { MatchClubComponent } from './match-club/match-club.component';
-import { ParametreClubComponent } from './parametre-club/parametre-club.component';
+import { EquipeComponent } from './equipe.component';
+import { ProfilEquipeComponent } from './profil-equipe/profil-equipe.component';
+import { CalendrierEquipeComponent } from './calendrier-equipe/calendrier-equipe.component';
+import { MatchsEquipeComponent } from './matchs-equipe/matchs-equipe.component';
+import { JoueursEquipeComponent } from './joueurs-equipe/joueurs-equipe.component';
 
-import { InfosActusClubComponent } from './infos-actus-club/infos-actus-club.component';
-import { InfosClubComponent } from './infos-club/infos-club.component';
-import { InfosMatchClubComponent } from './infos-match-club/infos-match-club.component';
-
-import { HeaderCalendarComponent } from '../calendar/header-calendar/header-calendar.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { InfosEventsEquipeComponent} from './infos-events-equipe/infos-events-equipe.component';
+import { InfosJoueursEquipeComponent} from './infos-joueurs-equipe/infos-joueurs-equipe.component';
+import { InfosMatchsEquipeComponent } from './infos-matchs-equipe/infos-matchs-equipe.component';
 
 import {
   MatAutocompleteModule,
@@ -60,26 +53,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
-    ClubComponent,
-    AccueilClubComponent,
-    ActusClubComponent,
-    CalendrierClubComponent,
-    JoueurClubComponent,
-    MatchClubComponent,
-    ParametreClubComponent,
-    InfosActusClubComponent,
-    InfosClubComponent,
-    InfosMatchClubComponent,
-    HeaderCalendarComponent,
-    EquipesClubComponent
+    EquipeComponent,
+    ProfilEquipeComponent,
+    CalendrierEquipeComponent,
+    MatchsEquipeComponent,
+    JoueursEquipeComponent,
+    InfosJoueursEquipeComponent,
+    InfosMatchsEquipeComponent,
+    InfosEventsEquipeComponent
   ],
   imports: [
     CommonModule,
-    ClubRoutingModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
+    EquipeRoutingModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -119,5 +104,4 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
   ]
 })
-export class ClubModule {
-}
+export class EquipeModule { }

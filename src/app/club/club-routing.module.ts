@@ -5,7 +5,6 @@ import { ClubComponent } from './club.component';
 import { AccueilClubComponent } from './accueil-club/accueil-club.component';
 import { ActusClubComponent } from './actus-club/actus-club.component';
 import { CalendrierClubComponent } from './calendrier-club/calendrier-club.component';
-import { EquipeClubComponent } from './equipe-club/equipe-club.component';
 import { EquipesClubComponent } from './equipes-club/equipes-club.component';
 import { JoueurClubComponent } from './joueur-club/joueur-club.component';
 import { MatchClubComponent } from './match-club/match-club.component';
@@ -31,7 +30,7 @@ const routes: Routes = [
       },
       {
         path: 'equipe/:id',
-        component: EquipeClubComponent
+        loadChildren: '../equipe/equipe.module#EquipeModule'
       },
       {
         path: 'joueurs',
@@ -52,10 +51,6 @@ const routes: Routes = [
       {
         path: 'parametres',
         component: ParametreClubComponent
-      },
-      {
-        path: 'equipe/:id',
-        component: EquipeClubComponent
       }
     ]
   }

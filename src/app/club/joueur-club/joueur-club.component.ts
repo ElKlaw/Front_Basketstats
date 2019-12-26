@@ -1,11 +1,12 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import {JoueurService} from '../../shared/joueur.service';
+
 import {MatPaginator, MatTableDataSource, MatSort, MatPaginatorIntl} from '@angular/material';
 import { FrenchMatPaginatorIntl } from 'src/app/component/language/frenchmatpaginatorintl';
 import { FormControl } from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import {ClubService} from 'src/app/shared/service/club.service';
+import {JoueurService} from 'src/app/shared/service/joueur.service';
 
 import { Club } from 'src/app/shared/club';
 import { Joueur } from 'src/app/shared/joueur';
@@ -59,8 +60,8 @@ export class JoueurClubComponent implements AfterViewInit {
   }
 
   loadJoueurs() {
-    this.joueurService.getAllJoueursFromClub(this.club.id).subscribe((data: {}) => {
-      this.dataTable.data = data as Joueur[];
+    this.joueurService.getAllJoueursFromClub(this.club.id).subscribe((joueurs: Joueur[]) => {
+      this.dataTable.data = joueurs;
       this.dataTable.paginator = this.paginator;
       this.dataTable.sort = this.sort;
       this.dataTable.filterPredicate = (data: Joueur, filtersJson: string) => {
