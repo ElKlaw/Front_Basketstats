@@ -27,14 +27,14 @@
 			<mat-divider *ngIf="!lastItem"></mat-divider>
 		</div>
 	</mat-tab>
-
-  	<mat-tab label="Derniers Matchs">
+  <mat-tab label="Derniers Matchs">
 		<div class="div-body-derniers-matchs" *ngFor="let event of eventsDerniersMatchs; let lastItem = last;">
 			<div *ngIf="event.match.domicile; then divMatchDomicile else divMatchExterieur" ></div>
 			<ng-template #divMatchDomicile>
 				<div class="div-info-dernier-match">
 					<span class="info-equipe-dom" [ngClass]="{colorGagne:event.match.scoreEquipe>event.match.scoreAdversaire,colorPerdu:event.match.scoreAdversaire>event.match.scoreEquipe}">{{event.match.equipe.nom}}</span>
 					<div class="div-info-resultat">
+            <p class="info-heure-match">{{event.match.dateMatch | date:'dd/MM'}} - {{event.match.heureMatch}}</p>
 						<span class="info-resultat" [ngClass]="{bold:event.match.scoreEquipe>event.match.scoreAdversaire}" >{{event.match.scoreEquipe}}</span>
 						<span class="info-resultat"> - </span>
 						<span class="info-resultat" [ngClass]="{bold:event.match.scoreAdversaire>event.match.scoreEquipe}" >{{event.match.scoreAdversaire}}</span>
@@ -55,5 +55,5 @@
 			</ng-template>
 			<mat-divider *ngIf="!lastItem"></mat-divider>
 		</div>
-  	</mat-tab>
+  </mat-tab>
 </mat-tab-group>
