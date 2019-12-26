@@ -1,0 +1,60 @@
+#footer {
+  background-color: #131519;
+  color: #f3f6f9;
+  text-align: center;
+  padding: 5px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+p {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.block-icons {
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.block-icon {
+  margin-right: 15px;
+  margin-left: 15px;
+  display: inline-block;
+}
+
+.block-icon > span{
+  vertical-align: super;
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+#icon-facebook{
+  color: #3b5998;
+  background-color: #f3f6f9;
+  font-size: 40px;
+  border-radius: 30px;
+}
+
+ #icon-twitter {
+  color: #f3f6f9;
+  font-size: 30px;
+  background-color: #43bfe1;
+  border-radius: 30px;
+  padding: 5px;
+ }
+
+ #icon-youtube {
+  color: #f3f6f9;
+  font-size: 30px;
+  background-color: #c4302b;
+  border-radius: 30px;
+  padding: 5px;
+ }
