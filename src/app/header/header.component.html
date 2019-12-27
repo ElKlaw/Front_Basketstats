@@ -1,4 +1,4 @@
-<nav id="nav_site" class="navbar navbar-default">
+<nav id="nav-header" class="navbar navbar-default">
 	<div class="container-fluid">
 		<a id="titre_nav" class="navbar-brand" href="/">#BasketStats</a>
 		<ul id="info-account" class="navbar-nav ml-auto" *ngIf="connect else noconnect">
@@ -51,17 +51,17 @@
 		</ng-template>
 	</div>
 </nav>
-<ul id="nav_site_secondaire" class="nav nav-justified navbar-light bg-light">
+<ul class="nav_site nav nav-justified navbar-light bg-light">
 	<li class="nav-item">
-		<a class="nav-link" href="/">Accueil</a>
+		<a class="nav-link" [routerLink]="['accueil']" routerLinkActive="active">Accueil</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" href="/clubs">clubs</a>
+		<a class="nav-link" [routerLink]="['clubs']" routerLinkActive="active">clubs</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" href="/club">FAQ</a>
+		<a class="nav-link" [routerLink]="['faq']" routerLinkActive="active">FAQ</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" href="/fonctionnalites">Fonctionnalités</a>
+		<a class="nav-link" [routerLink]="['fonctionnalites']" routerLinkActive="active">Fonctionnalités</a>
 	</li>
 </ul>

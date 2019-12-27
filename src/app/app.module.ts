@@ -72,6 +72,9 @@ import { AuthInterceptor } from './shared/authInterceptor';
 
 // CLUBS
 import { SearchClubComponent } from './club/search-club/search-club.component';
+import { AccueilComponent } from './autres/accueil/accueil.component';
+import { FaqComponent } from './autres/faq/faq.component';
+import { FonctionnalitesComponent } from './autres/fonctionnalites/fonctionnalites.component';
 
 registerLocaleData(localeFr);
 
@@ -80,7 +83,10 @@ registerLocaleData(localeFr);
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    SearchClubComponent
+    SearchClubComponent,
+    AccueilComponent,
+    FaqComponent,
+    FonctionnalitesComponent
   ],
   imports: [
     A11yModule,

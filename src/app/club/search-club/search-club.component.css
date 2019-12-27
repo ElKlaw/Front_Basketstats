@@ -201,3 +201,7 @@ background-color: buttonface;
   text-decoration: none;
   transition: all 0.3s;
 }
+
+.mat-paginator {
+  background-color: #f8f9fa!important;
+}
