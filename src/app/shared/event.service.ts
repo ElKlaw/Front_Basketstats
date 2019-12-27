@@ -23,45 +23,6 @@ export class EventService {
     })
   };
 
-  getProchainsMatchsFromClub(id, nombre): Observable<Event[]> {
-    return this.http.get<Event[]>(this.apiURL + '/club/' + id + '/matchs?type=FUTUR&size=' + nombre)
-    .pipe(
-      retry(1)
-    );
-  }
-  
-  getDerniersMatchsFromClub(id, nombre): Observable<Event[]> {
-    return this.http.get<Event[]>(this.apiURL + '/club/' + id + '/matchs?type=PASSE&size=' + nombre)
-    .pipe(
-      retry(1)
-    );
-  }
-    
-  getAllMatchsFromClub(id): Observable<Event[]> {
-    return this.http.get<Event[]>(this.apiURL + '/club/' + id + '/matchs')
-    .pipe(
-      retry(1)
-    );
-  }
-
-  getAllMatchsFromEquipe(id): Observable<Match[]> {
-    return this.http.get(this.apiURL + '/equipe/' + id + '/matchs')
-    .pipe(
-      map((data: any[]) => data.map((item: any) => new Match(
-        item.id,
-        new Date(item.dateMatch),
-        item.domicile,
-        item.heureMatch,
-        item.heureRDV,
-        item.adversaire,
-        item.scoreEquipe,
-        item.scoreAdversaire,
-        item.infosSup,
-        new Equipe(item.equipe.id, item.equipe.nom),
-      )))
-    );
-  }
-    
   createMatch(match): Observable<Match> {
     return this.http.post<Match>(this.apiURL + '/match', JSON.stringify(match), this.httpOptions)
     .pipe(
@@ -73,7 +34,7 @@ export class EventService {
   getAllEventsFromClub(id): Observable<CalendarEvent[]> {
     return this.http.get(this.apiURL + '/club/' + id + '/events')
     .pipe(
-      map(( data: any[]) => 
+      map(( data: any[]) =>
         data.reduce((result, item) => {
           if (item.recurent) {
             Array.prototype.push.apply(result,this.createEventRecurent(item));
@@ -134,7 +95,7 @@ export class EventService {
       catchError(this.handleError)
     );
   }
-    
+
   updateEvent(event): Observable<Event> {
     return this.http.put<Event>(this.apiURL + '/event', JSON.stringify(event), this.httpOptions)
     .pipe(
@@ -142,7 +103,7 @@ export class EventService {
       catchError(this.handleError)
     );
   }
-    
+
     createEventRecurent(event: any) {
         const events = [];
         const options = RRule.parseString('FREQ='+ event.freq+';BYWEEKDAY='+ event.byweekday);
@@ -179,7 +140,7 @@ export class EventService {
         });
         return events;
     }
-    
+
     getColor(typeEvent: string) {
         let color = {primary: '#ad2121', secondary: '#FAE3E3'};
         if(typeEvent == 'MATCH'){
@@ -188,10 +149,10 @@ export class EventService {
             color = {primary: '#1e90ff',secondary: '#D1E8FF'};
         } else if(typeEvent == 'AUTRE'){
             color = {primary: '#e3bc08',secondary: '#FDF1BA'};
-        }   
+        }
         return color;
     }
-    
+
     // Error handling
   handleError(error) {
      let errorMessage = '';
