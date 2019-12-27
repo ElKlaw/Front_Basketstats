@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClubRoutingModule } from './club-routing.module';
 
+//CLUB
 import { ClubComponent } from './club.component'
 import { AccueilClubComponent } from './accueil-club/accueil-club.component';
 import { ActusClubComponent } from './actus-club/actus-club.component';
 import { CalendrierClubComponent } from './calendrier-club/calendrier-club.component';
-import { EquipeClubComponent } from './equipe-club/equipe-club.component';
 import { EquipesClubComponent } from './equipes-club/equipes-club.component';
 import { JoueurClubComponent } from './joueur-club/joueur-club.component';
 import { MatchClubComponent } from './match-club/match-club.component';
@@ -16,6 +16,15 @@ import { InfosActusClubComponent } from './infos-actus-club/infos-actus-club.com
 import { InfosClubComponent } from './infos-club/infos-club.component';
 import { InfosMatchClubComponent } from './infos-match-club/infos-match-club.component';
 
+//EQUIPE
+import { ProfilEquipeComponent } from '../equipe/profil-equipe/profil-equipe.component';
+
+import { InfosMatchsEquipeComponent } from '../equipe/infos-matchs-equipe/infos-matchs-equipe.component';
+import { InfosJoueursEquipeComponent } from '../equipe/infos-joueurs-equipe/infos-joueurs-equipe.component';
+import { InfosEventsEquipeComponent } from '../equipe/infos-events-equipe/infos-events-equipe.component';
+
+
+// CALENDAR
 import { HeaderCalendarComponent } from '../calendar/header-calendar/header-calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -65,7 +74,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AccueilClubComponent,
     ActusClubComponent,
     CalendrierClubComponent,
-    EquipeClubComponent,
     JoueurClubComponent,
     MatchClubComponent,
     ParametreClubComponent,
@@ -73,7 +81,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     InfosClubComponent,
     InfosMatchClubComponent,
     HeaderCalendarComponent,
-    EquipesClubComponent
+    EquipesClubComponent,
+    ProfilEquipeComponent,
+    InfosMatchsEquipeComponent,
+    InfosJoueursEquipeComponent,
+    InfosEventsEquipeComponent
   ],
   imports: [
     CommonModule,

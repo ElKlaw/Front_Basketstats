@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {EventService} from 'src/app/shared/event.service';
 import * as moment from 'moment';
 
-
 import {ClubService} from 'src/app/shared/service/club.service';
+import {EventService} from 'src/app/shared/service/event.service';
 
 import {Club} from 'src/app/shared/club';
 import { Event } from 'src/app/shared/event';

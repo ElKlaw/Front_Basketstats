@@ -1,0 +1,71 @@
+.block-infos-matchs {
+  border: 1px solid #e6e6e6;
+}
+
+.div-header {
+  width: 100%;
+  background-color: #1e518c;
+  color: #FFF;
+  padding: 5px;
+}
+
+.div-header > h1 {
+  margin:0;
+  padding: 0;
+}
+
+.div-sous-title{
+  background-color: #e6e6e6;
+  width: 100%;
+  padding: 5px;
+}
+
+.div-sous-title > h2{
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.div-info-horaire {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.info-date-match, .info-heure-match, .info-lieu-match{
+	margin: 0px;
+}
+
+.info-equipe-dom, .info-equipe-ext{
+	font-size: 14px;
+  font-weight: 500;
+}
+
+.info-date-match{
+	font-weight: bold;
+}
+
+.info-heure-match, .info-lieu-match{
+	font-size: 13px;
+  font-weight: 500;
+}
+
+.info-lieu-match{
+	font-size: 10px;
+  font-weight: 500;
+}
+
+.div-info-prochains-match, .div-info-derniers-match{
+  padding: 3px;
+}
+
+.resultat-match, .info-resultat, .info-equipe-ext, .info-date-match, .div-info-horaire{
+  margin-right: 10px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.info-equipe-ext{
+  min-width: 100px;
+}
