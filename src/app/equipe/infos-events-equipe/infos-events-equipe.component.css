@@ -1,0 +1,15 @@
+.block-infos-events {
+  border: 1px solid #e6e6e6;
+}
+
+.div-header {
+  width: 100%;
+  background-color: #1e518c;
+  color: #FFF;
+  padding: 5px;
+}
+
+.div-header > h1 {
+  margin:0;
+  padding: 0;
+}

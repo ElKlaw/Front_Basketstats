@@ -9,6 +9,7 @@ import { EquipesClubComponent } from './equipes-club/equipes-club.component';
 import { JoueurClubComponent } from './joueur-club/joueur-club.component';
 import { MatchClubComponent } from './match-club/match-club.component';
 import { ParametreClubComponent } from './parametre-club/parametre-club.component';
+import { ProfilEquipeComponent } from '../equipe/profil-equipe/profil-equipe.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
       },
       {
         path: 'equipe/:id',
-        loadChildren: '../equipe/equipe.module#EquipeModule'
+        component: ProfilEquipeComponent
       },
       {
         path: 'joueurs',

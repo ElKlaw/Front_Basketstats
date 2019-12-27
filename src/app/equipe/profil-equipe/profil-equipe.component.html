@@ -1,26 +1,38 @@
-<div>
-  <div class="row">
-    <div class="col-4">
-      <img class="img-equipe" src="assets/img/photo_equipe.jpg">
-    </div>
-    <div class="col-8">
-      <h5>{{equipe.nom}}</h5>
-      <p>{{equipe.niveau}} {{equipe.division}} - Poule {{equipe.poule}}</p>
-      <p>Coach : </p>
-      <p>Entraineur : </p>
-    </div>
+<div class="cadre-gris">
+  <div>
+    <a class="div-link-retour" [routerLink]="['../../equipes']">
+      <i id="icon-link-retour" class="fas fa-chevron-left"></i>
+      <span class="span-link-retour">Retour aux equipes du club</span>
+    </a>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <app-infos-joueurs-equipe [equipe]="equipe" *ngIf="equipe"></app-infos-joueurs-equipe>
+  <div class="div_body_equipe">
+    <div>
+      <div class="row">
+        <div class="col-4">
+          <img class="img-equipe" src="assets/img/photo_equipe.jpg">
+        </div>
+        <div class="col-8">
+          <h5>{{equipe.nom}}</h5>
+          <p>{{equipe.niveau}} {{equipe.division}} - Poule {{equipe.poule}}</p>
+          <p>Coach : </p>
+          <p>Entraineur : </p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row">
+        <div class="col-12">
+          <app-infos-joueurs-equipe [equipe]="equipe" *ngIf="equipe"></app-infos-joueurs-equipe>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row">
+        <div class="col-6">
+          <app-infos-events-equipe [equipe]="equipe" *ngIf="equipe"></app-infos-events-equipe>
+        </div>
+        <div class="col-6">
+          <app-infos-matchs-equipe [equipe]="equipe" *ngIf="equipe"></app-infos-matchs-equipe>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-
-    </div>
-    <div class="col-6">
-      <app-infos-matchs-equipe [equipe]="equipe" *ngIf="equipe"></app-infos-matchs-equipe>
-    </div>
-  </div>
+	</div>
 </div>

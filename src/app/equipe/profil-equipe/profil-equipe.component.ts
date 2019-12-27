@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { Equipe } from 'src/app/shared/equipe';
+
 import { EquipeService } from 'src/app/shared/service/equipe.service';
 
 @Component({
@@ -11,6 +14,7 @@ export class ProfilEquipeComponent implements OnInit {
   equipe: Equipe;
 
   constructor(
+    private route: ActivatedRoute,
     public equipeService: EquipeService
   ) {
     this.getEquipe();
@@ -21,8 +25,9 @@ export class ProfilEquipeComponent implements OnInit {
   }
 
   getEquipe() {
-    this.equipeService.equipe$.subscribe((equipe: Equipe) =>{
+    this.equipeService.equipe$.subscribe((equipe: Equipe) => {
       this.equipe = equipe;
-    })
+    });
+    this.equipeService.getEquipe(this.route.snapshot.paramMap.get('id'));
   }
 }

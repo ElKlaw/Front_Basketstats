@@ -27,7 +27,7 @@ export class InfosMatchsEquipeComponent implements OnInit {
   }
 
   loadMatchs() {
-    this.eventService.getProchainsMatchsFromEquipe(this.equipe.id, 5).subscribe((data : any)  => {
+    this.eventService.getProchainsMatchsFromEquipe(this.equipe.id, 1).subscribe((data : any)  => {
         this.eventsProchainsMatchs=data.content;
     });
     this.eventService.getDerniersMatchsFromEquipe(this.equipe.id, 5).subscribe((data : any)  => {

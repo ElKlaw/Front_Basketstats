@@ -2,3 +2,18 @@
   height: auto;
   width: 100%;
 }
+
+.mat-divider {
+  margin:25px;
+}
+
+
+#icon-link-retour {
+  font-size: 30px;
+}
+
+.span-link-retour{
+  font-size: 18px;
+  margin-left:10px;
+  vertical-align: top;
+}
