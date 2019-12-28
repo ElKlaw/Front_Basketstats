@@ -1,16 +1,19 @@
-<div class="div_infos_club">
-  <h1 class="Infos_club nomClub">{{club.nomcomplet}}</h1>
-  <p class="Infos_club sport">
-      <span class="Titre_Infos_club">Sport : </span>{{club.sport}}
+<div class="div-infos-club">
+  <h1 class="infos-club nom-club">{{club.nomcomplet}}</h1>
+  <p class="infos-club sport">
+      <span class="titre-infos-club">Sport : </span>
+      <span>{{club.sport}}</span>
   </p>
-  <p class="Infos_club region">
-      <span class="Titre_Infos_club">Région : </span>{{club.villes[0].region}}
+  <p class="infos-club region">
+      <span class="titre-infos-club">Région : </span>
+      <span>{{club.villes[0].region}}</span>
   </p>
-  <p class="Infos_club departement">
-      <span class="Titre_Infos_club">Département : </span>{{club.villes[0].departement}} ({{club.villes[0].codeDepartement}})
+  <p class="infos-club departement">
+      <span class="titre-infos-club">Département : </span>
+      <span>{{club.villes[0].departement}} ({{club.villes[0].codeDepartement}})</span>
   </p>
-  <p class="Infos_club ville">
-      <span class="Titre_Infos_club">Ville : </span>
+  <p class="infos-club ville">
+      <span class="titre-infos-club">Ville : </span>
       <span *ngFor="let ville of club.villes ; let isLast=last">
         {{ville.nom}} ({{ville.codePostal}}) {{isLast ? '' : ', '}}
       </span>
