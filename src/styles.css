@@ -130,3 +130,7 @@
   outline: none !important;
   border: none;
 }
+
+.mat-tab-label-active{
+  opacity: 1 !important;
+}
