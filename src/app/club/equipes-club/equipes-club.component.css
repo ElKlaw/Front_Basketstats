@@ -33,3 +33,19 @@ display: inline-block;
 .cardEquipe{
 margin:10px;
 }
+
+.btn-infos {
+  color: white;
+  background-color: #51A7E8;
+  border-radius: 100px;
+  width: 100%;
+  font-weight: 500;
+}
+
+.btn-infos:hover {
+  background-color: #2691E3;
+}
+
+.create-equipe {
+  margin-bottom: 20px;
+}
