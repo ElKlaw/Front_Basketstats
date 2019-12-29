@@ -7,23 +7,59 @@ table {
   width: 100%;
 }
 
-tr.joueur-detail-row {
-  height: 0;
+.title-expand-detail {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.text-expand-detail {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.btn-infos {
+  color: white;
+  background-color: #51A7E8;
+  border-radius: 100px;
+  width: 100%;
+  font-weight: 500;
+}
+
+.btn-infos:hover {
+  background-color: #2691E3;
 }
 
 .joueur-row td {
   border-bottom-width: 0;
 }
 
-.joueur-detail {
-  overflow: hidden;
+tr.joueur-detail-row {
+  height: 0;
 }
 
-.div-detail-equipe{
-  margin-top: 10px;
-  margin-bottom: 10px;
+.joueur-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.div-joueur-detail {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  border: 1px solid #e6e6e6;
+  background-color: #f8f9fa;
 }
 
 .div-detail-equipe-infos, .div-detail-equipe-action {
   display: inline-block;
+  width: 50%;
+}
+
+.body-detail-equipe {
+  width: 100%;
+}
+
+.divider-detail {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

@@ -27,7 +27,7 @@ import { Joueur } from 'src/app/shared/joueur';
   ],
 })
 export class JoueurClubComponent implements AfterViewInit {
-  displayedColumns : string[] = ['nom', 'prenom', 'sexe', 'dateNaissance','detail'];
+  displayedColumns = ['nom', 'prenom', 'sexe', 'dateNaissance','detail'];
   dataTable: MatTableDataSource<Joueur>;
   expandedElement: Joueur | null;
 
@@ -65,24 +65,24 @@ export class JoueurClubComponent implements AfterViewInit {
       this.dataTable.paginator = this.paginator;
       this.dataTable.sort = this.sort;
       this.dataTable.filterPredicate = (data: Joueur, filtersJson: string) => {
-          const searchString = JSON.parse(filtersJson);
-          return data.nom.toString().toLowerCase().includes(searchString.nom.toLowerCase()) ||
-              data.prenom.toString().toLowerCase().includes(searchString.nom.toLowerCase()) ;
+        const searchString = JSON.parse(filtersJson);
+        return data.nom.toString().toLowerCase().includes(searchString.nom.toLowerCase()) ||
+            data.prenom.toString().toLowerCase().includes(searchString.nom.toLowerCase()) ;
       };
     });
   }
 
   initialisationFiltres() {
-      this.nomFilter.valueChanges.subscribe((FilterValue) => {
-          this.filtre(FilterValue, 'nom');
-      });
+    this.nomFilter.valueChanges.subscribe((FilterValue) => {
+      this.filtre(FilterValue, 'nom');
+    });
   }
 
   filtre(filterValue: string, nomColumn: string) {
-      this.filteredValues[nomColumn] = filterValue;
-      this.dataTable.filter = JSON.stringify(this.filteredValues);
-      if (this.dataTable.paginator) {
-          this.dataTable.paginator.firstPage();
-      }
+    this.filteredValues[nomColumn] = filterValue;
+    this.dataTable.filter = JSON.stringify(this.filteredValues);
+    if (this.dataTable.paginator) {
+      this.dataTable.paginator.firstPage();
+    }
   }
 }

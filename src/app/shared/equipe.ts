@@ -8,7 +8,7 @@ export class Equipe {
 
     saison: number;
     phase: number;
-    category: string;
+    categorie: string;
     sexe: string;
     niveau: string;
     division: string;

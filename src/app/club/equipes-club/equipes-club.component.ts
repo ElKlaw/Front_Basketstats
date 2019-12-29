@@ -18,7 +18,7 @@ export class EquipesClubComponent implements OnInit {
   nomFilter = new FormControl();
 
   constructor(
-      public equipeService: EquipeService
+    public equipeService: EquipeService
   ) {
     this.nomFilter.valueChanges.subscribe(
       (value: string) =>{
