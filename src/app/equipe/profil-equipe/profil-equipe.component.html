@@ -1,6 +1,6 @@
 <div class="cadre-gris">
-  <div>
-    <a class="div-link-retour" [routerLink]="['../../equipes']">
+  <div class="div-link-retour">
+    <a [routerLink]="['../../equipes']">
       <i id="icon-link-retour" class="fas fa-chevron-left"></i>
       <span class="span-link-retour">Retour aux equipes du club</span>
     </a>
@@ -12,10 +12,16 @@
           <img class="img-equipe" src="assets/img/photo_equipe.jpg">
         </div>
         <div class="col-8">
-          <h5>{{equipe.nom}}</h5>
-          <p>{{equipe.niveau}} {{equipe.division}} - Poule {{equipe.poule}}</p>
-          <p>Coach : </p>
-          <p>Entraineur : </p>
+          <h1 class="nom-equipe">{{equipe.nom}}</h1>
+          <p>
+            <span class="titre-infos-club">{{equipe.niveau}} {{equipe.division}} (Poule {{equipe.poule}})</span>
+          </p>
+          <p>
+            <span class="titre-infos-club">Coach :</span>
+          </p>
+          <p>
+            <span class="titre-infos-club">Entraineur :</span>
+          </p>
         </div>
       </div>
       <mat-divider></mat-divider>

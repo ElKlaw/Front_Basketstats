@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -11,7 +11,7 @@ import { Equipe } from '../equipe';
 })
 export class EquipeService {
   private equipes = new ReplaySubject<Equipe[]>();
-  private equipe = new ReplaySubject<Equipe>();
+  private equipe = new Subject<Equipe>();
 
   equipes$ = this.equipes.asObservable();
   equipe$ = this.equipe.asObservable();

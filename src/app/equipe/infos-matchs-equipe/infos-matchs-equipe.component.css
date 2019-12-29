@@ -60,7 +60,7 @@
   padding: 3px;
 }
 
-.resultat-match, .info-resultat, .info-equipe-ext, .info-date-match, .div-info-horaire{
+.text-no-result, .resultat-match, .info-resultat, .info-equipe-ext, .info-date-match, .div-info-horaire{
   margin-right: 10px;
   margin-left: 10px;
   display: inline-block;
@@ -68,4 +68,10 @@
 
 .info-equipe-ext{
   min-width: 100px;
+}
+
+.text-no-result {
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

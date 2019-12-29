@@ -6,36 +6,48 @@
     <div class="div-sous-title">
       <h2>Match suivant</h2>
     </div>
-    <div *ngFor="let event of eventsProchainsMatchs; let lastItem = last;">
-      <div class="div-info-prochains-match">
-        <span class="info-date-match">{{event.match.dateMatch | date:'dd/MM/yy'}}</span>
-        <div class="div-info-horaire">
-          <p class="info-heure-match">{{event.match.heureMatch}}</p>
-          <p class="info-lieu-match">{{event.lieu.nom}}</p>
+    <div *ngIf="eventsProchainsMatchs?.length; then ProchainsMatchs else noProchainsMatchs"></div>
+    <ng-template #noProchainsMatchs>
+      <span class="text-no-result">Aucun match prévu</span>
+    </ng-template>
+    <ng-template #ProchainsMatchs>
+      <div *ngFor="let event of eventsProchainsMatchs; let lastItem = last;">
+        <div class="div-info-prochains-match">
+          <span class="info-date-match">{{event.match.dateMatch | date:'dd/MM/yy'}}</span>
+          <div class="div-info-horaire">
+            <p class="info-heure-match">{{event.match.heureMatch}}</p>
+            <p class="info-lieu-match">{{event.lieu.nom}}</p>
+          </div>
+          <span class="info-equipe-ext">vs {{event.match.adversaire}}</span>
         </div>
-        <span class="info-equipe-ext">vs {{event.match.adversaire}}</span>
+        <mat-divider *ngIf="!lastItem"></mat-divider>
       </div>
-      <mat-divider *ngIf="!lastItem"></mat-divider>
-    </div>
+    </ng-template>
   </div>
   <div>
     <div class="div-sous-title">
       <h2>Match précédents</h2>
     </div>
-    <div *ngFor="let event of eventsDerniersMatchs; let lastItem = last;">
-      <div class="div-info-derniers-match">
-        <span class="info-date-match">{{event.match.dateMatch | date:'dd/MM/yy'}}</span>
-        <span class="info-equipe-ext">vs {{event.match.adversaire}}</span>
-        <div *ngIf="event.match.scoreEquipe>event.match.scoreAdversaire; then victoire else defaite" ></div>
-        <ng-template #victoire>
-          <span class="resultat-match">V</span>
-        </ng-template>
-        <ng-template #defaite>
-          <span class="resultat-match">D</span>
-        </ng-template>
-        <span class="info-resultat" >{{event.match.scoreEquipe}} - {{event.match.scoreAdversaire}}</span>
+    <div *ngIf="eventsDerniersMatchs?.length; then DerniersMatchs else noDerniersMatchs"></div>
+    <ng-template #noDerniersMatchs>
+      <span class="text-no-result">Aucun match joué</span>
+    </ng-template>
+    <ng-template #DerniersMatchs>
+      <div *ngFor="let event of eventsDerniersMatchs; let lastItem = last;">
+        <div class="div-info-derniers-match">
+          <span class="info-date-match">{{event.match.dateMatch | date:'dd/MM/yy'}}</span>
+          <span class="info-equipe-ext">vs {{event.match.adversaire}}</span>
+          <div *ngIf="event.match.scoreEquipe>event.match.scoreAdversaire; then victoire else defaite" ></div>
+          <ng-template #victoire>
+            <span class="resultat-match">V</span>
+          </ng-template>
+          <ng-template #defaite>
+            <span class="resultat-match">D</span>
+          </ng-template>
+          <span class="info-resultat" >{{event.match.scoreEquipe}} - {{event.match.scoreAdversaire}}</span>
+        </div>
+        <mat-divider *ngIf="!lastItem"></mat-divider>
       </div>
-      <mat-divider *ngIf="!lastItem"></mat-divider>
-    </div>
+    </ng-template>
   </div>
 </div>
