@@ -7,7 +7,7 @@
 	</div>
 	<div class="div-body-match-of-club">
 		<div id="div-match-a-venir" [hidden]="!toggleMatchAVenir.checked">
-			<div *ngIf="matchsByMonthAVenir ; then blocMatchsAVenir else blocAucunMatchAVenir"></div>
+			<div *ngIf="matchsByMonthAVenir?.length; then blocMatchsAVenir else blocAucunMatchAVenir"></div>
 			<ng-template #blocMatchsAVenir>
 				<table class="table-match">
 					<thead>
@@ -37,7 +37,7 @@
 			<ng-template #blocAucunMatchAVenir>Aucun match à venir</ng-template>
 		</div>
 		<div id="div-match-joue" [hidden]="!toggleMatchJoue.checked">
-			<div *ngIf="matchsByMonthJoue; then blocMatchsJoue else blocAucunMatchJoue"></div>
+			<div *ngIf="matchsByMonthJoue?.length; then blocMatchsJoue else blocAucunMatchJoue"></div>
 			<ng-template #blocMatchsJoue>
 				<table class="table-match">
 					<thead>
@@ -91,7 +91,7 @@
 					</tbody>
 				</table>
 			</ng-template>
-			<ng-template #blocAucunMatchJoue>Aucun match à jouer</ng-template>
+			<ng-template #blocAucunMatchJoue>Aucun match joué</ng-template>
 		</div>
 	</div>
 </div>
