@@ -5,7 +5,6 @@ import { ClubRoutingModule } from './club-routing.module';
 //CLUB
 import { ClubComponent } from './club.component'
 import { AccueilClubComponent } from './accueil-club/accueil-club.component';
-import { ActusClubComponent } from './actus-club/actus-club.component';
 import { CalendrierClubComponent } from './calendrier-club/calendrier-club.component';
 import { EquipesClubComponent } from './equipes-club/equipes-club.component';
 import { JoueurClubComponent } from './joueur-club/joueur-club.component';
@@ -72,7 +71,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   declarations: [
     ClubComponent,
     AccueilClubComponent,
-    ActusClubComponent,
     CalendrierClubComponent,
     JoueurClubComponent,
     MatchClubComponent,
