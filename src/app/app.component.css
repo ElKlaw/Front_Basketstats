@@ -3,6 +3,6 @@
 }
 
 .div-body {
-  min-height: 1000px;
+  min-height: 100vh;
   background-color: #f8f9fa!important;
 }

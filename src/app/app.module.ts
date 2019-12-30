@@ -55,23 +55,27 @@ import { HttpClientModule } from '@angular/common/http';
 // Routing module for router service
 import { AppRoutingModule } from './app-routing.module';
 
-// Forms module
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-
 import { FlatpickrModule } from 'angularx-flatpickr';
+
+//Interceptor
 import { AuthGuard } from './shared/guard/authguard';
 import { AuthInterceptor } from './shared/authInterceptor';
 
-// CLUBS
+//
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+
+import { AutocompletecityComponent } from './component/autocompletecity/autocompletecity.component';
+
+// Clubs
+import { CreerClubComponent } from './club/creer-club/creer-club.component';
 import { SearchClubComponent } from './club/search-club/search-club.component';
+
+// Accueil
 import { AccueilComponent } from './autres/accueil/accueil.component';
 import { FaqComponent } from './autres/faq/faq.component';
 import { FonctionnalitesComponent } from './autres/fonctionnalites/fonctionnalites.component';
@@ -84,9 +88,11 @@ registerLocaleData(localeFr);
     FooterComponent,
     HeaderComponent,
     SearchClubComponent,
+    CreerClubComponent,
     AccueilComponent,
     FaqComponent,
-    FonctionnalitesComponent
+    FonctionnalitesComponent,
+    AutocompletecityComponent
   ],
   imports: [
     A11yModule,

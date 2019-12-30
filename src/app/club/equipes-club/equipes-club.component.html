@@ -16,6 +16,7 @@
         <img class="card-img-top" src="assets/img/photo_equipe.jpg">
         <div class="card-body">
           <h5 class="card-title">{{equipe.nom}}</h5>
+          <p class="card-text">{{equipe.categorie}}</p>
           <p class="card-text">{{equipe.niveau}} {{equipe.division}} - Poule {{equipe.poule}}</p>
           <a [routerLink]="['../equipe',equipe.id]" class="btn btn-infos">Voir plus d'informations</a>
         </div>
