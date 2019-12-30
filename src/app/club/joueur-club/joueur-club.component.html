@@ -9,7 +9,13 @@
   </div>
 	<div class="div-tableau">
     <div [hidden]="dataTable.filteredData.length>0">
-      <p>Aucun joueur ne correspond à votre recherche</p>
+      <div *ngIf="!nomFilter.value?.length; then aucunJoueurClub else aucunResultatRecherche"></div>
+      <ng-template #aucunResultatRecherche>
+        <p class="text-no-result">Aucun joueur ne correspond à votre recherche</p>
+      </ng-template>
+      <ng-template #aucunJoueurClub>
+        <p class="text-no-result">Vous disposez d'aucun joueur dans votre club</p>
+      </ng-template>
     </div>
     <div [hidden]="dataTable.filteredData.length==0">
       <table mat-table [dataSource]="dataTable" matSort multiTemplateDataRows class="mat-elevation-z8">
