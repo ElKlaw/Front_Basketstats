@@ -34,7 +34,22 @@
 					</tbody>
 				</table>
 			</ng-template>
-			<ng-template #blocAucunMatchAVenir>Aucun match à venir</ng-template>
+			<ng-template #blocAucunMatchAVenir>
+        <table class="table-match">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Heure</th>
+							<th scope="col">Lieu</th>
+							<th scope="col">Equipe</th>
+							<th scope="col">Adversaire</th>
+						</tr>
+					</thead>
+					<tbody>
+            <span class="text-no-result">Aucun match à venir</span>
+          </tbody>
+        </table>
+      </ng-template>
 		</div>
 		<div id="div-match-joue" [hidden]="!toggleMatchJoue.checked">
 			<div *ngIf="matchsByMonthJoue?.length; then blocMatchsJoue else blocAucunMatchJoue"></div>
@@ -91,7 +106,22 @@
 					</tbody>
 				</table>
 			</ng-template>
-			<ng-template #blocAucunMatchJoue>Aucun match joué</ng-template>
+			<ng-template #blocAucunMatchJoue>
+        <table class="table-match">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Heure</th>
+							<th scope="col">Lieu</th>
+							<th scope="col">Equipe</th>
+							<th scope="col">Adversaire</th>
+						</tr>
+					</thead>
+					<tbody>
+            <span class="text-no-result">Aucun match joué</span>
+          </tbody>
+        </table>
+      </ng-template>
 		</div>
 	</div>
 </div>

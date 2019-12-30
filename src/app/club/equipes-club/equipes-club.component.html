@@ -15,10 +15,14 @@
     <ng-template #aucuneEquipe>
       <div *ngIf="!nomFilter.value?.length; then aucuneEquipeClub else aucunResultatRecherche"></div>
       <ng-template #aucunResultatRecherche>
-        <p class="text-no-result">Aucune équipe ne correspond à vos critères de recherche</p>
+        <div class="alert alert-danger" role="alert">
+          <span class="text-no-result">Aucune équipe ne correspond à vos critères de recherche.</span>
+        </div>
       </ng-template>
       <ng-template #aucuneEquipeClub>
-        <p class="text-no-result">Vous disposez d'aucune équipe dans votre club</p>
+        <div class="alert alert-danger" role="alert">
+          <span class="text-no-result">Vous disposez d'aucune équipe dans votre club.</span>
+        </div>
       </ng-template>
     </ng-template>
     <ng-template #equipes>

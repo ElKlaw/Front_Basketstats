@@ -11,10 +11,14 @@
     <div [hidden]="dataTable.filteredData.length>0">
       <div *ngIf="!nomFilter.value?.length; then aucunJoueurClub else aucunResultatRecherche"></div>
       <ng-template #aucunResultatRecherche>
-        <p class="text-no-result">Aucun joueur ne correspond à votre recherche</p>
+        <div class="alert alert-danger" role="alert">
+          <span class="text-no-result">Aucun joueur ne correspond à votre recherche.</span>
+        </div>
       </ng-template>
       <ng-template #aucunJoueurClub>
-        <p class="text-no-result">Vous disposez d'aucun joueur dans votre club</p>
+        <div class="alert alert-danger" role="alert">
+          <span class="text-no-result">Vous disposez d'aucun joueur dans votre club.</span>
+        </div>
       </ng-template>
     </div>
     <div [hidden]="dataTable.filteredData.length==0">

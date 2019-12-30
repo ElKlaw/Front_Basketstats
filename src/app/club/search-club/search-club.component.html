@@ -20,7 +20,9 @@
 	<div class="container">
     <div *ngIf="clubs?.length; then result else noResult"></div>
     <ng-template #noResult>
-      <p>Aucun résultat pour votre recherche.</p>
+      <div class="alert alert-danger" role="alert">
+        <span class="text-no-result">Aucun résultat pour votre recherche.</span>
+      </div>
     </ng-template>
     <ng-template #result>
       <mat-paginator #paginatorTop
