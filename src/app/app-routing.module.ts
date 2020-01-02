@@ -8,6 +8,10 @@ import { AccueilComponent } from './autres/accueil/accueil.component';
 import { FaqComponent } from './autres/faq/faq.component';
 import { FonctionnalitesComponent } from './autres/fonctionnalites/fonctionnalites.component';
 
+//Modal
+import { AjoutSalleComponent } from './modal/salle/ajout-salle/ajout-salle.component';
+import { AjoutVilleComponent } from './modal/ville/ajout-ville/ajout-ville.component';
+
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'accueil' },
     { path: 'accueil', component: AccueilComponent },
@@ -21,11 +25,19 @@ const routes: Routes = [
     }
 ];
 
+const routesModal: Routes = [
+  {path: '', component: AjoutSalleComponent},
+  {path: '', component: AjoutVilleComponent}
+];
+
 @NgModule({
   imports: [
-      RouterModule.forRoot(
-        routes
-      )
+    RouterModule.forRoot(
+      routes
+    ),
+    RouterModule.forChild(
+      routesModal
+    )
   ],
   exports: [
     RouterModule

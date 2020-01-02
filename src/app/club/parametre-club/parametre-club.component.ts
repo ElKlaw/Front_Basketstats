@@ -1,13 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms';
-import { Router} from '@angular/router';
-import { ConfigurationService } from 'src/app/shared/configuration/configuration.service';
-import { VueAjoutSalleClubComponent } from 'src/app/salle/vue-ajout-salle-club/vue-ajout-salle-club.component';
+
+import { AjoutSalleComponent } from 'src/app/modal/salle/ajout-salle/ajout-salle.component';
+import { AjoutVilleComponent } from 'src/app/modal/ville/ajout-ville/ajout-ville.component';
 
 import { LieuService } from 'src/app/shared/lieu.service';
 import { ClubService } from 'src/app/shared/service/club.service';
 import { VilleService } from 'src/app/shared/ville.service';
+import { ConfigurationService } from 'src/app/shared/configuration/configuration.service';
 
 import { Ville } from 'src/app/shared/ville';
 import { Sport } from 'src/app/shared/configuration/sport';
@@ -21,16 +22,25 @@ import { Lieu } from 'src/app/shared/lieu';
 })
 export class ParametreClubComponent implements OnInit {
   club: Club;
-  @Output() eventClub: EventEmitter<Club> = new EventEmitter();
   salles: Lieu[]=[];
   villes: Ville[]=[]
   sports: Sport[] = [];
-  clubForm = new FormGroup({
-      nomcomplet: new FormControl(''),
-      nom: new FormControl(''),
-      url: new FormControl(''),
-      codeClub: new FormControl(''),
-      sport: new FormControl('')
+
+  clubNomForm = new FormGroup({
+    nomcomplet: new FormControl(''),
+    nom: new FormControl('')
+  });
+
+  clubUrlForm = new FormGroup({
+    url: new FormControl('')
+  });
+
+  clubCodeForm = new FormGroup({
+    codeClub: new FormControl('')
+  });
+
+  clubSportForm = new FormGroup({
+    sport: new FormControl('')
   });
 
   constructor(
@@ -39,7 +49,6 @@ export class ParametreClubComponent implements OnInit {
       public villeService: VilleService,
       public dialogAjoutSalle: MatDialog,
       public configurationService: ConfigurationService,
-      private router: Router,
       public dialog: MatDialog
   ) {
     this.getClub();
@@ -57,12 +66,43 @@ export class ParametreClubComponent implements OnInit {
     });
   }
 
-  loadSalle() {
-      this.lieuService.getAllSallesFromClub(this.club.id).subscribe((data: any) => {
-          this.salles = data as Lieu[];
-      });
+  loadConfiguration() {
+    return this.configurationService.getAllSports().subscribe((data: {}) => {
+      this.sports = data as Sport[];
+    });
   }
 
+  //Submit form
+  submit(form){
+    this.clubService.patchClub(this.club.id, form.value);
+  }
+
+
+  // Gestion Salle
+  loadSalle() {
+    this.lieuService.getAllSallesFromClub(this.club.id).subscribe((data: any) => {
+        this.salles = data as Lieu[];
+    });
+  }
+
+  supprimerSalle(salle) {
+    this.lieuService.deleteLieu(salle.id).subscribe((data: any) => {
+        this.loadSalle();
+    });
+  }
+
+  openCreateSalle(){
+    const dialogCreateSalle = this.dialog.open(AjoutSalleComponent, {
+        width: '50%',
+        data: {club: this.club}
+    });
+
+    dialogCreateSalle.afterClosed().subscribe(result => {
+        this.loadSalle();
+    });
+  }
+
+  // Gestion Ville
   loadVille(){
       this.villeService.getAllVillesFromClub(this.club.id).subscribe((data: any)=> {
           this.villes= data as Ville[];
@@ -70,67 +110,24 @@ export class ParametreClubComponent implements OnInit {
   }
 
   supprimerVille(ville) {
-      this.villeService.deleteVille(ville.id).subscribe((data: any) => {
-          this.loadVille();
-      });
-  }
-
-  supprimerSalle(salle) {
-      this.lieuService.deleteLieu(salle.id).subscribe((data: any) => {
-          this.loadSalle();
-      });
-  }
-
-  openCreateSalleClub() {
-      const dialogModifEvent = this.dialogAjoutSalle.open(VueAjoutSalleClubComponent, {
-          width: '50%',
-          data: {club: this.club}
-      });
-
-      dialogModifEvent.afterClosed().subscribe(result => {
-          this.loadSalle();
-      });
-  }
-
-  onSubmit(){
-      this.clubService.patchClub(this.club.id, this.clubForm.value).subscribe(
-          data => this.refresh(data),
-          error => console.log(error)
-      );
-  }
-
-  refresh(club){
-      this.router.navigate(['/club/' + club.url ]);
-      this.club = club;
-      this.eventClub.emit(this.club);
-  }
-
-  loadConfiguration() {
-      return this.configurationService.getAllSports().subscribe((data: {}) => {
-          this.sports = data as Sport[];
-      });
+    let listeVille = new Array();
+    this.club.villes.map((data: Ville) => {
+      if(data.id != ville.id){
+        listeVille.push(data);
+      }
+    });
+    this.club.villes = listeVille;
+    this.clubService.updateClub(this.club);
   }
 
   openCreateVille(){
-      const dialogCreateVille = this.dialog.open(VueAjoutSalleClubComponent, {
-          width: '50%',
-          data: {club: this.club}
-      });
+    const dialogCreateVille = this.dialog.open(AjoutVilleComponent, {
+        width: '50%',
+        data: {club: this.club}
+    });
 
-      dialogCreateVille.afterClosed().subscribe(result => {
-
-      });
+    dialogCreateVille.afterClosed().subscribe(result => {
+      this.loadVille();
+    });
   }
-
-  openCreateSalle(){
-      const dialogCreateSalle = this.dialog.open(VueAjoutSalleClubComponent, {
-          width: '50%',
-          data: {club: this.club}
-      });
-
-      dialogCreateSalle.afterClosed().subscribe(result => {
-          this.loadSalle();
-      });
-  }
-
 }

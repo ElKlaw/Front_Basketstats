@@ -69,7 +69,9 @@ import { AuthInterceptor } from './shared/authInterceptor';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 
+// Component utilitaire
 import { AutocompletecityComponent } from './component/autocompletecity/autocompletecity.component';
+import { AutocompleteAdresseComponent } from './component/autocomplete-adresse/autocomplete-adresse.component';
 
 // Clubs
 import { CreerClubComponent } from './club/creer-club/creer-club.component';
@@ -79,6 +81,12 @@ import { SearchClubComponent } from './club/search-club/search-club.component';
 import { AccueilComponent } from './autres/accueil/accueil.component';
 import { FaqComponent } from './autres/faq/faq.component';
 import { FonctionnalitesComponent } from './autres/fonctionnalites/fonctionnalites.component';
+
+// Modal
+import { AjoutSalleComponent } from './modal/salle/ajout-salle/ajout-salle.component';
+import { AjoutVilleComponent } from './modal/ville/ajout-ville/ajout-ville.component';
+import { ConfirmerActionComponent } from './modal/confirmation/confirmer-action/confirmer-action.component';
+import { InputCityComponent } from './component/input-city/input-city.component';
 
 registerLocaleData(localeFr);
 
@@ -92,7 +100,14 @@ registerLocaleData(localeFr);
     AccueilComponent,
     FaqComponent,
     FonctionnalitesComponent,
-    AutocompletecityComponent
+    //Utilitaire
+    AutocompletecityComponent,
+    AutocompleteAdresseComponent,
+    //Modal
+    AjoutSalleComponent,
+    AjoutVilleComponent,
+    ConfirmerActionComponent,
+    InputCityComponent
   ],
   imports: [
     A11yModule,

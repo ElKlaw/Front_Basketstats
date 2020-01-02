@@ -50,17 +50,25 @@ export class ClubService {
     );
   }
 
-  patchClub(id, club): Observable<Club> {
-    return this.http.patch<Club>(environment.apiUrl + '/club/' + id, JSON.stringify(club), this.httpOptions)
+  patchClub(id, club) {
+    this.http.patch<Club>(environment.apiUrl + '/club/' + id, JSON.stringify(club), this.httpOptions)
     .pipe(
       retry(1)
+    ).subscribe(
+      (clubResult: Club) => {
+        this.club.next(clubResult);
+      }
     );
   }
 
-  updateClub(id, club): Observable<Club> {
-    return this.http.put<Club>(environment.apiUrl + '/club/' + id, JSON.stringify(club), this.httpOptions)
+  updateClub(club) {
+    this.http.put<Club>(environment.apiUrl + '/club', JSON.stringify(club), this.httpOptions)
     .pipe(
       retry(1)
+    ).subscribe(
+      (clubResult: Club) => {
+        this.club.next(clubResult);
+      }
     );
   }
 }

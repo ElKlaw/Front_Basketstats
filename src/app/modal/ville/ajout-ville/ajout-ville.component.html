@@ -1,0 +1,11 @@
+<form [formGroup]="villeForm" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>
+      Ajout d'une ville
+  </h1>
+  <div mat-dialog-content class="div-form-create">
+    <app-input-city (eventVille)="getVille($event)"></app-input-city>
+  </div>
+  <div mat-dialog-actions>
+    <button type="submit" class="btn btn-success full-width"> <i class="fa fa-plus-circle"></i> Ajouter la ville</button>
+  </div>
+</form>

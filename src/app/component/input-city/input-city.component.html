@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Ville</mat-label>
+  <input #villeInput [formControl]="villeCtrl" matInput [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" [displayWith]="displayFn">
+    <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let ville of filteredVilles" [value]="ville">
+        <ng-container *ngIf="ville.departement!=null; else elseBlock">
+          <span>{{ville.nom}} ({{ville.departement.code}})</span>
+        </ng-container>
+        <ng-template #elseBlock>{{ville.nom}}</ng-template>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+  <mat-error>Veuillez sélectionner au moins une ville</mat-error>
+</mat-form-field>

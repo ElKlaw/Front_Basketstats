@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, tap, switchMap, finalize, filter } from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material';
-import { Ville } from 'src/app/shared/ville';
-import { ErrorStateMatcherOnBlur }  from 'src/app/component/validator/errorstatematcheronblur';
 
 @Component({
   selector: 'app-autocompletecity',
