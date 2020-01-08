@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {ClubService} from '../../shared/club.service';
-import { Page } from 'src/app/shared/page';
-import { Club } from 'src/app/shared/club';
 import {MatPaginatorIntl} from '@angular/material';
 import { FrenchMatPaginatorIntl } from 'src/app/component/language/frenchmatpaginatorintl';
+
+import {ClubService} from '../../shared/service/club.service';
+
+import { Page } from 'src/app/shared/page';
+import { Club } from 'src/app/shared/club';
+
 
 @Component({
   selector: 'app-search-club',
@@ -23,6 +26,8 @@ export class SearchClubComponent implements OnInit {
   @ViewChild('paginatorBottom', {static: false}) paginatorBottom;
   @ViewChild('searchInput', {static: false}) searchClub;
 
+  loading=true;
+
   constructor(
       public clubService: ClubService
   ) { }
@@ -39,6 +44,7 @@ export class SearchClubComponent implements OnInit {
     return this.clubService.searchClub(nom, page, size).subscribe((data: Page) => {
       this.clubs = data.content;
       this.length= data.totalElements;
+      this.loading = false;
     });
   }
 
