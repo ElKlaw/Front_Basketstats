@@ -144,7 +144,9 @@ export class ParametreClubComponent {
           }
         });
         this.club.villes = listeVille;
-        this.clubService.updateClub(this.club);
+        this.clubService.updateClub(this.club).subscribe((data: any) => {
+          this.loadVille();
+        });
       }
     });
 
