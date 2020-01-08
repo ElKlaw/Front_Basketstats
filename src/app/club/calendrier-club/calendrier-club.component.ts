@@ -1,19 +1,21 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit, Input} from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarView, CalendarDateFormatter, DAYS_OF_WEEK, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import { CustomDateFormatter } from 'src/app/calendar/custom-date-formatter.provider';
-
-import { EventService } from 'src/app/shared/event.service';
-import {ClubService} from 'src/app/shared/service/club.service';
-
-import { Club } from 'src/app/shared/club';
-import { MatDialog } from '@angular/material';
-import { ModalCreateEventComponent } from 'src/app/modal/modal-create-event/modal-create-event.component';
-import { ModalModificationEventComponent } from 'src/app/modal/modal-modification-event/modal-modification-event.component';
-import { ModalEditEventClubComponent } from 'src/app/modal/modal-edit-event-club/modal-edit-event-club.component';
-import { Event } from 'src/app/shared/event';
 import { Observable, Subject } from 'rxjs';
 import * as moment from 'moment';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+
+import { EventService } from 'src/app/shared/service/event.service';
+import { ClubService } from 'src/app/shared/service/club.service';
+
+import { Club } from 'src/app/shared/club';
+import { Event } from 'src/app/shared/event';
+
+import { ModalCreateEventComponent } from 'src/app/modal/modal-create-event/modal-create-event.component';
+import { ModalModificationEventComponent } from 'src/app/modal/modal-modification-event/modal-modification-event.component';
+import { ModalEditEventClubComponent } from 'src/app/modal/modal-edit-event-club/modal-edit-event-club.component';
+
 
 @Component({
   selector: 'app-calendrier-club',

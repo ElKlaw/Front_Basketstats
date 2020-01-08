@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginatorIntl} from '@angular/material';
 import { FrenchMatPaginatorIntl } from 'src/app/component/language/frenchmatpaginatorintl';
 
-import {ClubService} from '../../shared/service/club.service';
+import {ClubService} from 'src/app/shared/service/club.service';
 
 import { Page } from 'src/app/shared/page';
 import { Club } from 'src/app/shared/club';

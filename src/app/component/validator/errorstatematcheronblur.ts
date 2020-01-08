@@ -1,6 +1,5 @@
 import {ErrorStateMatcher} from '@angular/material/core';
-import {Component} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 
 export class ErrorStateMatcherOnBlur implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

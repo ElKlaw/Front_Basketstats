@@ -1,12 +1,14 @@
 import { Component, OnInit} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { ClubService } from 'src/app/shared/club.service';
-import { VilleService } from 'src/app/shared/ville.service';
+
+import { ClubService } from 'src/app/shared/service/club.service';
+import { VilleService } from 'src/app/shared/service/ville.service';
 import { ConfigurationService } from 'src/app/shared/configuration/configuration.service';
+
 import { Ville } from 'src/app/shared/ville';
 import { Sport } from 'src/app/shared/configuration/sport';
-import { HttpClient } from '@angular/common/http';
 
 interface RetourApi {
     nom: string;

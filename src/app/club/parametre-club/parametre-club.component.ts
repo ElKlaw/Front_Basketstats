@@ -1,21 +1,22 @@
-import { Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import {FormControl, FormGroup} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { AjoutSalleComponent } from 'src/app/modal/salle/ajout-salle/ajout-salle.component';
 import { AjoutVilleComponent } from 'src/app/modal/ville/ajout-ville/ajout-ville.component';
 import { ConfirmerActionComponent } from 'src/app/modal/confirmation/confirmer-action/confirmer-action.component';
 
-import { LieuService } from 'src/app/shared/lieu.service';
+import { LieuService } from 'src/app/shared/service/lieu.service';
 import { ClubService } from 'src/app/shared/service/club.service';
-import { VilleService } from 'src/app/shared/ville.service';
+import { VilleService } from 'src/app/shared/service/ville.service';
 import { ConfigurationService } from 'src/app/shared/configuration/configuration.service';
 
 import { Ville } from 'src/app/shared/ville';
 import { Sport } from 'src/app/shared/configuration/sport';
 import { Club } from 'src/app/shared/club';
 import { Lieu } from 'src/app/shared/lieu';
-import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({

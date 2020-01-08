@@ -56,4 +56,19 @@ export class ClubService {
       retry(1)
     );
   }
+
+  deleteClub(id) {
+    return this.http.delete<Club>(environment.apiUrl + '/club/' + id, this.httpOptions)
+    .pipe(
+      retry(1)
+    );
+  }
+
+  existUrlClub(url) {
+    return this.http.get<boolean>(environment.apiUrl + '/club/exist?url=' + url, this.httpOptions)
+    .pipe(
+      retry(1)
+    );
+  }
+
 }

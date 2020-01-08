@@ -1,5 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
 import {MatPaginator, MatTableDataSource, MatSort, MatPaginatorIntl} from '@angular/material';
 import { FrenchMatPaginatorIntl } from 'src/app/component/language/frenchmatpaginatorintl';
 import { FormControl } from '@angular/forms';
@@ -10,7 +10,6 @@ import {JoueurService} from 'src/app/shared/service/joueur.service';
 
 import { Club } from 'src/app/shared/club';
 import { Joueur } from 'src/app/shared/joueur';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-joueur-club',

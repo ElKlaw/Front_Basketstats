@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { debounceTime, tap, switchMap, finalize, filter } from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material';
-import { LieuService } from 'src/app/shared/lieu.service';
+
+import { LieuService } from 'src/app/shared/service/lieu.service';
 
 @Component({
   selector: 'app-autocomplete-lieu',
@@ -23,7 +24,6 @@ export class AutocompleteLieuComponent implements OnInit {
     @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
     @ViewChild('lieuInput', {static: false}) lieuInput: ElementRef<HTMLInputElement>;
     @Output() eventLieu = new EventEmitter<any>();
-
 
     constructor(
         public lieuService: LieuService,
