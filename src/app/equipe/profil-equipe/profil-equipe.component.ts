@@ -25,9 +25,8 @@ export class ProfilEquipeComponent implements OnInit {
   }
 
   getEquipe() {
-    this.equipeService.equipe$.subscribe((equipe: Equipe) => {
+    this.equipeService.getEquipe(this.route.snapshot.paramMap.get('id')).subscribe((equipe: Equipe) => {
       this.equipe = equipe;
     });
-    this.equipeService.getEquipe(this.route.snapshot.paramMap.get('id'));
   }
 }

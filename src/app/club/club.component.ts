@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import {ClubService} from '../shared/service/club.service';
-import { EquipeService } from '../shared/service/equipe.service';
 
 import {Club} from 'src/app/shared/club';
 
@@ -11,24 +10,20 @@ import {Club} from 'src/app/shared/club';
   templateUrl: './club.component.html',
   styleUrls: ['./club.component.css']
 })
-export class ClubComponent implements OnInit {
+export class ClubComponent {
   club: Club;
-
   constructor(
-    private route: ActivatedRoute,
     public clubService: ClubService,
-    public equipeService: EquipeService
-  ) { }
-
-  ngOnInit() {
+    private route: ActivatedRoute
+  ) {
     this.getClub();
   }
 
   getClub() {
-    this.clubService.club$.subscribe((club: Club) =>{
-      this.club = club;
-      this.equipeService.getAllEquipesFromClub(this.club.id);
-    });
-    this.clubService.getClubByURL(this.route.snapshot.paramMap.get('url'));
+    this.route.data.subscribe(
+      (data: any) =>{
+        this.club = data.club;
+      }
+    );
   }
 }

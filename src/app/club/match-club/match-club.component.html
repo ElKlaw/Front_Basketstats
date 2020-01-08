@@ -1,127 +1,137 @@
 <div class="vue-match-of-club cadre-gris">
-	<div class="div-head-match-of-club titre1">
-		<mat-button-toggle-group class="titre1" #group="matButtonToggleGroup">
-			<mat-button-toggle class="titre1" checked #toggleMatchAVenir>Matchs à venir</mat-button-toggle>
-			<mat-button-toggle class="titre1" #toggleMatchJoue>Matchs joués</mat-button-toggle>
-		</mat-button-toggle-group>
-	</div>
-	<div class="div-body-match-of-club">
-		<div id="div-match-a-venir" [hidden]="!toggleMatchAVenir.checked">
-			<div *ngIf="matchsByMonthAVenir?.length; then blocMatchsAVenir else blocAucunMatchAVenir"></div>
-			<ng-template #blocMatchsAVenir>
-				<table class="table-match">
-					<thead>
-						<tr>
-							<th scope="col">Date</th>
-							<th scope="col">Heure</th>
-							<th scope="col">Lieu</th>
-							<th scope="col">Equipe</th>
-							<th scope="col">Adversaire</th>
-						</tr>
-					</thead>
-					<tbody *ngFor="let mapEvent of matchsByMonthAVenir | keyvalue">
-						<tr class="tr-month">
-							<td colspan="100%">{{mapEvent.key}}</td>
-						</tr>
-						<tr  *ngFor="let event of mapEvent.value;let odd = odd" [ngClass]="odd ? 'odd' : 'even'">
-							<td>{{event.match.dateMatch | date:'dd/MM/yy'}}</td>
-							<td>{{event.match.heureMatch}}</td>
-							<td *ngIf="event.lieu.salle">{{event.lieu.nom}}</td>
-							<td *ngIf="!event.lieu.salle">Extérieur</td>
-							<td>{{event.match.equipe.nom}}</td>
-							<td>{{event.match.adversaire}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</ng-template>
-			<ng-template #blocAucunMatchAVenir>
-        <table class="table-match">
-					<thead>
-						<tr>
-							<th scope="col">Date</th>
-							<th scope="col">Heure</th>
-							<th scope="col">Lieu</th>
-							<th scope="col">Equipe</th>
-							<th scope="col">Adversaire</th>
-						</tr>
-					</thead>
-					<tbody>
-            <span class="text-no-result">Aucun match à venir</span>
-          </tbody>
-        </table>
-      </ng-template>
-		</div>
-		<div id="div-match-joue" [hidden]="!toggleMatchJoue.checked">
-			<div *ngIf="matchsByMonthJoue?.length; then blocMatchsJoue else blocAucunMatchJoue"></div>
-			<ng-template #blocMatchsJoue>
-				<table class="table-match">
-					<thead>
-						<tr>
-							<th scope="col">Date</th>
-							<th scope="col">Heure</th>
-							<th scope="col">Lieu</th>
-							<th scope="col">Equipe</th>
-							<th scope="col">Adversaire</th>
-							<th scope="col" class="text-align-center">Résultat</th>
-							<th scope="col" class="text-align-center">Score</th>
-						</tr>
-					</thead>
-					<tbody *ngFor="let mapEvent of matchsByMonthJoue | keyvalue">
-						<tr class="tr-month">
-							<td colspan="100%">{{mapEvent.key}}</td>
-						</tr>
-						<tr  *ngFor="let event of mapEvent.value;let odd = odd" [ngClass]="odd ? 'odd' : 'even'">
-							<td>{{event.match.dateMatch | date:'dd/MM/yy'}}</td>
-							<td>{{event.match.heureMatch}}</td>
-							<td *ngIf="event.lieu.salle">{{event.lieu.nom}}</td>
-							<td *ngIf="!event.lieu.salle">Extérieur</td>
-							<div *ngIf="event.match.scoreEquipe==null||event.match.scoreAdversaire==null; then matchSansScore else matchAvecScore"></div>
-							<ng-template #matchSansScore>
-								<td>Ajouter un score</td>
-							</ng-template>
-							<ng-template #matchAvecScore>
-								<div *ngIf="event.match.scoreEquipe>event.match.scoreAdversaire;then MatchGagne else matchPerdu"></div>
-								<ng-template #MatchGagne>
-									<td class="colorGagne">{{event.match.equipe.nom}}</td>
-									<td class="colorPerdu">{{event.match.adversaire}}</td>
-									<td class="text-align-center bold">Victoire</td>
-									<td class="text-align-center">
-										<span class="bold">{{event.match.scoreEquipe}}</span>
-										<span> - </span>
-										<span>{{event.match.scoreAdversaire}}</span>
-									</td>
-								</ng-template>
-								<ng-template #matchPerdu>
-									<td class="colorPerdu">{{event.match.equipe.nom}}</td>
-									<td class="colorGagne">{{event.match.adversaire}}</td>
-									<td class="text-align-center">Défaite</td>
-									<td class="text-align-center">
-										<span>{{event.match.scoreEquipe}}</span>
-										<span> - </span>
-										<span class="bold">{{event.match.scoreAdversaire}}</span>
-									</td>
-								</ng-template>
-							</ng-template>
-						</tr>
-					</tbody>
-				</table>
-			</ng-template>
-			<ng-template #blocAucunMatchJoue>
-        <table class="table-match">
-					<thead>
-						<tr>
-							<th scope="col">Date</th>
-							<th scope="col">Heure</th>
-							<th scope="col">Lieu</th>
-							<th scope="col">Equipe</th>
-							<th scope="col">Adversaire</th>
-						</tr>
-					</thead>
-					<tbody>
-            <span class="text-no-result">Aucun match joué</span>
-          </tbody>
-        </table>
-      </ng-template>
-		</div>
-	</div>
+  <div
+    *ngIf="loading else loaded"
+    class="div-load"
+  >
+      <mat-spinner
+        diameter="70"
+      ></mat-spinner>
+  </div>
+  <ng-template #loaded>
+    <div class="div-head-match-of-club titre1">
+      <mat-button-toggle-group class="titre1" #group="matButtonToggleGroup">
+        <mat-button-toggle class="titre1" checked #toggleMatchAVenir>Matchs à venir</mat-button-toggle>
+        <mat-button-toggle class="titre1" #toggleMatchJoue>Matchs joués</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="div-body-match-of-club">
+      <div id="div-match-a-venir" [hidden]="!toggleMatchAVenir.checked">
+        <div *ngIf="matchsAVenir?.length; then blocMatchsAVenir else blocAucunMatchAVenir"></div>
+        <ng-template #blocMatchsAVenir>
+          <table class="table-match">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Equipe</th>
+                <th scope="col">Adversaire</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let mapEvent of matchsByMonthAVenir | keyvalue">
+              <tr class="tr-month">
+                <td colspan="100%">{{mapEvent.key}}</td>
+              </tr>
+              <tr  *ngFor="let event of mapEvent.value;let odd = odd" [ngClass]="odd ? 'odd' : 'even'">
+                <td>{{event.match.dateMatch | date:'dd/MM/yy'}}</td>
+                <td>{{event.match.heureMatch}}</td>
+                <td *ngIf="event.lieu.salle">{{event.lieu.nom}}</td>
+                <td *ngIf="!event.lieu.salle">Extérieur</td>
+                <td>{{event.match.equipe.nom}}</td>
+                <td>{{event.match.adversaire}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
+        <ng-template #blocAucunMatchAVenir>
+          <table class="table-match">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Equipe</th>
+                <th scope="col">Adversaire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <span class="text-no-result">Aucun match à venir</span>
+            </tbody>
+          </table>
+        </ng-template>
+      </div>
+      <div id="div-match-joue" [hidden]="!toggleMatchJoue.checked">
+        <div *ngIf="matchsJoue?.length; then blocMatchsJoue else blocAucunMatchJoue"></div>
+        <ng-template #blocMatchsJoue>
+          <table class="table-match">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Equipe</th>
+                <th scope="col">Adversaire</th>
+                <th scope="col" class="text-align-center">Résultat</th>
+                <th scope="col" class="text-align-center">Score</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let mapEvent of matchsByMonthJoue | keyvalue">
+              <tr class="tr-month">
+                <td colspan="100%">{{mapEvent.key}}</td>
+              </tr>
+              <tr  *ngFor="let event of mapEvent.value;let odd = odd" [ngClass]="odd ? 'odd' : 'even'">
+                <td>{{event.match.dateMatch | date:'dd/MM/yy'}}</td>
+                <td>{{event.match.heureMatch}}</td>
+                <td *ngIf="event.lieu.salle">{{event.lieu.nom}}</td>
+                <td *ngIf="!event.lieu.salle">Extérieur</td>
+                <div *ngIf="event.match.scoreEquipe==null||event.match.scoreAdversaire==null; then matchSansScore else matchAvecScore"></div>
+                <ng-template #matchSansScore>
+                  <td>Ajouter un score</td>
+                </ng-template>
+                <ng-template #matchAvecScore>
+                  <div *ngIf="event.match.scoreEquipe>event.match.scoreAdversaire;then MatchGagne else matchPerdu"></div>
+                  <ng-template #MatchGagne>
+                    <td class="colorGagne">{{event.match.equipe.nom}}</td>
+                    <td class="colorPerdu">{{event.match.adversaire}}</td>
+                    <td class="text-align-center bold">Victoire</td>
+                    <td class="text-align-center">
+                      <span class="bold">{{event.match.scoreEquipe}}</span>
+                      <span> - </span>
+                      <span>{{event.match.scoreAdversaire}}</span>
+                    </td>
+                  </ng-template>
+                  <ng-template #matchPerdu>
+                    <td class="colorPerdu">{{event.match.equipe.nom}}</td>
+                    <td class="colorGagne">{{event.match.adversaire}}</td>
+                    <td class="text-align-center">Défaite</td>
+                    <td class="text-align-center">
+                      <span>{{event.match.scoreEquipe}}</span>
+                      <span> - </span>
+                      <span class="bold">{{event.match.scoreAdversaire}}</span>
+                    </td>
+                  </ng-template>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
+        <ng-template #blocAucunMatchJoue>
+          <table class="table-match">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Equipe</th>
+                <th scope="col">Adversaire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <span class="text-no-result">Aucun match joué</span>
+            </tbody>
+          </table>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
 </div>

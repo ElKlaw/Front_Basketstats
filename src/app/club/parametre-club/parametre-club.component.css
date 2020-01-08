@@ -16,3 +16,40 @@
 .icons-parametre{
 	display: inline-block;
 }
+
+/* Salles */
+.icons-parametre{
+  display: inline-block;
+}
+
+.div-elements-salle{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.div-element >>> .title {
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.div-infos-adresse > .infos {
+  display: block;
+}
+
+.div-infos-adresse, .div-title-adresse {
+  display: inline-block;
+}
+
+.div-title-adresse {
+  vertical-align: top;
+}
+
+/* Ville */
+.div-elements-ville{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+}

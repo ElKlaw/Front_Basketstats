@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 import { AjoutSalleComponent } from 'src/app/modal/salle/ajout-salle/ajout-salle.component';
 import { AjoutVilleComponent } from 'src/app/modal/ville/ajout-ville/ajout-ville.component';
+import { ConfirmerActionComponent } from 'src/app/modal/confirmation/confirmer-action/confirmer-action.component';
 
 import { LieuService } from 'src/app/shared/lieu.service';
 import { ClubService } from 'src/app/shared/service/club.service';
@@ -14,17 +15,23 @@ import { Ville } from 'src/app/shared/ville';
 import { Sport } from 'src/app/shared/configuration/sport';
 import { Club } from 'src/app/shared/club';
 import { Lieu } from 'src/app/shared/lieu';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-parametre-club',
   templateUrl: './parametre-club.component.html',
   styleUrls: ['./parametre-club.component.css']
 })
-export class ParametreClubComponent implements OnInit {
+export class ParametreClubComponent {
   club: Club;
   salles: Lieu[]=[];
   villes: Ville[]=[]
   sports: Sport[] = [];
+
+  loading = true;
+  loadingVilles = true;
+  loadingSalles = true;
 
   clubNomForm = new FormGroup({
     nomcomplet: new FormControl(''),
@@ -49,21 +56,21 @@ export class ParametreClubComponent implements OnInit {
       public villeService: VilleService,
       public dialogAjoutSalle: MatDialog,
       public configurationService: ConfigurationService,
-      public dialog: MatDialog
+      public dialog: MatDialog,
+      public route: ActivatedRoute
   ) {
     this.getClub();
-  }
-
-  ngOnInit() {
-      this.loadSalle();
-      this.loadVille();
-      this.loadConfiguration();
+    this.loadConfiguration();
   }
 
   getClub() {
-    this.clubService.club$.subscribe((club: Club) =>{
-      this.club = club;
-    });
+    this.route.parent.data.subscribe(
+      (data: any) =>{
+        this.club = data.club;
+        this.loadSalle();
+        this.loadVille();
+      }
+    );
   }
 
   loadConfiguration() {
@@ -82,12 +89,23 @@ export class ParametreClubComponent implements OnInit {
   loadSalle() {
     this.lieuService.getAllSallesFromClub(this.club.id).subscribe((data: any) => {
         this.salles = data as Lieu[];
+        this.loadingSalles =false;
+        this.updateLoading();
     });
   }
 
   supprimerSalle(salle) {
-    this.lieuService.deleteLieu(salle.id).subscribe((data: any) => {
-        this.loadSalle();
+    const dialogConfirmation = this.dialog.open(ConfirmerActionComponent, {
+      width: '50%',
+      data: {title: 'Voulez-vous confirmer la suppression de la salle ?'}
+    });
+
+    dialogConfirmation.afterClosed().subscribe(result => {
+      if(result){
+        this.lieuService.deleteLieu(salle.id).subscribe((data: any) => {
+          this.loadSalle();
+        });
+      }
     });
   }
 
@@ -106,18 +124,30 @@ export class ParametreClubComponent implements OnInit {
   loadVille(){
       this.villeService.getAllVillesFromClub(this.club.id).subscribe((data: any)=> {
           this.villes= data as Ville[];
+          this.loadingVilles = false;
+          this.updateLoading();
       })
   }
 
   supprimerVille(ville) {
-    let listeVille = new Array();
-    this.club.villes.map((data: Ville) => {
-      if(data.id != ville.id){
-        listeVille.push(data);
+    const dialogConfirmation = this.dialog.open(ConfirmerActionComponent, {
+      width: '50%',
+      data: {title: 'Voulez-vous confirmer la suppression de la ville ?'}
+    });
+
+    dialogConfirmation.afterClosed().subscribe(result => {
+      if(result){
+        let listeVille = new Array();
+        this.club.villes.map((data: Ville) => {
+          if(data.id != ville.id){
+            listeVille.push(data);
+          }
+        });
+        this.club.villes = listeVille;
+        this.clubService.updateClub(this.club);
       }
     });
-    this.club.villes = listeVille;
-    this.clubService.updateClub(this.club);
+
   }
 
   openCreateVille(){
@@ -129,5 +159,11 @@ export class ParametreClubComponent implements OnInit {
     dialogCreateVille.afterClosed().subscribe(result => {
       this.loadVille();
     });
+  }
+
+  updateLoading() {
+    if(!this.loadingVilles && !this.loadingSalles){
+      this.loading=false;
+    }
   }
 }

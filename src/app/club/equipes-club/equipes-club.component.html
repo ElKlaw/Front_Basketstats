@@ -11,32 +11,42 @@
     </button>
   </div>
   <div>
-    <div *ngIf="equipesFilter?.length; then equipes else aucuneEquipe"></div>
-    <ng-template #aucuneEquipe>
-      <div *ngIf="!nomFilter.value?.length; then aucuneEquipeClub else aucunResultatRecherche"></div>
-      <ng-template #aucunResultatRecherche>
-        <div class="alert alert-danger" role="alert">
-          <span class="text-no-result">Aucune équipe ne correspond à vos critères de recherche.</span>
-        </div>
+    <div
+      *ngIf="loading else loaded"
+      class="div-load"
+    >
+        <mat-spinner
+          diameter="70"
+        ></mat-spinner>
+    </div>
+    <ng-template #loaded>
+      <div *ngIf="equipesFilter?.length; then equipes else aucuneEquipe"></div>
+      <ng-template #aucuneEquipe>
+        <div *ngIf="!nomFilter.value?.length; then aucuneEquipeClub else aucunResultatRecherche"></div>
+        <ng-template #aucunResultatRecherche>
+          <div class="alert alert-danger" role="alert">
+            <span class="text-no-result">Aucune équipe ne correspond à vos critères de recherche.</span>
+          </div>
+        </ng-template>
+        <ng-template #aucuneEquipeClub>
+          <div class="alert alert-danger" role="alert">
+            <span class="text-no-result">Vous disposez d'aucune équipe dans votre club.</span>
+          </div>
+        </ng-template>
       </ng-template>
-      <ng-template #aucuneEquipeClub>
-        <div class="alert alert-danger" role="alert">
-          <span class="text-no-result">Vous disposez d'aucune équipe dans votre club.</span>
-        </div>
-      </ng-template>
-    </ng-template>
-    <ng-template #equipes>
-      <div class="divEquipe col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let equipe of equipesFilter">
-        <div class="card cardEquipe">
-          <img class="card-img-top" src="assets/img/photo_equipe.jpg">
-          <div class="card-body">
-            <h5 class="card-title">{{equipe.nom}}</h5>
-            <p class="card-text">{{equipe.categorie}}</p>
-            <p class="card-text">{{equipe.niveau}} {{equipe.division}} - Poule {{equipe.poule}}</p>
-            <a [routerLink]="['../equipe',equipe.id]" class="btn btn-infos">Voir plus d'informations</a>
+      <ng-template #equipes>
+        <div class="divEquipe col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let equipe of equipesFilter">
+          <div class="card cardEquipe">
+            <img class="card-img-top" src="assets/img/photo_equipe.jpg">
+            <div class="card-body">
+              <h5 class="card-title">{{equipe.nom}}</h5>
+              <p class="card-text">{{equipe.categorie}}</p>
+              <p class="card-text">{{equipe.niveau}} {{equipe.division}} - Poule {{equipe.poule}}</p>
+              <a [routerLink]="['../equipe',equipe.id]" class="btn btn-infos">Voir plus d'informations</a>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-template>
     </ng-template>
   </div>
 </div>

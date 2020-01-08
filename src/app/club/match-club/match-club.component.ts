@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 
-import {ClubService} from 'src/app/shared/service/club.service';
-import {EventService} from 'src/app/shared/service/event.service';
+import { ClubService } from 'src/app/shared/service/club.service';
+import { EventService } from 'src/app/shared/service/event.service';
 
-import {Club} from 'src/app/shared/club';
+import { Club } from 'src/app/shared/club';
 import { Event } from 'src/app/shared/event';
 
 @Component({
@@ -12,54 +13,60 @@ import { Event } from 'src/app/shared/event';
   templateUrl: './match-club.component.html',
   styleUrls: ['./match-club.component.css']
 })
-export class MatchClubComponent implements OnInit {
+export class MatchClubComponent {
   matchsByMonthJoue: Map<number,[]>;
   matchsByMonthAVenir: Map<number,[]>;
+
+  matchsJoue: Event[];
+  matchsAVenir : Event[];
+
   club: Club;
+
+  loading = true;
 
   constructor(
     public eventService: EventService,
-    public clubService: ClubService
+    public clubService: ClubService,
+    public route: ActivatedRoute
   ) {
-    this.matchsByMonthJoue = new Map();
-    this.matchsByMonthAVenir = new Map();
     this.getClub();
   }
 
-  ngOnInit() {
-      this.loadMatchs();
-  }
-
   getClub() {
-    this.clubService.club$.subscribe((club: Club) =>{
-      this.club = club;
-    });
+    this.route.parent.data.subscribe(
+      (data: any) =>{
+        this.club = data.club;
+        this.loadMatchs();
+      }
+    );
   }
 
   loadMatchs() {
-      this.eventService.getAllMatchsFromClub(this.club.id).subscribe((data : any)  => {
-          const matchsJoue = data.content.filter(event => {
-              const dateMatch = moment(event.match.dateMatch + ' '+ event.match.heureMatch, 'YYYY-MM-DD HH:mm');
-              return dateMatch.isBefore(moment());
-          });
-          const matchsAVenir = data.content.filter(event => {
-              const dateMatch = moment(event.match.dateMatch + ' '+ event.match.heureMatch, 'YYYY-MM-DD HH:mm');
-              return dateMatch.isAfter(moment());
-          });
-          matchsAVenir.sort((event1, event2) => {
-              const dateMatch1 = moment(event1.match.dateMatch + ' '+ event1.match.heureMatch, 'YYYY-MM-DD HH:mm');
-              const dateMatch2 = moment(event2.match.dateMatch + ' '+ event2.match.heureMatch, 'YYYY-MM-DD HH:mm');
-              return  dateMatch1.isBefore(dateMatch2) ? -1 : 1;
-          });
-
-          matchsJoue.sort((event1, event2) => {
-              const dateMatch1 = moment(event1.match.dateMatch + ' '+ event1.match.heureMatch, 'YYYY-MM-DD HH:mm');
-              const dateMatch2 = moment(event2.match.dateMatch + ' '+ event2.match.heureMatch, 'YYYY-MM-DD HH:mm');
-              return  dateMatch1.isAfter(dateMatch2) ? -1 : 1;
-          });
-          this.matchsByMonthAVenir = this.groupMatchsByMonth(matchsAVenir);
-          this.matchsByMonthJoue = this.groupMatchsByMonth(matchsJoue);
+    this.eventService.getAllMatchsFromClub(this.club.id).subscribe((data : any)  => {
+      this.matchsJoue = data.content.filter(event => {
+        const dateMatch = moment(event.match.dateMatch + ' '+ event.match.heureMatch, 'YYYY-MM-DD HH:mm');
+        return dateMatch.isBefore(moment());
       });
+      this.matchsAVenir = data.content.filter(event => {
+        const dateMatch = moment(event.match.dateMatch + ' '+ event.match.heureMatch, 'YYYY-MM-DD HH:mm');
+        return dateMatch.isAfter(moment());
+      });
+
+      this.matchsAVenir.sort((event1, event2) => {
+        const dateMatch1 = moment(event1.match.dateMatch + ' '+ event1.match.heureMatch, 'YYYY-MM-DD HH:mm');
+        const dateMatch2 = moment(event2.match.dateMatch + ' '+ event2.match.heureMatch, 'YYYY-MM-DD HH:mm');
+        return  dateMatch1.isBefore(dateMatch2) ? -1 : 1;
+      });
+      this.matchsJoue.sort((event1, event2) => {
+        const dateMatch1 = moment(event1.match.dateMatch + ' '+ event1.match.heureMatch, 'YYYY-MM-DD HH:mm');
+        const dateMatch2 = moment(event2.match.dateMatch + ' '+ event2.match.heureMatch, 'YYYY-MM-DD HH:mm');
+        return  dateMatch1.isAfter(dateMatch2) ? -1 : 1;
+      });
+
+      this.matchsByMonthAVenir = this.groupMatchsByMonth(this.matchsAVenir);
+      this.matchsByMonthJoue = this.groupMatchsByMonth(this.matchsJoue);
+      this.loading=false;
+    });
   }
 
   groupMatchsByMonth(listeMatchs){

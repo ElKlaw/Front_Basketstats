@@ -1,137 +1,169 @@
 <div class="cadre-gris">
 	<div class="div-header-parametres-club">
 		<h1 class="display-5 font-weight-normal">Paramètres du club</h1>
-	</div>
-	<div class="div-body-parametres-club">
-    <mat-accordion>
-      <mat-expansion-panel #panelNom>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Nom du club
-          </mat-panel-title>
-          <mat-panel-description>
-            {{club.nomcomplet}} ({{club.nom}})
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>
-          <form class="form-club" [formGroup]="clubNomForm" (ngSubmit)="submit(clubNomForm)">
-            <mat-form-field class="full-width">
-              <mat-label>Nom du club</mat-label>
-              <input formControlName="nomcomplet" matInput>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <mat-label>Acronyme du club</mat-label>
-              <input formControlName="nom" matInput class="uppercase">
-            </mat-form-field>
-            <button type="submit" class="btn btn-success" (click)="panelNom.close()">Valider les modifications</button>
-          </form>
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel #panelUrl>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            URL du club
-          </mat-panel-title>
-          <mat-panel-description>
-            {{club.url}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>
-          <form class="form-club" [formGroup]="clubUrlForm" (ngSubmit)="submit(clubUrlForm)">
-            <mat-form-field class="full-width">
-              <mat-label>Url du club</mat-label>
-              <input formControlName="url" matInput class="lowercase">
-            </mat-form-field>
-            <button type="submit" class="btn btn-success" (click)="panelUrl.close()">Valider les modifications</button>
-          </form>
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel #panelCode>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Code du club
-          </mat-panel-title>
-          <mat-panel-description>
-            {{club.codeClub}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>
-          <form class="form-club" [formGroup]="clubCodeForm" (ngSubmit)="submit(clubCodeForm)">
-            <mat-form-field class="full-width">
-              <mat-label>Code du club</mat-label>
-              <input formControlName="codeClub" matInput>
-            </mat-form-field>
-            <button type="submit" class="btn btn-success" (click)="panelCode.close()">Valider les modifications</button>
-          </form>
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel #panelSport>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Sport du club
-          </mat-panel-title>
-          <mat-panel-description>
-            {{club.sport}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>
-          <form class="form-club" [formGroup]="clubSportForm" (ngSubmit)="submit(clubSportForm)">
-            <mat-form-field class="full-width">
-              <mat-label>Sport du club</mat-label>
-              <mat-select name="sports" formControlName="sport">
-                <mat-option *ngFor="let sport of sports" [value]="sport.nom">
-                  {{sport.nom}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button type="submit" class="btn btn-success" (click)="panelSport.close()">Valider les modifications</button>
-          </form>
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Villes du club
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>
+  </div>
+  <div
+    *ngIf="loading else loaded"
+    class="div-load"
+  >
+      <mat-spinner
+        diameter="70"
+      ></mat-spinner>
+  </div>
+  <ng-template #loaded>
+    <div class="div-body-parametres-club">
+      <mat-accordion>
+        <mat-expansion-panel #panelNom>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Nom du club
+            </mat-panel-title>
+            <mat-panel-description>
+              {{club.nomcomplet}} ({{club.nom}})
+            </mat-panel-description>
+          </mat-expansion-panel-header>
           <div>
-            <button mat-raised-button  class="btn btn-success full-width" (click)="openCreateVille()"> <i class="fa fa-plus-circle"></i> Ajouter une ville</button>
+            <form class="form-club" [formGroup]="clubNomForm" (ngSubmit)="submit(clubNomForm)">
+              <mat-form-field class="full-width">
+                <mat-label>Nom du club</mat-label>
+                <input formControlName="nomcomplet" matInput>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <mat-label>Acronyme du club</mat-label>
+                <input formControlName="nom" matInput class="uppercase">
+              </mat-form-field>
+              <button type="submit" class="btn btn-success" (click)="panelNom.close()">Valider les modifications</button>
+            </form>
           </div>
-          <div *ngFor="let ville of villes">
-            <span>{{ville.nom}} ({{ville.codePostal}})</span>
-            <div class="icons-parametre">
-              <i class="fas fa-times" (click)="supprimerVille(ville)"></i>
+        </mat-expansion-panel>
+        <mat-expansion-panel #panelUrl>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              URL du club
+            </mat-panel-title>
+            <mat-panel-description>
+              {{club.url}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <form class="form-club" [formGroup]="clubUrlForm" (ngSubmit)="submit(clubUrlForm)">
+              <mat-form-field class="full-width">
+                <mat-label>Url du club</mat-label>
+                <input formControlName="url" matInput class="lowercase">
+              </mat-form-field>
+              <button type="submit" class="btn btn-success" (click)="panelUrl.close()">Valider les modifications</button>
+            </form>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel #panelCode>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Code du club
+            </mat-panel-title>
+            <mat-panel-description>
+              {{club.codeClub}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <form class="form-club" [formGroup]="clubCodeForm" (ngSubmit)="submit(clubCodeForm)">
+              <mat-form-field class="full-width">
+                <mat-label>Code du club</mat-label>
+                <input formControlName="codeClub" matInput>
+              </mat-form-field>
+              <button type="submit" class="btn btn-success" (click)="panelCode.close()">Valider les modifications</button>
+            </form>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel #panelSport>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Sport du club
+            </mat-panel-title>
+            <mat-panel-description>
+              {{club.sport}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <form class="form-club" [formGroup]="clubSportForm" (ngSubmit)="submit(clubSportForm)">
+              <mat-form-field class="full-width">
+                <mat-label>Sport du club</mat-label>
+                <mat-select name="sports" formControlName="sport">
+                  <mat-option *ngFor="let sport of sports" [value]="sport.nom">
+                    {{sport.nom}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button type="submit" class="btn btn-success" (click)="panelSport.close()">Valider les modifications</button>
+            </form>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Villes du club
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <div>
+              <button mat-raised-button  class="btn btn-success full-width" (click)="openCreateVille()"> <i class="fa fa-plus-circle"></i> Ajouter une ville</button>
+            </div>
+            <div *ngFor="let ville of villes; let lastItem = last;">
+              <div class="div-ville">
+                <div class="div-elements-ville">
+                  <div class="div-element">
+                    <span class="infos">{{ville.nom}} ({{ville.codePostal}})</span>
+                  </div>
+                </div>
+                <div class="icons-parametre">
+                  <button type="button" class="btn btn-danger" (click)="supprimerVille(ville)"><i class="fas fa-times"></i> Supprimer</button>
+                </div>
+              </div>
+              <mat-divider *ngIf="!lastItem"></mat-divider>
             </div>
           </div>
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Salles du club
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Salles du club
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
           <div>
-            <button mat-raised-button  class="btn btn-success full-width" (click)="openCreateSalle()"><i class="fa fa-plus-circle"></i> Ajouter une salle</button>
-          </div>
-          <div *ngFor="let salle of salles">
-            <span>{{salle.nom}}</span>
-            <span> - </span>
-            <span>{{salle.adresse.numRue}}, {{salle.adresse.nomRue}} -  {{salle.adresse.ville.nom}}({{salle.adresse.ville.codePostal}})</span>
-            <div class="icons-parametre">
-              <i class="fas fa-times" (click)="supprimerSalle(salle)"></i>
+            <div>
+              <button mat-raised-button  class="btn btn-success full-width" (click)="openCreateSalle()"><i class="fa fa-plus-circle"></i> Ajouter une salle</button>
+            </div>
+            <div *ngFor="let salle of salles; let lastItem = last;">
+              <div class="div-salle">
+                <div class="div-elements-salle">
+                  <div class="div-element">
+                    <span class="title">Nom de la salle : </span>
+                    <span class="infos">{{salle.nom}}</span>
+                  </div>
+                  <div class="div-element">
+                    <div class="div-title-adresse">
+                      <span class="title">Adresse : </span>
+                    </div>
+                    <div class="div-infos-adresse">
+                      <span class="infos">{{salle.adresse.numRue}}, {{salle.adresse.nomRue}}</span>
+                      <span class="infos">{{salle.adresse.ville.codePostal}} - {{salle.adresse.ville.nom}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="icons-parametre">
+                  <button type="button" class="btn btn-danger" (click)="supprimerSalle(salle)"><i class="fas fa-times"></i> Supprimer</button>
+                </div>
+              </div>
+              <mat-divider *ngIf="!lastItem"></mat-divider>
             </div>
           </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-	</div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </ng-template>
 </div>
 
 

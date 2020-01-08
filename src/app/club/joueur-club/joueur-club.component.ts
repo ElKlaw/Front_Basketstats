@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 
 import {MatPaginator, MatTableDataSource, MatSort, MatPaginatorIntl} from '@angular/material';
 import { FrenchMatPaginatorIntl } from 'src/app/component/language/frenchmatpaginatorintl';
@@ -10,6 +10,7 @@ import {JoueurService} from 'src/app/shared/service/joueur.service';
 
 import { Club } from 'src/app/shared/club';
 import { Joueur } from 'src/app/shared/joueur';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-joueur-club',
@@ -26,7 +27,7 @@ import { Joueur } from 'src/app/shared/joueur';
     ]),
   ],
 })
-export class JoueurClubComponent implements AfterViewInit {
+export class JoueurClubComponent{
   displayedColumns = ['nom', 'prenom', 'sexe', 'dateNaissance','detail'];
   dataTable: MatTableDataSource<Joueur>;
   expandedElement: Joueur | null;
@@ -40,23 +41,25 @@ export class JoueurClubComponent implements AfterViewInit {
       nom: ''
   };
 
+  loading = true;
+
   constructor(
     public clubService: ClubService,
-    public joueurService: JoueurService
+    public joueurService: JoueurService,
+    public route: ActivatedRoute
   ) {
-    this.dataTable = new MatTableDataSource<Joueur>();
     this.getClub();
-  }
-
-  ngAfterViewInit() {
-    this.initialisationFiltres();
-    this.loadJoueurs();
+    this.dataTable = new MatTableDataSource<Joueur>();
   }
 
   getClub() {
-    this.clubService.club$.subscribe((club: Club) =>{
-      this.club = club;
-    });
+    this.route.parent.data.subscribe(
+      (data: any) =>{
+        this.club = data.club;
+        this.loadJoueurs();
+        this.initialisationFiltres();
+      }
+    );
   }
 
   loadJoueurs() {
@@ -69,6 +72,7 @@ export class JoueurClubComponent implements AfterViewInit {
         return data.nom.toString().toLowerCase().includes(searchString.nom.toLowerCase()) ||
             data.prenom.toString().toLowerCase().includes(searchString.nom.toLowerCase()) ;
       };
+      this.loading=false;
     });
   }
 

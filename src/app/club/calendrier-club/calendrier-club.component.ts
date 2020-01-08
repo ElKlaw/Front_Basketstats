@@ -13,6 +13,7 @@ import { ModalEditEventClubComponent } from 'src/app/modal/modal-edit-event-club
 import { Event } from 'src/app/shared/event';
 import { Observable, Subject } from 'rxjs';
 import * as moment from 'moment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-calendrier-club',
@@ -49,7 +50,8 @@ export class CalendrierClubComponent implements OnInit {
       public dialogCreateEvent: MatDialog,
       public dialogConfirmerModifEvent: MatDialog,
       public dialogEditEventClub: MatDialog,
-      public clubService: ClubService
+      public clubService: ClubService,
+      public route: ActivatedRoute
   ) {
     this.getClub();
   }
@@ -59,9 +61,11 @@ export class CalendrierClubComponent implements OnInit {
   }
 
   getClub() {
-    this.clubService.club$.subscribe((club: Club) =>{
-      this.club = club;
-    });
+    this.route.parent.data.subscribe(
+      (data: any) =>{
+        this.club = data.club;
+      }
+    );
   }
 
   loadEvents() {

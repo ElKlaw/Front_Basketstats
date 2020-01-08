@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable} from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -11,9 +11,6 @@ import { Page } from '../page';
   providedIn: 'root'
 })
 export class ClubService {
-  private club = new ReplaySubject<Club>();
-
-  club$ = this.club.asObservable();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -26,13 +23,9 @@ export class ClubService {
   ) { }
 
   getClubByURL(url){
-    this.http.get<Club>(environment.apiUrl + '/club/' + url)
+    return this.http.get<Club>(environment.apiUrl + '/club/' + url)
     .pipe(
       retry(1)
-    ).subscribe(
-      (clubResult: Club) => {
-        this.club.next(clubResult);
-      }
     );
   }
 
@@ -51,24 +44,16 @@ export class ClubService {
   }
 
   patchClub(id, club) {
-    this.http.patch<Club>(environment.apiUrl + '/club/' + id, JSON.stringify(club), this.httpOptions)
+    return this.http.patch<Club>(environment.apiUrl + '/club/' + id, JSON.stringify(club), this.httpOptions)
     .pipe(
       retry(1)
-    ).subscribe(
-      (clubResult: Club) => {
-        this.club.next(clubResult);
-      }
     );
   }
 
   updateClub(club) {
-    this.http.put<Club>(environment.apiUrl + '/club', JSON.stringify(club), this.httpOptions)
+    return this.http.put<Club>(environment.apiUrl + '/club', JSON.stringify(club), this.httpOptions)
     .pipe(
       retry(1)
-    ).subscribe(
-      (clubResult: Club) => {
-        this.club.next(clubResult);
-      }
     );
   }
 }

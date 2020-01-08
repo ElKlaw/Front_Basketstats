@@ -1,38 +1,41 @@
 <div>
-	<div class="div_photo_couverture">
-    <img class="img-fluid" src="assets/img/fond.jpg">
+  <div>
+    <div class="div_photo_couverture">
+      <img class="img-fluid" src="assets/img/fond.jpg">
+    </div>
+    <div class="div_logo_club">
+      <img class="logo_club" src="assets/img/logo_club.png">
+    </div>
+    <div class="div_navigation_club">
+      <ul class="nav_site nav nav-justified">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['accueil']" routerLinkActive="active">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['equipes']" routerLinkActive="active">Equipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['joueurs']" routerLinkActive="active">Joueurs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['matchs']" routerLinkActive="active">Matchs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['calendrier']" routerLinkActive="active">Calendrier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['parametres']" routerLinkActive="active">Paramètres</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="div_logo_club">
-    <img class="logo_club" src="assets/img/logo_club.png">
-  </div>
-  <div class="div_navigation_club">
-    <ul class="nav_site nav nav-justified">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['accueil']" routerLinkActive="active">Accueil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['equipes']" routerLinkActive="active">Equipes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['joueurs']" routerLinkActive="active">Joueurs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['matchs']" routerLinkActive="active">Matchs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['calendrier']" routerLinkActive="active">Calendrier</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['parametres']" routerLinkActive="active">Paramètres</a>
-      </li>
-    </ul>
+  <div class="content">
+    <div class="colonnes-gauche cadre-gris">
+      <app-infos-club [club]="club" *ngIf="club"></app-infos-club>
+    </div>
+    <div class="div_body_club">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
-<div class="content">
-	<div class="colonnes-gauche cadre-gris">
-    <app-infos-club [club]="club" *ngIf="club"></app-infos-club>
-	</div>
-	<div class="div_body_club">
-    <router-outlet></router-outlet>
-	</div>
-</div>
+

@@ -1,0 +1,19 @@
+.mat-dialog-actions {
+  justify-content: center;
+}
+
+.div-bouton{
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 100%;
+}
+
+.btn-droite {
+  float: right;
+  width: 40%;
+}
+
+.btn-gauche {
+  float: left;
+  width: 40%;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Club } from 'src/app/shared/club';
 
 @Component({
@@ -6,11 +6,10 @@ import { Club } from 'src/app/shared/club';
   templateUrl: './infos-club.component.html',
   styleUrls: ['./infos-club.component.css']
 })
-export class InfosClubComponent implements OnInit {
-  @Input() club: Club;
+export class InfosClubComponent {
+  @Input('club') club : Club;
   constructor() {
+
   }
 
-  ngOnInit() {
-  }
 }

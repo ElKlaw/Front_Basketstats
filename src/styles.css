@@ -158,3 +158,18 @@
 .mat-tab-label-active{
   opacity: 1 !important;
 }
+
+.mat-spinner circle {
+  stroke: #51A7E8!important;
+}
+
+.mat-spinner {
+  position: relative;
+  margin:auto;
+}
+
+
+.div-load{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
