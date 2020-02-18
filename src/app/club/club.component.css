@@ -9,6 +9,11 @@
   margin-left: 3%;
 }
 
+.div_photo_couverture{
+  max-height: 700px;
+  overflow: hidden;
+}
+
 .div_photo_couverture>img{
   width: 100%;
   height: auto;
@@ -23,17 +28,17 @@
 
 .div_logo_club{
   margin-left: 3%;
-  width: 10%;
   -webkit-transform: translateY(-60%);
   transform: translateY(-60%);
   background-color: white;
   border-radius: 50%;
   position: absolute;
+  overflow: hidden;
 }
 
 .logo_club{
+  height: 100%;
   width: 100%;
-  height: auto;
 }
 
 .Titre_Infos_club{
@@ -43,4 +48,24 @@
 .nav_site {
   padding-right: 25%;
   padding-left: 25%;
+}
+
+
+@media (max-width: 768px) {
+  .div_logo_club{
+    width: 100px;
+    height: 100px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .div_logo_club{
+    width: 100px;
+    height: 100px;
+  }
+}
+@media (min-width: 992px) {
+  .div_logo_club{
+    width: 170px;
+    height: 170px;
+  }
 }

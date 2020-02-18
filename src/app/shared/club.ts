@@ -1,5 +1,6 @@
 import { Ville } from './ville';
 import { Salle } from './salle';
+import { Photo } from './photo';
 
 export class Club {
     constructor(
@@ -12,4 +13,8 @@ export class Club {
     sport: string;
     villes: Ville[];
     salles: Salle[];
+    fond: Photo;
+    logo: Photo;
+    imagefont: any;
+    imagelogo: any;
 }

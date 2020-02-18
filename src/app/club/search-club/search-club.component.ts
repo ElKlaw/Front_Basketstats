@@ -3,6 +3,7 @@ import {MatPaginatorIntl} from '@angular/material';
 import { FrenchMatPaginatorIntl } from 'src/app/component/language/frenchmatpaginatorintl';
 
 import {ClubService} from 'src/app/shared/service/club.service';
+import { PhotoService } from 'src/app/shared/service/photo.service';
 
 import { Page } from 'src/app/shared/page';
 import { Club } from 'src/app/shared/club';
@@ -29,7 +30,8 @@ export class SearchClubComponent implements OnInit {
   loading=true;
 
   constructor(
-      public clubService: ClubService
+    public photoService: PhotoService,
+    public clubService: ClubService
   ) { }
 
   ngOnInit() {
@@ -44,8 +46,16 @@ export class SearchClubComponent implements OnInit {
     return this.clubService.searchClub(nom, page, size).subscribe((data: Page) => {
       this.clubs = data.content;
       this.length= data.totalElements;
+      this.clubs.forEach(async(club: Club) =>{
+        await this.loadImage(club);
+      })
       this.loading = false;
     });
+  }
+
+  loadImage(club: Club){
+    this.getImageFond(club);
+    this.getImageLogo(club);
   }
 
   onChangePage(event){
@@ -58,5 +68,35 @@ export class SearchClubComponent implements OnInit {
     this.pageSize = event.pageSize;
 
     this.loadClubs(this.searchClub.nativeElement.value, event.pageIndex, event.pageSize);
+  }
+
+  getImageFond(club: Club) {
+    this.photoService.getPhotoById(club.fond.id).subscribe(
+      image => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+          club.imagefont = reader.result;
+        }, false);
+
+        if (image) {
+          reader.readAsDataURL(image);
+        }
+      }
+    );
+  }
+
+  getImageLogo(club: Club) {
+    this.photoService.getPhotoById(club.logo.id).subscribe(
+      image => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+          club.imagelogo= reader.result;
+        }, false);
+
+        if (image) {
+          reader.readAsDataURL(image);
+        }
+      }
+    );
   }
 }

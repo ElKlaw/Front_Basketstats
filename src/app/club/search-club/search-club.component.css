@@ -109,7 +109,7 @@
 
 img{
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .photo_club{
   width: 100%;
@@ -128,7 +128,7 @@ img{
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   padding-bottom: 1.5rem;
-text-align:left;
+  text-align:left;
 }
 
 .header_body_div_club{
@@ -145,14 +145,17 @@ text-align:left;
   display: block;
   width: 100%;
 }
+
 .logo_div_club{
   width: 5rem;
+  height: 5rem;
   position: absolute;
   left: 2rem;
   bottom: 50%;
   transform: translateY(50%);
   background-color: white;
-  border-radius: 5rem;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .btn-circle {

@@ -48,6 +48,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 // HttpClient module for RESTful API
 import { HttpClientModule } from '@angular/common/http';
@@ -159,7 +160,8 @@ registerLocaleData(localeFr);
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FlatpickrModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialFileInputModule
   ],
   providers: [
     //{ provide: MatDialogRef, useValue: {} },

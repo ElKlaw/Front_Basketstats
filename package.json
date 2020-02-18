@@ -40,6 +40,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
+    "ngx-material-file-input": "^2.0.0",
     "popper.js": "^1.16.0",
     "rrule": "^2.6.4",
     "rxjs": "^6.5.4",
