@@ -14,7 +14,7 @@ import {
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 import { CustomDateFormatter } from 'src/app/calendar/custom-date-formatter.provider';
-import { EventService } from 'src/app/shared/event.service';
+import { EventService } from 'src/app/shared/service/event.service';
 import { Club } from 'src/app/shared/club';
 import { MatDialog } from '@angular/material';
 import { ModalCreateEventComponent } from 'src/app/modal/modal-create-event/modal-create-event.component';

@@ -34,4 +34,32 @@ export class JoueurService {
     );
   }
 
+  getJoueur(id): Observable<Joueur> {
+    return this.http.get<Joueur>(environment.apiUrl + '/joueur/' + id)
+    .pipe(
+      retry(1)
+    );
+  }
+
+  createJoueur(joueur): Observable<Joueur> {
+    return this.http.post<Joueur>(environment.apiUrl + '/joueur', JSON.stringify(joueur), this.httpOptions)
+    .pipe(
+      retry(1)
+    );
+  }
+
+  updateJoueur(id, joueur): Observable<Joueur> {
+    return this.http.put<Joueur>(environment.apiUrl + '/joueur/' + id, JSON.stringify(joueur), this.httpOptions)
+    .pipe(
+      retry(1)
+    );
+  }
+
+  deleteJoueur(id) {
+    return this.http.delete<Joueur>(environment.apiUrl + '/joueur/' + id, this.httpOptions)
+    .pipe(
+      retry(1)
+    );
+  }
+
 }

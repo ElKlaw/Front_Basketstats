@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
-import { JoueurService } from 'src/app/shared/joueur.service';
+import { JoueurService } from 'src/app/shared/service/joueur.service';
 import { Joueur } from 'src/app/shared/joueur';
 import { User } from 'src/app/shared/user';
 import * as moment from 'moment';
@@ -22,9 +22,9 @@ export class VueInscriptionUtilisateurComponent implements OnInit {
         datenaissance: new FormControl('',{validators : [Validators.required], updateOn: 'blur'}),
         sexe: new FormControl('',{validators : [Validators.required], updateOn: 'blur'}),
     });
-    
+
     get f() { return this.inscriptionForm.controls; }
-    
+
     constructor(
         private adapter: DateAdapter<any>,
         public userService: UserService,
@@ -34,10 +34,10 @@ export class VueInscriptionUtilisateurComponent implements OnInit {
     ngOnInit() {
         this.adapter.setLocale('fr');
     }
-  
+
     onSubmit() {
         const joueur = new Joueur();
-        joueur.nom = this.inscriptionForm.value.nom;    
+        joueur.nom = this.inscriptionForm.value.nom;
         joueur.prenom = this.inscriptionForm.value.prenom;
         joueur.dateNaissance = moment(this.inscriptionForm.value.datenaissance).format("DD-MM-YYYY");
         joueur.sexe = this.inscriptionForm.value.sexe;
@@ -54,7 +54,7 @@ export class VueInscriptionUtilisateurComponent implements OnInit {
                 );
             }
         );
-      
+
     }
 
 }

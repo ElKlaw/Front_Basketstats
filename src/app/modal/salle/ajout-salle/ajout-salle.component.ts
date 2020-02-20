@@ -1,13 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { MatChip, DateAdapter, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { Lieu } from 'src/app/shared/lieu';
 import { Adresse } from 'src/app/shared/adresse';
 import { Ville } from 'src/app/shared/ville';
 import { Club } from 'src/app/shared/club';
-import { VilleService } from 'src/app/shared/ville.service';
-import { AdresseService } from 'src/app/shared/adresse.service';
-import { LieuService } from 'src/app/shared/lieu.service';
+
+import { VilleService } from 'src/app/shared/service/ville.service';
+import { AdresseService } from 'src/app/shared/service/adresse.service';
+import { LieuService } from 'src/app/shared/service/lieu.service';
 
 @Component({
   selector: 'app-ajout-salle',

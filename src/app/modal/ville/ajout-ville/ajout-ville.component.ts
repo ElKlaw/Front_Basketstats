@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Ville } from 'src/app/shared/ville';
 
-import { VilleService } from 'src/app/shared/ville.service';
+import { VilleService } from 'src/app/shared/service/ville.service';
 import { ClubService } from 'src/app/shared/service/club.service';
 
 @Component({

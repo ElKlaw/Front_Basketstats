@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {JoueurService} from '../../shared/joueur.service';
+import {JoueurService} from '../../shared/service/joueur.service';
 
 @Component({
   selector: 'app-vue-joueur-of-equipe',

@@ -3,7 +3,7 @@ import { EnumCategory } from 'src/app/shared/enum/enumcategory';
 import { EnumNiveau } from 'src/app/shared/enum/enumniveau';
 import { EnumSaison } from 'src/app/shared/enum/enumsaison';
 import { EnumSexeEquipe } from 'src/app/shared/enum/enumsexeequipe';
-import { EquipeService } from 'src/app/shared/equipe.service';
+import { EquipeService } from 'src/app/shared/service/equipe.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 

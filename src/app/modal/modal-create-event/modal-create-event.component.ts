@@ -1,11 +1,11 @@
 import { Component, AfterViewInit, Input, ElementRef, ViewChild, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { EventService } from 'src/app/shared/event.service';
+import { EventService } from 'src/app/shared/service/event.service';
 import { enumTypeEvent } from 'src/app/shared/enum/enumtypeevent';
 import { DateAdapter, MatAutocomplete, MatAutocompleteSelectedEvent, MatChip, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import * as moment from 'moment';
 import { EventJson } from 'src/app/shared/eventjson';
-import { EquipeService } from 'src/app/shared/equipe.service';
+import { EquipeService } from 'src/app/shared/service/equipe.service';
 import { Equipe } from 'src/app/shared/equipe';
 import { Match } from 'src/app/shared/match';
 import { Club } from 'src/app/shared/club';
@@ -180,11 +180,6 @@ export class ModalCreateEventComponent implements AfterViewInit {
         }
     }
 
-
-
-
-
-
     /*---------- SUBMIT ---------*/
 
     onSubmit() {
@@ -306,7 +301,6 @@ export class ModalCreateEventComponent implements AfterViewInit {
         }
     }
 
-
     getLieuMatch(data){
         this.lieuMatch.id = data.id;
     }
@@ -318,7 +312,4 @@ export class ModalCreateEventComponent implements AfterViewInit {
     getLieuEntrainement(data){
         this.lieuEntrainement.id = data.id;
     }
-
-
-
 }

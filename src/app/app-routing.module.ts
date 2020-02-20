@@ -12,6 +12,7 @@ import { FonctionnalitesComponent } from './autres/fonctionnalites/fonctionnalit
 import { AjoutSalleComponent } from './modal/salle/ajout-salle/ajout-salle.component';
 import { AjoutVilleComponent } from './modal/ville/ajout-ville/ajout-ville.component';
 import { ConfirmerActionComponent } from './modal/confirmation/confirmer-action/confirmer-action.component';
+import { AjoutEquipeComponent } from './modal/equipe/ajout-equipe/ajout-equipe.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'accueil' },
@@ -29,7 +30,8 @@ const routes: Routes = [
 const routesModal: Routes = [
   {path: '', component: AjoutSalleComponent},
   {path: '', component: AjoutVilleComponent},
-  {path: '', component: ConfirmerActionComponent}
+  {path: '', component: ConfirmerActionComponent},
+  {path: '', component: AjoutEquipeComponent}
 ];
 
 @NgModule({

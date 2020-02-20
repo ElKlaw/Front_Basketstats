@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventService } from 'src/app/shared/event.service';
+import { EventService } from 'src/app/shared/service/event.service';
 import { CalendarDateFormatter, CalendarView, DAYS_OF_WEEK, CalendarEvent } from 'angular-calendar';
 import { CustomDateFormatter } from 'src/app/calendar/custom-date-formatter.provider';
 import { Equipe } from 'src/app/shared/equipe';

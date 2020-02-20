@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import {EquipeService} from 'src/app/shared/service/equipe.service';
 
 import { Equipe } from 'src/app/shared/equipe';
 import { Club } from 'src/app/shared/club';
-import { ActivatedRoute } from '@angular/router';
+
+import { AjoutEquipeComponent } from 'src/app/modal/equipe/ajout-equipe/ajout-equipe.component';
+
 
 @Component({
   selector: 'app-equipes-club',
@@ -25,7 +29,8 @@ export class EquipesClubComponent{
 
   constructor(
     public equipeService: EquipeService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public dialog: MatDialog
   ) {
     this.nomFilter.valueChanges.subscribe(
       (value: string) =>{
@@ -49,6 +54,17 @@ export class EquipesClubComponent{
       this.equipes = equipes;
       this.equipesFilter = this.equipes;
       this.loading=false;
+    });
+  }
+
+  openCreateEquipe(){
+    const dialogCreateSalle = this.dialog.open(AjoutEquipeComponent, {
+      width: '50%',
+      data: {club: this.club}
+    });
+
+    dialogCreateSalle.afterClosed().subscribe(result => {
+      this.loadEquipes();
     });
   }
 

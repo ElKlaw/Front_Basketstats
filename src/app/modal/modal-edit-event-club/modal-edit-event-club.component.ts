@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Club } from 'src/app/shared/club';
 import { Event } from 'src/app/shared/event';
 import { enumTypeEvent } from 'src/app/shared/enum/enumtypeevent';
-import { EventService } from 'src/app/shared/event.service';
+import { EventService } from 'src/app/shared/service/event.service';
 import { EventJson } from 'src/app/shared/eventjson';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
@@ -27,7 +27,7 @@ export class ModalEditEventClubComponent implements OnInit {
         type: new FormControl(''),
         recurent: new FormControl('')
     });
-    
+
     chipsDays: ChipDays[] = [
         {id:'chiplundi', label:'Lundi' , value:'MO' , selected:false },
         {id:'chipMardi' , label:'Mardi' , value:'TU' , selected:false },
@@ -37,15 +37,15 @@ export class ModalEditEventClubComponent implements OnInit {
         {id:'chipSamedi' , label:'Samedi' , value:'SA' , selected:false },
         {id:'chipDimanche' , label:'Dimanche' , value:'SU' , selected:false },
     ];
-    
-    
+
+
     joursSelected = [];
 
     typeEvents = enumTypeEvent;
     keysTypeEvent = [];
-    
+
     event: Event;
-    
+
     constructor(
         public eventService: EventService,
         private adapter: DateAdapter<any>,
@@ -82,7 +82,7 @@ export class ModalEditEventClubComponent implements OnInit {
     annuler(): void {
         this.dialogRef.close(false);
     }
-    
+
     initFormControl() {
         this.eventForm.setValue({
             title: this.event.title,
@@ -95,7 +95,7 @@ export class ModalEditEventClubComponent implements OnInit {
             recurent: this.event.recurent!=null?this.event.recurent:false
         });
     }
-    
+
     initChip() {
         if(this.event.recurent) {
             this.event.byweekday.split(',').forEach(element => {
@@ -104,12 +104,12 @@ export class ModalEditEventClubComponent implements OnInit {
                         const index = this.chipsDays.indexOf(chip);
                         this.chipsDays[index].selected = !chip.selected;
                         this.updateJoursSelect(chip);
-                    }   
+                    }
                 });
             });
         }
     }
-    
+
     updateJoursSelect(item: ChipDays) {
         if (item.selected) {
             this.joursSelected.push(item.value);
@@ -118,8 +118,8 @@ export class ModalEditEventClubComponent implements OnInit {
             this.joursSelected.splice(index, 1);
         }
     }
-    
-    
+
+
     onSubmit() {
         // init Date debut
         const dateDebut = new Date(this.eventForm.value.startDate);
@@ -149,7 +149,7 @@ export class ModalEditEventClubComponent implements OnInit {
         if (this.eventForm.value.recurent) {
             jsonEvent.freq = 'WEEKLY';
             jsonEvent.byweekday = this.joursSelected.toString();
-        } 
+        }
         this.eventService.updateEvent(jsonEvent).subscribe(
             success => this.dialogRef.close(true),
             error => alert(error)

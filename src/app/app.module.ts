@@ -88,6 +88,7 @@ import { AjoutSalleComponent } from './modal/salle/ajout-salle/ajout-salle.compo
 import { AjoutVilleComponent } from './modal/ville/ajout-ville/ajout-ville.component';
 import { ConfirmerActionComponent } from './modal/confirmation/confirmer-action/confirmer-action.component';
 import { InputCityComponent } from './component/input-city/input-city.component';
+import { AjoutEquipeComponent } from './modal/equipe/ajout-equipe/ajout-equipe.component';
 
 registerLocaleData(localeFr);
 
@@ -108,7 +109,8 @@ registerLocaleData(localeFr);
     AjoutSalleComponent,
     AjoutVilleComponent,
     ConfirmerActionComponent,
-    InputCityComponent
+    InputCityComponent,
+    AjoutEquipeComponent
   ],
   imports: [
     A11yModule,

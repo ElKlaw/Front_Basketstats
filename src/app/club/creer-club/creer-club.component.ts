@@ -24,11 +24,11 @@ interface RetourApi {
 export class CreerClubComponent implements OnInit {
 
   clubForm = new FormGroup({
-    nomcomplet: new FormControl(''),//,{validators : [Validators.required, Validators.minLength(3), Validators.maxLength(200)], updateOn: 'blur'}),
-    nom: new FormControl(''),//,{validators : [Validators.required, Validators.minLength(2), Validators.maxLength(200)], updateOn: 'blur'}),
-    url: new FormControl(''),//,{validators : [Validators.required, Validators.minLength(3), Validators.maxLength(15)]}),
-    codeClub: new FormControl(''),//,{validators : [Validators.required, Validators.minLength(2), Validators.maxLength(50)], updateOn: 'blur'}),
-    sport: new FormControl(''),//,{validators : [Validators.required], updateOn: 'blur'}),
+    nomcomplet: new FormControl('',{validators : [Validators.required, Validators.minLength(3), Validators.maxLength(200)], updateOn: 'blur'}),
+    nom: new FormControl('',{validators : [Validators.required, Validators.minLength(2), Validators.maxLength(200)], updateOn: 'blur'}),
+    url: new FormControl('',{validators : [Validators.required, Validators.minLength(3), Validators.maxLength(15)]}),
+    codeClub: new FormControl('',{validators : [Validators.required, Validators.minLength(2), Validators.maxLength(50)], updateOn: 'blur'}),
+    sport: new FormControl('',{validators : [Validators.required], updateOn: 'blur'}),
     villes: new FormControl(''),
     imagelogo: new FormControl(''),
     imagefond: new FormControl(''),

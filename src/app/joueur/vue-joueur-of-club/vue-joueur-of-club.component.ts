@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input, AfterViewInit } from '@angular/core';
-import {JoueurService} from '../../shared/joueur.service';
+import {JoueurService} from '../../shared/service/joueur.service';
 import {MatPaginator, MatTableDataSource, MatSort, MatPaginatorIntl} from '@angular/material';
 import { Joueur } from 'src/app/shared/joueur';
 import { FrenchMatPaginatorIntl } from 'src/app/component/language/frenchmatpaginatorintl';
