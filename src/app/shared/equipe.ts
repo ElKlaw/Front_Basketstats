@@ -1,4 +1,5 @@
 import { Club } from './club';
+import { Photo } from './photo';
 
 export class Equipe {
     constructor(
@@ -14,4 +15,6 @@ export class Equipe {
     division: string;
     poule: string;
     club: Club;
+    imageequipe: any;
+    photo: Photo
 }

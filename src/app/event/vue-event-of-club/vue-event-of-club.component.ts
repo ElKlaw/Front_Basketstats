@@ -17,7 +17,6 @@ import { CustomDateFormatter } from 'src/app/calendar/custom-date-formatter.prov
 import { EventService } from 'src/app/shared/service/event.service';
 import { Club } from 'src/app/shared/club';
 import { MatDialog } from '@angular/material';
-import { ModalCreateEventComponent } from 'src/app/modal/modal-create-event/modal-create-event.component';
 import { ModalModificationEventComponent } from 'src/app/modal/modal-modification-event/modal-modification-event.component';
 import { ModalEditEventClubComponent } from 'src/app/modal/modal-edit-event-club/modal-edit-event-club.component';
 import { Event } from 'src/app/shared/event';
@@ -104,17 +103,7 @@ export class VueEventOfClubComponent implements OnInit {
     }
 
     openCreateEvent() {
-        const dialogEquipe = this.dialogCreateEvent.open(ModalCreateEventComponent, {
-            width: '50%',
-            data: {club: this.club}
-        });
 
-        dialogEquipe.afterClosed().subscribe(result => {
-            if(result){
-                this.refreshView();
-                this.loadEvents();
-            }
-        });
     }
 
     openModifEvent(event, newStart, newEnd) {

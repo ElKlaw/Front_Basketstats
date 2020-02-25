@@ -3,10 +3,11 @@
       Création d'une équipe
   </h1>
   <div mat-dialog-content class="div-form-create">
-      <mat-form-field class="full-width">
-          <input formControlName="nom" matInput placeholder="Nom de l'équipe">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom de l'équipe</mat-label>
+        <input formControlName="nom" matInput>
       </mat-form-field>
-      <mat-form-field class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
           <mat-label>Catégorie</mat-label>
           <mat-select name="categories" formControlName="categorie">
               <mat-option *ngFor="let keyCategories of keysCategories" [value]="keyCategories">
@@ -14,7 +15,7 @@
               </mat-option>
           </mat-select>
       </mat-form-field>
-      <mat-form-field class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
           <mat-label>Sexe</mat-label>
           <mat-select name="sexes" formControlName="sexe">
               <mat-option *ngFor="let keySexes of keysSexes" [value]="keySexes">
@@ -22,7 +23,7 @@
               </mat-option>
           </mat-select>
       </mat-form-field>
-      <mat-form-field class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
           <mat-label>Niveau</mat-label>
           <mat-select name="niveaux" formControlName="niveau">
               <mat-option *ngFor="let keyNiveaux of keysNiveaux" [value]="keyNiveaux">
@@ -30,11 +31,20 @@
               </mat-option>
           </mat-select>
       </mat-form-field>
-      <mat-form-field class="full-width">
-          <input matInput placeholder="Division" formControlName="division">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Division</mat-label>
+        <input matInput formControlName="division">
       </mat-form-field>
-      <mat-form-field class="full-width">
-          <input matInput placeholder="Poule" formControlName="poule">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Poule</mat-label>
+        <input matInput formControlName="poule">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Image equipe</mat-label>
+        <ngx-mat-file-input #imageequipe formControlName="imageequipe"></ngx-mat-file-input>
+        <button mat-icon-button matSuffix *ngIf="!imageequipe.empty" (click)="imageequipe.clear($event)">
+          <mat-icon>clear</mat-icon>
+        </button>
       </mat-form-field>
   </div>
   <div mat-dialog-actions>

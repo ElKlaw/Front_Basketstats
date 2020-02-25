@@ -53,3 +53,16 @@
   vertical-align: middle;
   padding: 10px;
 }
+
+
+.div-form {
+  background-color: #f8f9fa!important;
+  border: 1px solid #bbb;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.btn {
+  margin-right: 10px;
+  margin-left: 10px;
+}

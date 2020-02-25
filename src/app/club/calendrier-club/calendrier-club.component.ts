@@ -12,7 +12,7 @@ import { ClubService } from 'src/app/shared/service/club.service';
 import { Club } from 'src/app/shared/club';
 import { Event } from 'src/app/shared/event';
 
-import { ModalCreateEventComponent } from 'src/app/modal/modal-create-event/modal-create-event.component';
+import { AjoutEventComponent } from 'src/app/modal/event/ajout-event/ajout-event.component';
 import { ModalModificationEventComponent } from 'src/app/modal/modal-modification-event/modal-modification-event.component';
 import { ModalEditEventClubComponent } from 'src/app/modal/modal-edit-event-club/modal-edit-event-club.component';
 
@@ -109,7 +109,7 @@ export class CalendrierClubComponent implements OnInit {
   }
 
   openCreateEvent() {
-      const dialogEquipe = this.dialogCreateEvent.open(ModalCreateEventComponent, {
+      const dialogEquipe = this.dialogCreateEvent.open(AjoutEventComponent, {
           width: '50%',
           data: {club: this.club}
       });

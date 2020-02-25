@@ -22,17 +22,20 @@
               {{club.nomcomplet}} ({{club.nom}})
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div>
-            <form class="form-club" [formGroup]="clubNomForm" (ngSubmit)="submit(clubNomForm)">
+          <div class="row justify-content-center">
+            <form class="div-form form-club col-6" [formGroup]="clubNomForm" (ngSubmit)="submit(clubNomForm)">
               <mat-form-field class="full-width">
-                <mat-label>Nom du club</mat-label>
+                <mat-label>Nouveau nom du club</mat-label>
                 <input formControlName="nomcomplet" matInput>
               </mat-form-field>
               <mat-form-field class="full-width">
-                <mat-label>Acronyme du club</mat-label>
+                <mat-label>Nouvelle acronyme du club</mat-label>
                 <input formControlName="nom" matInput class="uppercase">
               </mat-form-field>
-              <button type="submit" class="btn btn-success" (click)="panelNom.close()">Valider les modifications</button>
+              <div class="row full-width justify-content-center">
+                <button class="btn btn-danger col-4" (click)="panelNom.close()">Annuler</button>
+                <button type="submit" class="btn btn-success col-4" (click)="panelNom.close()">Valider les modifications</button>
+              </div>
             </form>
           </div>
         </mat-expansion-panel>
@@ -45,13 +48,16 @@
               {{club.url}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div>
-            <form class="form-club" [formGroup]="clubUrlForm" (ngSubmit)="submit(clubUrlForm)">
+          <div class="row justify-content-center">
+            <form class="div-form form-club col-6" [formGroup]="clubUrlForm" (ngSubmit)="submit(clubUrlForm)">
               <mat-form-field class="full-width">
-                <mat-label>Url du club</mat-label>
+                <mat-label>Nouvelle url du club</mat-label>
                 <input formControlName="url" matInput class="lowercase">
               </mat-form-field>
-              <button type="submit" class="btn btn-success" (click)="panelUrl.close()">Valider les modifications</button>
+              <div class="row full-width justify-content-center">
+                <button class="btn btn-danger col-4" (click)="panelNom.close()">Annuler</button>
+                <button type="submit" class="btn btn-success col-4" (click)="panelNom.close()">Valider les modifications</button>
+              </div>
             </form>
           </div>
         </mat-expansion-panel>
@@ -64,13 +70,16 @@
               {{club.codeClub}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div>
-            <form class="form-club" [formGroup]="clubCodeForm" (ngSubmit)="submit(clubCodeForm)">
+          <div class="row justify-content-center">
+            <form class="div-form form-club col-6" [formGroup]="clubCodeForm" (ngSubmit)="submit(clubCodeForm)">
               <mat-form-field class="full-width">
-                <mat-label>Code du club</mat-label>
+                <mat-label>Nouveau code du club</mat-label>
                 <input formControlName="codeClub" matInput>
               </mat-form-field>
-              <button type="submit" class="btn btn-success" (click)="panelCode.close()">Valider les modifications</button>
+              <div class="row full-width justify-content-center">
+                <button class="btn btn-danger col-4" (click)="panelCode.close()">Annuler</button>
+                <button type="submit" class="btn btn-success col-4" (click)="panelCode.close()">Valider les modifications</button>
+              </div>
             </form>
           </div>
         </mat-expansion-panel>
@@ -83,17 +92,20 @@
               {{club.sport}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div>
-            <form class="form-club" [formGroup]="clubSportForm" (ngSubmit)="submit(clubSportForm)">
+          <div class="row justify-content-center">
+            <form class="div-form form-club col-6" [formGroup]="clubSportForm" (ngSubmit)="submit(clubSportForm)">
               <mat-form-field class="full-width">
-                <mat-label>Sport du club</mat-label>
+                <mat-label>Nouveau sport du club</mat-label>
                 <mat-select name="sports" formControlName="sport">
                   <mat-option *ngFor="let sport of sports" [value]="sport.nom">
                     {{sport.nom}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <button type="submit" class="btn btn-success" (click)="panelSport.close()">Valider les modifications</button>
+              <div class="row full-width justify-content-center">
+                <button class="btn btn-danger col-4" (click)="panelSport.close()">Annuler</button>
+                <button type="submit" class="btn btn-success col-4" (click)="panelSport.close()">Valider les modifications</button>
+              </div>
             </form>
           </div>
         </mat-expansion-panel>

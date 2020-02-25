@@ -9,7 +9,13 @@
     <div>
       <div class="row">
         <div class="col-4">
-          <img class="img-equipe" src="assets/img/photo_equipe.jpg">
+          <div *ngIf="equipe.imageequipe; then image else imageindispo"></div>
+          <ng-template #image>
+            <img class="img-equipe" [src]="equipe.imageequipe">
+          </ng-template>
+          <ng-template #imageindispo>
+            <img class="img-equipe" src="assets/img/img_no_available.jpg">
+          </ng-template>
         </div>
         <div class="col-8">
           <h1 class="nom-equipe">{{equipe.nom}}</h1>

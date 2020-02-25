@@ -65,7 +65,6 @@ export class CreerClubComponent implements OnInit {
       this.clubForm.value.logo = data[0];
       this.clubForm.value.fond = data[1];
       this.clubForm.value.url = this.clubForm.value.url.toLowerCase();
-      console.log(JSON.stringify(this.clubForm.value));
       this.clubService.createClub(this.clubForm.value).subscribe(
         data => this.router.navigate(['/club/' + data.url]),
         error => console.log(error)

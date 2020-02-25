@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
-import { retry, map } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
+import { retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -21,11 +21,11 @@ export class PhotoService {
     );
   }
 
-  addPhoto(photo, urlclub: string, type: string): Observable<Photo> {
+  addPhoto(photo, urlclub: string, nom: string): Observable<Photo> {
     const data: FormData = new FormData();
     data.append('image', photo._files[0]);
     data.append('urlClub',urlclub);
-    data.append('typePhoto',type);
+    data.append('nom',nom);
     return this.http.post<Photo>(environment.apiUrl + '/photo', data)
     .pipe(
       retry(1)

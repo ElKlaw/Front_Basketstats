@@ -1,4 +1,5 @@
 import { Equipe } from './equipe';
+import { Photo } from './photo';
 
 export class Joueur {
     id: number;
@@ -7,4 +8,6 @@ export class Joueur {
     sexe: string;
     dateNaissance: string;
     equipes: Equipe[];
+    imagejoueur: any;
+    photo: Photo
 }

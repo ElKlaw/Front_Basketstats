@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Equipe } from 'src/app/shared/equipe';
 
 import { EquipeService } from 'src/app/shared/service/equipe.service';
+import { PhotoService } from 'src/app/shared/service/photo.service';
 
 @Component({
   selector: 'app-profil-equipe',
@@ -15,7 +16,8 @@ export class ProfilEquipeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public equipeService: EquipeService
+    public equipeService: EquipeService,
+    public photoService: PhotoService
   ) {
     this.getEquipe();
   }
@@ -27,6 +29,22 @@ export class ProfilEquipeComponent implements OnInit {
   getEquipe() {
     this.equipeService.getEquipe(this.route.snapshot.paramMap.get('id')).subscribe((equipe: Equipe) => {
       this.equipe = equipe;
+      this.getImageEquipe(equipe);
     });
+  }
+
+  getImageEquipe(equipe : Equipe) {
+    this.photoService.getPhotoById(equipe.photo.id).subscribe(
+      image => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+          equipe.imageequipe = reader.result;
+        }, false);
+
+        if (image) {
+          reader.readAsDataURL(image);
+        }
+      }
+    );
   }
 }

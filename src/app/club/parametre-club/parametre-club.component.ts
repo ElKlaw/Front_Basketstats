@@ -82,9 +82,10 @@ export class ParametreClubComponent {
 
   //Submit form
   submit(form){
-    this.clubService.patchClub(this.club.id, form.value);
+    this.clubService.patchClub(this.club.id, form.value).subscribe((club: Club) => {
+      this.club= club;
+    });
   }
-
 
   // Gestion Salle
   loadSalle() {

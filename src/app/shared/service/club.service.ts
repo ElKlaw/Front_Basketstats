@@ -43,7 +43,7 @@ export class ClubService {
     );
   }
 
-  patchClub(id, club) {
+  patchClub(id, club): Observable<Club>  {
     return this.http.patch<Club>(environment.apiUrl + '/club/' + id, JSON.stringify(club), this.httpOptions)
     .pipe(
       retry(1)

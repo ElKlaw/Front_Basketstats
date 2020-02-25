@@ -9,7 +9,9 @@ import { EnumSaison } from 'src/app/shared/enum/enumsaison';
 import { EnumSexeEquipe } from 'src/app/shared/enum/enumsexeequipe';
 
 import { EquipeService } from 'src/app/shared/service/equipe.service';
+import { PhotoService } from 'src/app/shared/service/photo.service';
 
+import { Photo } from 'src/app/shared/photo';
 
 @Component({
   selector: 'app-ajout-equipe',
@@ -40,13 +42,16 @@ export class AjoutEquipeComponent implements OnInit {
       sexe: new FormControl(''),
       niveau: new FormControl(''),
       division: new FormControl(''),
-      poule: new FormControl('')
+      poule: new FormControl(''),
+      imageequipe: new FormControl(''),
+      photo: new FormControl('')
   });
 
   constructor(
       public equipeService: EquipeService,
       public dialogRef: MatDialogRef<AjoutEquipeComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
+      public photoService: PhotoService,
       private router: Router
   ) {
       this.keysCategories = Object.keys(this.categories);
@@ -59,13 +64,27 @@ export class AjoutEquipeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.equipeService.createEquipeFromClub(this.equipeForm.value, this.data.club.id).subscribe(
-      equipe => {
-        this.dialogRef.close();
-        this.router.navigate(['/club/'+this.data.club.url+'/equipe/'+ equipe.id]);
-      },
-      error => alert(error)
-    );
+    const promiseLogo = this.addPhotoEquipe();
+    promiseLogo.then(data => {
+      this.equipeForm.value.photo = data;
+      this.equipeService.createEquipeFromClub(this.equipeForm.value, this.data.club.id).subscribe(
+        equipe => {
+          this.dialogRef.close();
+          this.router.navigate(['/club/'+this.data.club.url+'/equipe/'+ equipe.id]);
+        },
+        error => alert(error)
+      );
+    });
+  }
+
+  addPhotoEquipe() {
+    return new Promise((resolve, reject) => {
+      this.photoService.addPhoto(this.equipeForm.value.imageequipe, this.data.club.url, this.equipeForm.value.nom).subscribe(
+        (photo: Photo)=> {
+          resolve(new Photo(photo.id));
+        }
+      );
+    });
   }
 
   onNoClick(): void {

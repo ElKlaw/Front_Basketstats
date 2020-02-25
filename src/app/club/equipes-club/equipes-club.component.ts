@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import {EquipeService} from 'src/app/shared/service/equipe.service';
+import { PhotoService } from 'src/app/shared/service/photo.service';
 
 import { Equipe } from 'src/app/shared/equipe';
 import { Club } from 'src/app/shared/club';
@@ -26,9 +27,11 @@ export class EquipesClubComponent{
   nomFilter = new FormControl();
 
   loading = true;
+  imageequipe: any;
 
   constructor(
     public equipeService: EquipeService,
+    public photoService: PhotoService,
     public route: ActivatedRoute,
     public dialog: MatDialog
   ) {
@@ -54,6 +57,11 @@ export class EquipesClubComponent{
       this.equipes = equipes;
       this.equipesFilter = this.equipes;
       this.loading=false;
+      equipes.forEach( (equipe :Equipe)=> {
+        if(equipe.photo){
+          this.getImageEquipe(equipe);
+        }
+      });
     });
   }
 
@@ -66,6 +74,21 @@ export class EquipesClubComponent{
     dialogCreateSalle.afterClosed().subscribe(result => {
       this.loadEquipes();
     });
+  }
+
+  getImageEquipe(equipe : Equipe) {
+    this.photoService.getPhotoById(equipe.photo.id).subscribe(
+      image => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+          equipe.imageequipe = reader.result;
+        }, false);
+
+        if (image) {
+          reader.readAsDataURL(image);
+        }
+      }
+    );
   }
 
 }

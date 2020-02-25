@@ -4,7 +4,13 @@
   </div>
   <div class="row">
     <div *ngFor="let joueur of joueurs" class="col-2 card-joueur">
-      <img class="img-user" src="/assets/icons/user.png"/>
+      <div *ngIf="joueur.imagejoueur; then image else imageindispo"></div>
+      <ng-template #image>
+        <img class="card-img-top" [src]="joueur.imagejoueur">
+      </ng-template>
+      <ng-template #imageindispo>
+        <img class="card-img-top" src="assets/img/img_no_available.jpg">
+      </ng-template>
       <p class="nom-joueur">{{joueur.prenom}} {{joueur.nom |uppercase}}</p>
     </div>
   </div>

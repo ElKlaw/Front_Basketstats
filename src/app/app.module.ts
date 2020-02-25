@@ -73,6 +73,7 @@ import { HeaderComponent } from './header/header.component';
 // Component utilitaire
 import { AutocompletecityComponent } from './component/autocompletecity/autocompletecity.component';
 import { AutocompleteAdresseComponent } from './component/autocomplete-adresse/autocomplete-adresse.component';
+import { AutocompleteLieuComponent } from './component/autocomplete-lieu/autocomplete-lieu.component';
 
 // Clubs
 import { CreerClubComponent } from './club/creer-club/creer-club.component';
@@ -89,6 +90,7 @@ import { AjoutVilleComponent } from './modal/ville/ajout-ville/ajout-ville.compo
 import { ConfirmerActionComponent } from './modal/confirmation/confirmer-action/confirmer-action.component';
 import { InputCityComponent } from './component/input-city/input-city.component';
 import { AjoutEquipeComponent } from './modal/equipe/ajout-equipe/ajout-equipe.component';
+import { AjoutEventComponent } from './modal/event/ajout-event/ajout-event.component';
 
 registerLocaleData(localeFr);
 
@@ -105,12 +107,14 @@ registerLocaleData(localeFr);
     //Utilitaire
     AutocompletecityComponent,
     AutocompleteAdresseComponent,
+    AutocompleteLieuComponent,
     //Modal
     AjoutSalleComponent,
     AjoutVilleComponent,
     ConfirmerActionComponent,
     InputCityComponent,
-    AjoutEquipeComponent
+    AjoutEquipeComponent,
+    AjoutEventComponent
   ],
   imports: [
     A11yModule,
