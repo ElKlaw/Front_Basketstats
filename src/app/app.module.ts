@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -91,6 +91,12 @@ import { ConfirmerActionComponent } from './modal/confirmation/confirmer-action/
 import { InputCityComponent } from './component/input-city/input-city.component';
 import { AjoutEquipeComponent } from './modal/equipe/ajout-equipe/ajout-equipe.component';
 import { AjoutEventComponent } from './modal/event/ajout-event/ajout-event.component';
+import { ModalInscriptionComponent } from './modal/modal-inscription/modal-inscription.component';
+
+//Oauth
+import { LoginComponent } from './utilisateur/login/login.component';
+import { InscriptionComponent } from './utilisateur/inscription/inscription.component';
+import { AuthErrorHandler } from './shared/authErrorHandler';
 
 registerLocaleData(localeFr);
 
@@ -114,7 +120,10 @@ registerLocaleData(localeFr);
     ConfirmerActionComponent,
     InputCityComponent,
     AjoutEquipeComponent,
-    AjoutEventComponent
+    AjoutEventComponent,
+    ModalInscriptionComponent,
+    LoginComponent,
+    InscriptionComponent
   ],
   imports: [
     A11yModule,
@@ -170,11 +179,8 @@ registerLocaleData(localeFr);
     MaterialFileInputModule
   ],
   providers: [
-    //{ provide: MatDialogRef, useValue: {} },
-    //{ provide: MAT_DIALOG_DATA, useValue: [] },
-    //{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    //{provide: ErrorHandler, useClass: AuthErrorHandler},
-    //AuthGuard
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: ErrorHandler, useClass: AuthErrorHandler}
   ],
   bootstrap: [AppComponent]
 })

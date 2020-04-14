@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
-import { retry } from 'rxjs/operators';
+import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { Club } from '../club';

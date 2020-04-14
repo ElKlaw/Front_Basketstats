@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { UserService } from 'src/app/shared/user.service';
-import { ModalService } from 'src/app/shared/modal.service';
-import { Observable } from 'rxjs';
-import * as jwt_decode from 'jwt-decode';
-import { UserConnection } from 'src/app/shared/userConnection';
+import { UserService } from '../shared/service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,42 +7,31 @@ import { UserConnection } from 'src/app/shared/userConnection';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    connect : boolean;
-    username: string;
-    
-    loginForm = new FormGroup({
-        username: new FormControl(''),
-        password: new FormControl('')
-    });
-    
-    constructor(
-        public userService: UserService,
-        public modalService: ModalService
-    ) { }
+  connect : boolean;
+  username: string;
+
+  constructor(
+    private userService: UserService
+  ) { }
 
     ngOnInit() {
-        this.userService.isLoggedIn.subscribe(
-            data=> {
-                this.connect = data;
-                if(this.connect) {
-                    const token = jwt_decode(localStorage.getItem("id_token"));
-                    this.username =  token.username;
-                }
-            }
-        );
+      this.userService.isLoggedIn.subscribe(
+        ((connected:boolean) =>{
+          this.connect = connected;
+          if(connected){
+            this.userService.getCurrentUser().subscribe(
+              user => {
+                this.username = user.name;
+              }
+            );
+          }
+        }
+      ));
+
     }
-    
+
     deconnexion() {
-        this.userService.deconnectUser();
-    }
-    
-    onSubmit() {
-        const user = new UserConnection();
-        user.username = this.loginForm.value.username;
-        user.password = this.loginForm.value.password;
-        this.userService.connectUser(user).subscribe(
-            success => {},
-            error => alert(error)
-        );
+      this.connect=false;
+      this.userService.deconnectUser();
     }
 }

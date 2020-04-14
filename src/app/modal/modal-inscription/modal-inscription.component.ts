@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-modal-inscription',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalInscriptionComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<ModalInscriptionComponent>
+  ) { }
 
   ngOnInit() {
+  }
+
+  fermerModal() {
+    this.dialogRef.close();
   }
 
 }

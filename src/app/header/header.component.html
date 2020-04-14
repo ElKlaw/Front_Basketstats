@@ -24,10 +24,23 @@
 		<ng-template #noconnect>
 			<div id="info-account" >
 				<div class="li-account d-inline-block" ngbDropdown display="dynamic" placement="bottom-right">
-					<a id="button_connection" ngbDropdownToggle>Se Connecter</a>
-					<div ngbDropdownMenu aria-labelledby="button_connection">
+					<a id="button_connection" href="/login" >Se Connecter</a>
+					<!--<div ngbDropdownMenu aria-labelledby="button_connection">
 						<div class="container-fluid">
-							<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div>
+                <button class="btn btn-lg btn-google btn-block" (click)="signInWithGoogle()">
+                  <i class="fab fa-google mr-2"></i>
+                   Connectez-vous avec Google
+                </button>
+                <button class="btn btn-lg btn-facebook btn-block" (click)="signInWithFacebook()">
+                  <i class="fab fa-facebook-f mr-2"></i>
+                   Connectez-vous avec Facebook
+                </button>
+              </div>
+              <div class="div-divider">
+                <span class="span-divider">OU</span>
+              </div>
+						  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 							    <h1> Vous avez déjà un compte ?</h1>
 							    <div class="form-group full-width" >
 							        <input formControlName="username" class="form-control"  placeholder="Email ou identifiant">
@@ -39,10 +52,10 @@
 							    <a href="/motdepasseoublie" ngbDropdownItem>Mot de passe oublié ?</a>
 							    <mat-divider></mat-divider>
 							    <p>Nouveau sur BasketStats</p>
-							    <a href="/inscription" class="btn btn-info full-width" ngbDropdownItem>S'inscrire</a>
-							</form>
+                  <a href="/inscription" class="btn btn-info full-width" ngbDropdownItem>S'inscrire</a>
+              </form>
 						</div>
-					</div>
+					</div>-->
 				</div>
 				<div class="li-account">
 					<a class="btn btn-outline-danger" href="/inscription" id="button_inscription" >Inscription</a>

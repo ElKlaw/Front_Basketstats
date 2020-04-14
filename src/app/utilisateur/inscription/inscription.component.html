@@ -1,6 +1,15 @@
-<app-header></app-header>
 <div class="div-form-create col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-12 col-xs-12">
-    <h1 class="titre-center">Créer votre compte</h1>
+  <h1 class="titre-center">Créer votre compte</h1>
+  <div>
+    <a class="btn btn-lg btn-google btn-block" href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/login">
+      <i class="fab fa-google mr-2"></i>
+      S'inscrire avec Google
+    </a>
+  </div>
+  <div>
+    <span>OU</span>
+  </div>
+  <div>
     <form class="form-inscription" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
     	<mat-form-field appearance="outline" class="full-width">
             <mat-label>Nom</mat-label>
@@ -36,25 +45,25 @@
 		  	<mat-error *ngIf="f.datenaissance.hasError('required')">
 		    	Veuillez entrer une date de naissance
 		    </mat-error>
-		</mat-form-field>
-		<mat-radio-group formControlName="sexe" required class="radio-buttons">
-		  	<mat-radio-button class="radio-sexe" value="Homme">Homme</mat-radio-button>
-		  	<mat-radio-button class="radio-sexe" value="Femme">Femme</mat-radio-button>
-		</mat-radio-group>
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Email</mat-label>
-            <input type="email" formControlName="email" matInput email required>
-            <mat-error *ngIf="f.email.hasError('required')">
-		    	Veuillez entrer un email
-		    </mat-error>
-		    <mat-error *ngIf="f.email.hasError('email')">
-		    	Le format de votre email ne semble pas correcte
-		    </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Identifiant</mat-label>
-            <input formControlName="identifiant" matInput required>
-            <mat-error *ngIf="f.identifiant.hasError('required')">
+		  </mat-form-field>
+      <mat-radio-group formControlName="sexe" required class="radio-buttons">
+        <mat-radio-button class="radio-sexe" value="Homme">Homme</mat-radio-button>
+        <mat-radio-button class="radio-sexe" value="Femme">Femme</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput email required>
+        <mat-error *ngIf="f.email.hasError('required')">
+          Veuillez entrer un email
+        </mat-error>
+        <mat-error *ngIf="f.email.hasError('email')">
+          Le format de votre email ne semble pas correcte
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Identifiant</mat-label>
+        <input formControlName="identifiant" matInput required>
+        <mat-error *ngIf="f.identifiant.hasError('required')">
 		    	Veuillez entrer un identifiant
 		    </mat-error>
 		    <mat-error *ngIf="f.nom.hasError('minlength')">
@@ -76,8 +85,8 @@
 		    <mat-error *ngIf="f.motdepasse.hasError('maxlength')">
 		    	Votre mot de passe doit contenir au maximum 200 caractères
 		    </mat-error>
-        </mat-form-field>
-        <button type="submit" class="btn btn-success">Valider</button>
+      </mat-form-field>
+      <button type="submit" class="btn btn-success">Valider</button>
     </form>
+  </div>
 </div>
-<app-footer></app-footer>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VueLoginComponent } from './vue-login.component';
+import { InscriptionComponent } from './inscription.component';
 
-describe('VueLoginComponent', () => {
-  let component: VueLoginComponent;
-  let fixture: ComponentFixture<VueLoginComponent>;
+describe('InscriptionComponent', () => {
+  let component: InscriptionComponent;
+  let fixture: ComponentFixture<InscriptionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VueLoginComponent ]
+      declarations: [ InscriptionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VueLoginComponent);
+    fixture = TestBed.createComponent(InscriptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,36 @@
+<div class="container div-login">
+	<div class="cadre-gris col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-12 col-xs-12">
+		<h1 class="titre-center">
+      #BasketStats
+    </h1>
+    <div>
+      <a class="btn btn-lg btn-google btn-block" href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/login">
+        <i class="fab fa-google mr-2"></i>
+         Connectez-vous avec Google
+      </a>
+    </div>
+    <div class="div-divider">
+      <span class="span-divider">OU</span>
+    </div>
+		<form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-error *ngIf="error">L'adresse email ou le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.</mat-error>
+      <div class="div-form-create">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Adresse mail</mat-label>
+          <input formControlName="email" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input type="password" formControlName="password" matInput>
+        </mat-form-field>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-success full-width">Se connecter</button>
+      </div>
+    </form>
+	</div>
+	<div class="cadre-gris col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-12 col-xs-12">
+		<p>Vous n'avez pas de compte ? <a [routerLink]="['/inscription']">S'inscrire</a></p>
+  </div>
+
+</div>

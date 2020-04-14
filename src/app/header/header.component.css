@@ -92,3 +92,16 @@
   padding: 0;
   margin: 0;
 }
+
+
+.btn-google {
+  color: white;
+  background-color: #ea4335;
+  width: 300px;
+}
+
+.btn-facebook {
+  color: white;
+  background-color: #3b5998;
+  width: 300px;
+}
