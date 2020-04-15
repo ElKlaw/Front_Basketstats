@@ -97,6 +97,9 @@ import { ModalInscriptionComponent } from './modal/modal-inscription/modal-inscr
 import { LoginComponent } from './utilisateur/login/login.component';
 import { InscriptionComponent } from './utilisateur/inscription/inscription.component';
 import { AuthErrorHandler } from './shared/authErrorHandler';
+import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
+import { CalendrierUtilisateurComponent } from './utilisateur/calendrier-utilisateur/calendrier-utilisateur.component';
+import { EquipesUtilisateurComponent } from './utilisateur/equipes-utilisateur/equipes-utilisateur.component';
 
 registerLocaleData(localeFr);
 
@@ -123,7 +126,10 @@ registerLocaleData(localeFr);
     AjoutEventComponent,
     ModalInscriptionComponent,
     LoginComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    ProfilUtilisateurComponent,
+    CalendrierUtilisateurComponent,
+    EquipesUtilisateurComponent
   ],
   imports: [
     A11yModule,

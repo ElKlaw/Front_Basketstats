@@ -14,17 +14,17 @@ export class AuthErrorHandler implements ErrorHandler {
     }
 
     handleError(error) {
-
+      console.log(error);
       const router = this.injector.get(Router);
-      if (error.rejection instanceof HttpErrorResponse) {
-        if (error.rejection.status === 401) {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 401) {
           this.zone.run(
             () => {
               this.userService.deconnectUser();
               router.navigate(['/login'])
             }
           );
-        } else if ( error.rejection.status === 403) {
+        } else if ( error.status === 403) {
           alert('Pas autorisé')
         }
       }

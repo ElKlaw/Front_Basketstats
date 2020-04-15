@@ -22,6 +22,10 @@ import { ModalInscriptionComponent } from './modal/modal-inscription/modal-inscr
 // Utilisateur
 import { LoginComponent } from './utilisateur/login/login.component';
 import { InscriptionComponent } from './utilisateur/inscription/inscription.component';
+import { CalendrierUtilisateurComponent } from './utilisateur/calendrier-utilisateur/calendrier-utilisateur.component';
+import { ProfilUtilisateurComponent } from './utilisateur/profil-utilisateur/profil-utilisateur.component';
+import { EquipesUtilisateurComponent } from './utilisateur/equipes-utilisateur/equipes-utilisateur.component';
+
 
 
 const routes: Routes = [
@@ -39,7 +43,10 @@ const routes: Routes = [
       canActivate: [AuthGuard]
     },
     { path: 'login', component: LoginComponent },
-    { path: 'inscription', component: InscriptionComponent }
+    { path: 'inscription', component: InscriptionComponent },
+    { path: 'profil', component: ProfilUtilisateurComponent },
+    { path: 'calendrier', component: CalendrierUtilisateurComponent },
+    { path: 'equipes', component: EquipesUtilisateurComponent }
 ];
 
 const routesModal: Routes = [

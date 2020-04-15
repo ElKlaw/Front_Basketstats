@@ -1,0 +1,105 @@
+<div class="cadre-gris">
+	<div class="div-header-parametres-club">
+		<h1 class="display-5 font-weight-normal">Mon Profil</h1>
+  </div>
+  <div
+    *ngIf="loading else loaded"
+    class="div-load"
+  >
+      <mat-spinner
+        diameter="70"
+      ></mat-spinner>
+  </div>
+  <ng-template #loaded>
+    <mat-accordion>
+      <mat-expansion-panel #panelEmail>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Email
+          </mat-panel-title>
+          <mat-panel-description>
+            {{user.email}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row justify-content-center">
+          <form class="div-form form-club col-6" [formGroup]="userEmailForm" (ngSubmit)="submit(userEmailForm)">
+            <mat-form-field class="full-width">
+              <mat-label>Nouveau email</mat-label>
+              <input formControlName="email" matInput>
+            </mat-form-field>
+            <div class="row full-width justify-content-center">
+              <button class="btn btn-danger col-4" (click)="panelEmail.close()">Annuler</button>
+              <button type="submit" class="btn btn-success col-4" (click)="panelEmail.close()">Valider les modifications</button>
+            </div>
+          </form>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel #panelNomPrenom>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Nom
+          </mat-panel-title>
+          <mat-panel-description>
+            {{user.joueur.prenom}} {{user.joueur.nom}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row justify-content-center">
+          <form class="div-form form-club col-6" [formGroup]="userEmailForm" (ngSubmit)="submit(userEmailForm)">
+            <mat-form-field class="full-width">
+              <mat-label>Nouveau email</mat-label>
+              <input formControlName="email" matInput>
+            </mat-form-field>
+            <div class="row full-width justify-content-center">
+              <button class="btn btn-danger col-4" (click)="panelEmail.close()">Annuler</button>
+              <button type="submit" class="btn btn-success col-4" (click)="panelEmail.close()">Valider les modifications</button>
+            </div>
+          </form>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel #panelDateNaissance>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Date de naissance
+          </mat-panel-title>
+          <mat-panel-description>
+            {{user.joueur.dateNaissance}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row justify-content-center">
+          <form class="div-form form-club col-6" [formGroup]="userEmailForm" (ngSubmit)="submit(userEmailForm)">
+            <mat-form-field class="full-width">
+              <mat-label>Nouveau email</mat-label>
+              <input formControlName="email" matInput>
+            </mat-form-field>
+            <div class="row full-width justify-content-center">
+              <button class="btn btn-danger col-4" (click)="panelEmail.close()">Annuler</button>
+              <button type="submit" class="btn btn-success col-4" (click)="panelEmail.close()">Valider les modifications</button>
+            </div>
+          </form>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel #panelSexe>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Sexe
+          </mat-panel-title>
+          <mat-panel-description>
+            {{user.joueur.sexe}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row justify-content-center">
+          <form class="div-form form-club col-6" [formGroup]="userEmailForm" (ngSubmit)="submit(userEmailForm)">
+            <mat-form-field class="full-width">
+              <mat-label>Nouveau email</mat-label>
+              <input formControlName="email" matInput>
+            </mat-form-field>
+            <div class="row full-width justify-content-center">
+              <button class="btn btn-danger col-4" (click)="panelEmail.close()">Annuler</button>
+              <button type="submit" class="btn btn-success col-4" (click)="panelEmail.close()">Valider les modifications</button>
+            </div>
+          </form>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-template>
+</div>
